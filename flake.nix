@@ -77,6 +77,9 @@
 
 	agl-gpu-client-dev-ip = "172.16.255.140";
 	agl-gpu-client-02-ip = "172.16.255.142";
+	agl-gpu-client-03-ip = "172.16.255.143";
+	agl-gpu-client-04-ip = "172.16.255.144";
+	agl-gpu-client-05-ip = "172.16.255.145";
 
 	agl-network-config.ips = {
 		agl-server-01 = agl-server-01-ip;
@@ -86,6 +89,9 @@
 		agl-nas-02 = agl-nas-02-ip;
 		agl-gpu-client-dev = agl-gpu-client-dev-ip;
 		agl-gpu-client-02 = agl-gpu-client-02-ip;
+		agl-gpu-client-03 = agl-gpu-client-03-ip;
+		agl-gpu-client-04 = agl-gpu-client-04-ip;
+		agl-gpu-client-05 = agl-gpu-client-05-ip;
 	};
 
 	endoreg-client-manager-port = 9100;
@@ -206,6 +212,18 @@
 	# Watch out for the formatting; convert them from hexadecimal to decimal, remove the padding (leading zeroes), replace the dot with a colon, then add them like this: 
 	agl-gpu-client-02-nvidiaBusId = "PCI:1:0:0";
 	agl-gpu-client-02-onboardGraphicBusId = "PCI:0:2:0";
+
+	agl-gpu-client-03-network-interface = "wlo1";
+	agl-gpu-client-03-nvidiaBusId = "PCI:1:0:0";
+	agl-gpu-client-03-onboardGraphicBusId = "PCI:0:2:0";
+
+	agl-gpu-client-04-network-interface = "wlo1";
+	agl-gpu-client-04-nvidiaBusId = "PCI:1:0:0";
+	agl-gpu-client-04-onboardGraphicBusId = "PCI:0:2:0";
+
+	agl-gpu-client-05-network-interface = "wlo1";
+	agl-gpu-client-05-nvidiaBusId = "PCI:1:0:0";
+	agl-gpu-client-05-onboardGraphicBusId = "PCI:0:2:0";
 
 	nfs-share-all-local-path = "/home/agl-admin/nfs-share";
 	nfs-share-all-mount-path = "/volume1/agl-share";
@@ -382,6 +400,91 @@
 					({ config, pkgs, ... }: {
 						  services.vscode-server.enable = true;
 					})
+				];
+			};
+			agl-gpu-client-03 = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				# inherit system; # NEW
+				specialArgs = {
+					inherit inputs system;
+					inherit openvpnCertPath;
+					inherit endoreg-client-manager-config;
+					inherit agl-network-config;
+					# inherit agl-nas-02-ip nfs-share-all-local-path nfs-share-all-mount-path	;
+					ip = agl-gpu-client-03-ip;
+					network_interface = agl-gpu-client-03-network-interface;
+					nvidiaBusId = agl-gpu-client-03-nvidiaBusId;
+					onboardGraphicBusId = agl-gpu-client-03-onboardGraphicBusId;
+				};
+				
+				modules = [
+					./profiles/agl-gc03/configuration.nix
+					sops-nix.nixosModules.sops
+					vscode-server.nixosModules.default (
+						{ config, pkgs, ... }: {
+							services.vscode-server.enable = true;
+						}
+					)
+					# CUSTOM SERVICE
+					# customService.nixosModules.custom-service
+					endoreg-client-manager.nixosModules.endoreg-client-manager
+				];
+			};
+			agl-gpu-client-04 = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				# inherit system; # NEW
+				specialArgs = {
+					inherit inputs system;
+					inherit openvpnCertPath;
+					inherit endoreg-client-manager-config;
+					inherit agl-network-config;
+					# inherit agl-nas-02-ip nfs-share-all-local-path nfs-share-all-mount-path	;
+					ip = agl-gpu-client-04-ip;
+					network_interface = agl-gpu-client-04-network-interface;
+					nvidiaBusId = agl-gpu-client-04-nvidiaBusId;
+					onboardGraphicBusId = agl-gpu-client-04-onboardGraphicBusId;
+				};
+				
+				modules = [
+					./profiles/agl-gc04/configuration.nix
+					sops-nix.nixosModules.sops
+					vscode-server.nixosModules.default (
+						{ config, pkgs, ... }: {
+							services.vscode-server.enable = true;
+						}
+					)
+					# CUSTOM SERVICE
+					# customService.nixosModules.custom-service
+					endoreg-client-manager.nixosModules.endoreg-client-manager
+				];
+			};
+
+			agl-gpu-client-05 = nixpkgs.lib.nixosSystem {
+				system = "x86_64-linux";
+				# inherit system; # NEW
+				specialArgs = {
+					inherit inputs system;
+					inherit openvpnCertPath;
+					inherit endoreg-client-manager-config;
+					inherit agl-network-config;
+					# inherit agl-nas-02-ip nfs-share-all-local-path nfs-share-all-mount-path	;
+					ip = agl-gpu-client-05-ip;
+					network_interface = agl-gpu-client-05-network-interface;
+					nvidiaBusId = agl-gpu-client-05-nvidiaBusId;
+					onboardGraphicBusId = agl-gpu-client-05-onboardGraphicBusId;
+				};
+				
+				modules = [
+					./profiles/agl-gc05/configuration.nix
+					sops-nix.nixosModules.sops
+					vscode-server.nixosModules.default (
+						{ config, pkgs, ... }: {
+							services.vscode-server.enable = true;
+						}
+					)
+					# CUSTOM SERVICE
+					# customService.nixosModules.custom-service
+					endoreg-client-manager.nixosModules.endoreg-client-manager
 				];
 			};
 		};

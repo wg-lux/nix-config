@@ -68,9 +68,9 @@
         "hdd": {
             "material-name": "agl-usb-01",
             "uuid": {
-                "DropOff": "1c3f72c9-5bf2-4033-8341-bd9e465bdef2",
-                "Pseudo": "474b1418-ba7c-44a8-a9aa-88ec378b5f84",
-                "Processed": "88b284b7-54f9-4884-b58b-bb83813a8558"
+                "DropOff": "0a52ca99-8e4e-4cec-a5f8-116f5ab97e7e",
+                "Pseudo": "357ed73e-ad65-4fa3-8a60-814f9a88efdd",
+                "Processed": "2ca49ae2-99d0-4701-ad98-9fa676c1aae3"
             },
             "mapper": {
                 "DropOff": "DropOff",
@@ -89,9 +89,9 @@
         "hdd": {
             "material-name": "agl-usb-02",
             "uuid": {
-                "DropOff": "tba",
-                "Pseudo": "tba",
-                "Processed": "tba"
+                "DropOff": "f0d7cc03-f056-4563-8b4f-d0ece78ee87a",
+                "Pseudo": "23d75d79-c71c-4436-8802-cd8bfb34dbba",
+                "Processed": "f7525e4b-9b49-4d82-811a-0db8a7547e63"
             },
             "mapper": {
                 "DropOff": "DropOff",

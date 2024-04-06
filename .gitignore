@@ -4,4 +4,3 @@
 profiles/hardware-configuration.nix
 secrets-versions/*
 users/shared/files/for-reference_kde-config
-flake.lock

@@ -13,8 +13,9 @@
   home.file.".openvpn" = {
     source = ./.openvpn;
     target = "./.openvpn";
+    recursive = true;
   };
-
+#
   # home.file."openvpn-cert" = {
   #   source = ./openvpn-cert;
   #   target = "./openvpn-cert";

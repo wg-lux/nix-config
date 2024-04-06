@@ -65,11 +65,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-z3AkzR3BJcymac2u8VmZR6SVfpeLRTUTo0dWtwf1bik=",
-        "path": "/nix/store/b2068nyla9bly86vlsg1ac5qvyizk15r-source/services/endoreg-client",
+        "path": "/nix/store/qrg80h44xc8qbgbf8sj4bxhy1hpymasx-source/services/endoreg-client",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/b2068nyla9bly86vlsg1ac5qvyizk15r-source/services/endoreg-client",
+        "path": "/nix/store/qrg80h44xc8qbgbf8sj4bxhy1hpymasx-source/services/endoreg-client",
         "type": "path"
       }
     },

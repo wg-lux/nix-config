@@ -89,9 +89,9 @@
         "hdd": {
             "material-name": "agl-usb-02",
             "uuid": {
-                "DropOff": "tba",
-                "Pseudo": "tba",
-                "Processed": "tba"
+                "DropOff": "f0d7cc03-f056-4563-8b4f-d0ece78ee87a",
+                "Pseudo": "23d75d79-c71c-4436-8802-cd8bfb34dbba",
+                "Processed": "f7525e4b-9b49-4d82-811a-0db8a7547e63"
             },
             "mapper": {
                 "DropOff": "DropOff",

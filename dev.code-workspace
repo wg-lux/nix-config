@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../endoreg-client-manager"
+		},
+		{
+			"path": "../dev/endoreg-db"
+		}
+	],
+	"settings": {}
+}

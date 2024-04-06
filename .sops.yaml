@@ -4,8 +4,8 @@ keys:
   - &agl-gpu-client-dev age1vd3fg6ujg9sreqdv5wjwlf2laljxlu7qcv63qt8per7q9nhvzucqj5c8u9 # TL
   - &agl-gpu-client-01 age1cghu9d4r309k8hapnk3t87y5svwjhsdm80dd96zwq7m3xfjhx55sl7emxw
   - &agl-gpu-client-02 age14w7jd6wl6r0f2ylpxv67qh5egwrwvec4tlskcmz0nr8uu35wt3xs258h9t
-  - &agl-gpu-client-03 age1egdv2wcqwzz79hgtel3amsyuczv0rq9vh02tcsph8vkfcqakquqqpekanq # MH
-  - &agl-gpu-client-04 age149mfrmv0h7e48gf67gtutuyfka85ukp9y8kfj9s5m3dvfz93fpcseg7p3j # FP
+  - &agl-gpu-client-03 age149mfrmv0h7e48gf67gtutuyfka85ukp9y8kfj9s5m3dvfz93fpcseg7p3j # MH
+  - &agl-gpu-client-04 age1egdv2wcqwzz79hgtel3amsyuczv0rq9vh02tcsph8vkfcqakquqqpekanq # FP
   - &agl-gpu-client-05 age17safzahag4965lc9cxz66quyc82x50nws940tft9velkngqxkqzq5hwfle # ColoReg UKW
   - &agl-gpu-workstation age1h3kajn0t674dhggsjrn7rtzkurtrzy3fpt7528j3w3rejht4l35sx75xdy
   - &agl-server-01 age1zlty6e9vn8td20zn3a8xq4dlnz9d9n83f6mj9ykdsq9x6lgfr54supx0fn

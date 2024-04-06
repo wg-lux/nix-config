@@ -1,0 +1,7 @@
+{
+    "endoreg-center-id": 1,
+    "endoreg-center-name": "university_hospital_wuerzburg",
+    "endoreg-processor-name": "olympus_cv_1500",
+    "pdf-type-examination": "ukw-endoscopy-examination-report-generic",
+    "pdf-type-histology": "ukw-endoscopy-histology-report-generic"
+}

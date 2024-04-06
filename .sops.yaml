@@ -1,0 +1,100 @@
+keys:
+  - &primary age14mw7yzu27udf88qvv8qz3rzsn87wndmgssxz36ug0wxrsu8dy34s49sdet # root backup key
+  - &agl-client-03 age1xjzr46evhmzhj9szr7ae7rr6ku5hcg0rhwfs9y9qcj2dzjvztuvsjj5esp # YJ
+  - &agl-gpu-client-dev age1vd3fg6ujg9sreqdv5wjwlf2laljxlu7qcv63qt8per7q9nhvzucqj5c8u9 # TL
+  - &agl-gpu-client-01 age1cghu9d4r309k8hapnk3t87y5svwjhsdm80dd96zwq7m3xfjhx55sl7emxw
+  - &agl-gpu-client-02 age14w7jd6wl6r0f2ylpxv67qh5egwrwvec4tlskcmz0nr8uu35wt3xs258h9t
+  - &agl-gpu-client-03 age1egdv2wcqwzz79hgtel3amsyuczv0rq9vh02tcsph8vkfcqakquqqpekanq # MH
+  - &agl-gpu-client-04 age149mfrmv0h7e48gf67gtutuyfka85ukp9y8kfj9s5m3dvfz93fpcseg7p3j # FP
+  - &agl-gpu-client-05 age17safzahag4965lc9cxz66quyc82x50nws940tft9velkngqxkqzq5hwfle # ColoReg UKW
+  - &agl-gpu-workstation age1h3kajn0t674dhggsjrn7rtzkurtrzy3fpt7528j3w3rejht4l35sx75xdy
+  - &agl-server-01 age1zlty6e9vn8td20zn3a8xq4dlnz9d9n83f6mj9ykdsq9x6lgfr54supx0fn
+  - &agl-server-02 age12thy8rvwk9p7s6yr688p64am0mkxwed6swcf8jzgkl3v22nwnpyqln663m
+  - &agl-server-03 age1pg47c2vyqr2d00j9ds2n7dx0lvudmey29v5y9rym2trltg8r7pjq7llxrg
+  - &agl-server-04 age1a3uv2j0wg5hd0vd8mmx3teyyrfs0c0ff233l90u9luxqsm5z4grq75vd3l
+# secrets/agl-gpu-client-dev/.*\.(yaml|json|env|ini|tmp)$
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+      # pgp: #IMPORTANT, only first key group has leading " - " in nix-sops
+      # - *some_other_key
+  - path_regex: secrets/agl-client-03/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-client-03
+  - path_regex: secrets/agl-gpu-client-01/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-gpu-client-01
+  - path_regex: secrets/agl-gpu-client-02/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-gpu-client-02
+  - path_regex: secrets/agl-gpu-client-03/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-gpu-client-03
+  - path_regex: secrets/agl-gpu-client-04/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-gpu-client-04
+  - path_regex: secrets/agl-gpu-client-05/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-gpu-client-05
+  - path_regex: secrets/agl-gpu-workstation/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-gpu-workstation
+  - path_regex: secrets/agl-gpu-client-dev/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-gpu-client-dev
+  - path_regex: secrets/agl-server-01/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-server-01
+  - path_regex: secrets/agl-server-02/.*\.(yaml|json|env|ini|tmp)$    
+    key_groups:
+      - age:
+        - *primary
+        - *agl-server-02  
+  - path_regex: secrets/agl-server-03/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-server-03
+  - path_regex: secrets/agl-server-04/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-server-04
+  - path_regex: secrets/shared/.*\.(yaml|json|env|ini|tmp)$
+    key_groups:
+      - age:
+        - *primary
+        - *agl-client-03
+        - *agl-gpu-client-01
+        - *agl-gpu-client-02
+        - *agl-gpu-client-03
+        - *agl-gpu-client-04
+        - *agl-gpu-client-05
+        - *agl-gpu-workstation
+        - *agl-gpu-client-dev
+        - *agl-server-01
+        - *agl-server-02
+        - *agl-server-03
+        - *agl-server-04
+
+        

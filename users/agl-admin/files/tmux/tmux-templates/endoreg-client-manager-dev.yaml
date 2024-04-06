@@ -1,0 +1,20 @@
+session_name: endoreg-client-manager-dev
+windows:
+- window_name: main window
+  layout: tiled
+  shell_command_before:
+    - cd ~/ # run as a first command in all panes
+  panes:
+    - shell_command: # pane no. 1
+      - cd ~/endoreg-client-manager/endoreg_client_manager
+    - shell_command: # pane no. 2
+      - cd ~/endoreg-client-manager/endoreg_client_manager
+      - python manage.py runserver
+    - shell_command: # pane no. 2
+      - sleep 5
+      - cd ~/endoreg-client-manager/endoreg_client_manager
+      - celery -A endoreg_client_manager worker --loglevel=INFO -E
+    - shell_command: # pane no. 2
+      - sleep 10
+      - cd ~/endoreg-client-manager/endoreg_client_manager
+      - celery -A endoreg_client_manager beat --loglevel=INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler

@@ -1,0 +1,34 @@
+{ ... }:
+{
+    users.groups.service-user = {};
+
+    users.groups.endoreg-service = {
+      members = [
+        "agl-admin"
+        "maintenance-user"
+        "service-user" 
+      ];
+    };
+
+    users.groups.dropoff-access = {
+      members = [
+        "service-user"
+        "center-user"
+        "agl-admin" #TODO REMOVE AFTER TESTING
+      ];#
+    };
+
+    users.groups.pseudo-access = {
+      members = [
+        "service-user"
+        "agl-admin" #TODO REMOVE AFTER TESTING
+      ];
+    };
+
+    users.groups.processed-access = {
+      members = [
+        "service-user"
+        "agl-admin" #TODO REMOVE AFTER TESTING
+      ];
+    };
+}

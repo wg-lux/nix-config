@@ -1,0 +1,65 @@
+{ pkgs, ...}:
+{
+
+    users.defaultUserShell = pkgs.zsh;
+
+    environment.systemPackages = with pkgs; [
+        zsh
+        zsh-autosuggestions
+        zsh-syntax-highlighting
+        zsh-completions
+        zsh-history-substring-search
+        # zsh-lovers
+        # zsh-navigation-tools
+        # zsh-pure
+    ];
+
+    programs = {
+    zsh = {
+        enable = true;
+        autosuggestions.enable = true;
+        # zsh-autoenv.enable = true;
+        syntaxHighlighting.enable = true;
+        interactiveShellInit = ''
+          eval "$(direnv hook zsh)"
+        '';
+        ohMyZsh = {
+          enable = true;
+          theme = "robbyrussell";
+          plugins = [
+            "git"
+            "npm"
+            "history"
+            "node"
+            "rust"
+            "deno"
+          ];
+        };
+        shellAliases = {
+            l = "ls -alh";
+            ll = "ls -l";
+            ls = "ls --color=tty";
+            py = "python -m ";
+            pshell = "nix-shell -p poetry";
+            un = "update-nix";
+            cleanup = "nix-collect-garbage -d";
+            cleanup-roots = "sudo rm /nix/var/nix/gcroots/auto/*";
+            optimize = "nix-store --optimize";
+            confdir = "cd ~/nix-config/config";
+            mkmigrations-erh = "python endoreg_home/manage.py makemigrations";
+            migrate-erh = "python endoreg_home/manage.py migrate";
+            run-erh = "python endoreg_home/manage.py runserver";      
+            journalctl-clear = "sudo journalctl --flush --rotate --vacuum-time=1s";
+            m-pseudo = "sudo mountPseudo";
+            m-proc = "sudo mountProcessed";
+            m-do = "sudo mountDropOff";
+            um-pseudo = "sudo umountPseudo";
+            um-proc = "sudo umountProcessed";
+            um-do = "sudo umountDropOff";
+        };
+    };
+  };
+
+#   users.users.agl-admin.shell = pkgs.zsh;
+  users.users.agl-admin.useDefaultShell = true;
+}

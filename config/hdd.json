@@ -1,0 +1,129 @@
+{
+    
+    "agl-gpu-client-dev": {
+        "django-secret-key": "migrated-to-secrets-yaml",
+        "hdd": {
+            "material-name": "agl-usb-04",
+            "uuid": {
+                "DropOff": "e859c65c-8285-456a-a41f-644817c1b01c",
+                "Pseudo": "9e90b810-019a-4513-8e52-577f71054730",
+                "Processed": "43692557-b4a8-4e18-b747-9386dcca5d7a"
+            },
+            "mapper": {
+                "DropOff": "DropOff",
+                "Pseudo": "Pseudo",
+                "Processed": "Processed"
+            },
+            "mountpoint-parent": {
+                "DropOff": "/mnt/hdd-sensitive",
+                "Pseudo": "/mnt/hdd-sensitive",
+                "Processed": "/mnt/hdd-sensitive"
+            }
+        }
+    },
+    "agl-gpu-client-01": {
+        "django-secret-key": "migrated-to-secrets-yaml",
+        "hdd": {
+            "material-name": "agl-hdd-03",
+            "uuid": {
+                "DropOff": "df35d70d-9988-49f0-b965-a2a296bf4522",
+                "Pseudo": "974155af-7896-4056-b2c3-5dda9df214fd",
+                "Processed": "39f75190-a37c-458d-b693-e9b04cd6fbfa"
+            },
+            "mapper": {
+                "DropOff": "DropOff",
+                "Pseudo": "Pseudo",
+                "Processed": "Processed"
+            },
+            "mountpoint-parent": {
+                "DropOff": "/home/agl-admin/mnt",
+                "Pseudo": "/mnt",
+                "Processed": "/mnt"
+            }
+        }
+    },
+    "agl-gpu-client-02": {
+        "django-secret-key": "migrated-to-secrets-yaml",
+        "hdd": {
+            "material-name": "agl-hdd-03",
+            "uuid": {
+                "DropOff": "1c3f72c9-5bf2-4033-8341-bd9e465bdef2",
+                "Pseudo": "474b1418-ba7c-44a8-a9aa-88ec378b5f84",
+                "Processed": "88b284b7-54f9-4884-b58b-bb83813a8558"
+            },
+            "mapper": {
+                "DropOff": "DropOff",
+                "Pseudo": "Pseudo",
+                "Processed": "Processed"
+            },
+            "mountpoint-parent": {
+                "DropOff": "/mnt/hdd-sensitive",
+                "Pseudo": "/mnt/hdd-sensitive",
+                "Processed": "/mnt/hdd-sensitive"
+            }
+        }
+    },
+    "agl-gpu-client-03": {
+        "django-secret-key": "migrated-to-secrets-yaml",
+        "hdd": {
+            "material-name": "agl-usb-01",
+            "uuid": {
+                "DropOff": "1c3f72c9-5bf2-4033-8341-bd9e465bdef2",
+                "Pseudo": "474b1418-ba7c-44a8-a9aa-88ec378b5f84",
+                "Processed": "88b284b7-54f9-4884-b58b-bb83813a8558"
+            },
+            "mapper": {
+                "DropOff": "DropOff",
+                "Pseudo": "Pseudo",
+                "Processed": "Processed"
+            },
+            "mountpoint-parent": {
+                "DropOff": "/mnt/hdd-sensitive",
+                "Pseudo": "/mnt/hdd-sensitive",
+                "Processed": "/mnt/hdd-sensitive"
+            }
+        }
+    },
+    "agl-gpu-client-04": {
+        "django-secret-key": "migrated-to-secrets-yaml",
+        "hdd": {
+            "material-name": "agl-usb-02",
+            "uuid": {
+                "DropOff": "tba",
+                "Pseudo": "tba",
+                "Processed": "tba"
+            },
+            "mapper": {
+                "DropOff": "DropOff",
+                "Pseudo": "Pseudo",
+                "Processed": "Processed"
+            },
+            "mountpoint-parent": {
+                "DropOff": "/mnt/hdd-sensitive",
+                "Pseudo": "/mnt/hdd-sensitive",
+                "Processed": "/mnt/hdd-sensitive"
+            }
+        }
+    },
+    "agl-gpu-client-05": {
+        "django-secret-key": "migrated-to-secrets-yaml",
+        "hdd": {
+            "material-name": "agl-hdd-04",
+            "uuid": {
+                "DropOff": "tba",
+                "Pseudo": "tba",
+                "Processed": "tba"
+            },
+            "mapper": {
+                "DropOff": "DropOff",
+                "Pseudo": "Pseudo",
+                "Processed": "Processed"
+            },
+            "mountpoint-parent": {
+                "DropOff": "/mnt/hdd-sensitive",
+                "Pseudo": "/mnt/hdd-sensitive",
+                "Processed": "/mnt/hdd-sensitive"
+            }
+        }
+    }
+}

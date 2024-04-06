@@ -1,0 +1,5 @@
+{
+    "model-path": "/etc/multilabel_ai_models/colo_segmentation_RegNetX800MF_6.ckpt",
+    "prediction-smoothing-window-size-s": 1,
+    "prediction-min-sequence-length-s": 0.5
+}

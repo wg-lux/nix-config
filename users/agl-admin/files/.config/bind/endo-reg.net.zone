@@ -1,0 +1,13 @@
+$ORIGIN intern.endo-reg.net.  ; Set the default domain
+$TTL 3600                     ; Default TTL of 1 hour
+
+@       IN      SOA     ns1.intern.endo-reg.net. hostmaster.intern.endo-reg.net. (
+                        2023022701  ; Serial (YYYYMMDDNN format)
+                        3600        ; Refresh 
+                        900         ; Retry
+                        604800      ; Expire
+                        3600 )      ; Minimum TTL
+
+        IN      NS      ns1.intern.endo-reg.net. ; Primary nameserver
+        IN      A       172.16.255.3    ; Nginx server IP 
+*       IN      A       172.16.255.3    ; Catch-all for subdomains 

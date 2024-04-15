@@ -8,7 +8,7 @@ secret-path-openvpn-shared = ../../secrets/shared/openvpn.yaml;
 secret-path-openvpn = ../../secrets + ("/" + "${hostname}/openvpn.yaml");
 
 in
-
+{
 
     sops.secrets."identity/id_ed25519" = {
         sopsFile = secret-path-id_ed25519;

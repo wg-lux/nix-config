@@ -8,7 +8,7 @@ in
   
   sops.secrets.wireless-env = {
     sopsFile = wireless-secret-path;
-    path = "/etc/wireless/wireless.env";
+    # path = "/etc/wireless/wireless.env";
     # Specify the type of the secret
     format = "dotenv";
   };

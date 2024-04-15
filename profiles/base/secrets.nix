@@ -8,15 +8,7 @@ secret-path-openvpn-shared = ../../secrets/shared/openvpn.yaml;
 secret-path-openvpn = ../../secrets + ("/" + "${hostname}/openvpn.yaml");
 
 in
-
 {
-    # TODO Remove if commenting doesnt break anything
-    # sops.secrets."id_ed25519/${config.networking.hostName}" = {
-    #     sopsFile = ../../secrets/secrets.yaml;
-    #     path = "/home/agl-admin/.ssh/id_ed25519";
-    #     format = "yaml";
-    #     owner = "agl-admin";
-    # };
 
     sops.secrets."identity/id_ed25519" = {
         sopsFile = secret-path-id_ed25519;
@@ -71,6 +63,7 @@ in
         path = "${openvpnCertPath}/key.key";
         format = "yaml";
         # owner = "agl-admin";
+        # mode = "600";
     };
 
 
@@ -78,11 +71,12 @@ in
         sopsFile = secret-path-openvpn-shared ;
         path = "${openvpnCertPath}/ta.key";
         # owner = "agl-admin";
+        # mode = "600";
     };
     
     sops.secrets."shared/openvpn-aglNet/ca-cert" = {
         sopsFile = secret-path-openvpn-shared;
-        path = "${openvpnCertPath}/ca.crt";
+        # path = "${openvpnCertPath}/ca.crt";
         # owner = "agl-admin";
     };
     

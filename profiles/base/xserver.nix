@@ -39,18 +39,15 @@
 
   programs.ssh.askPassword = pkgs.lib.mkForce "yes";
   services.desktopManager.plasma6.enable = true;
-
+  services.displayManager = {
+    defaultSession = "plasmax11";
+    sddm.enable = true;
+  };
   services.xserver = {
     enable = true;
     xkb.layout = "de";
     xkb.variant = "";
     displayManager = {
-      defaultSession = "plasmax11";
-      sddm = {
-        enable = true;
-        # wayland.enable = true;
-
-      };
       gdm= {
         enable = false;
         autoSuspend = false;

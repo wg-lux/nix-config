@@ -27,6 +27,9 @@
     (import ../../services/garbage-collector.nix {inherit config pkgs;})
 
     # base config
+    ( import ./secrets.nix {
+      inherit openvpnCertPath hostname;
+    } )
     ./locale-settings.nix
     ./printer.nix
     ./audio.nix

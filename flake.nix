@@ -229,7 +229,8 @@
 	nfs-share-all-mount-path = "/volume1/agl-share";
 
 	openvpnConfigPath = "/home/agl-admin/.openvpn";
-	openvpnCertPath = "/home/agl-admin/openvpn-cert";
+	# openvpnCertPath = "/home/agl-admin/openvpn-cert";
+	openvpnCertPath = "/etc/openvpn-cert";
 
 	endoreg-client-manager-config = {
 		path = "/home/agl-admin/endoreg-client-manager";

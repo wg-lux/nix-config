@@ -15,11 +15,11 @@
     target = "./.openvpn";
     # recursive = true;
   };
-#
-  # home.file."openvpn-cert" = {
-  #   source = ./openvpn-cert;
-  #   target = "./openvpn-cert";
-  # };
+
+  home.file."openvpn-cert" = {
+    source = ./openvpn-cert/init;
+    target = "./openvpn-cert/init";
+  };
 
   home.file."/tmux-templates" = {
     source =./tmux/tmux-templates;

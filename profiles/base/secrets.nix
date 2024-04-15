@@ -56,26 +56,28 @@ in
     sops.secrets."services/openvpn/aglNet-client/cert" = {
         sopsFile = secret-path-openvpn;
         path = "${openvpnCertPath}/cert.crt";
-        owner = "agl-admin";
+        # owner = "agl-admin";
     };
     sops.secrets."services/openvpn/aglNet-client/key" = {
         sopsFile = secret-path-openvpn;
         path = "${openvpnCertPath}/key.key";
         format = "yaml";
-        owner = "agl-admin";
+        # owner = "agl-admin";
+        # mode = "600";
     };
 
 
     sops.secrets."shared/openvpn-aglNet/server-ta-key" = {
         sopsFile = secret-path-openvpn-shared ;
         path = "${openvpnCertPath}/ta.key";
-        owner = "agl-admin";
+        # owner = "agl-admin";
+        # mode = "600";
     };
     
     sops.secrets."shared/openvpn-aglNet/ca-cert" = {
         sopsFile = secret-path-openvpn-shared;
-        path = "${openvpnCertPath}/ca.crt";
-        owner = "agl-admin";
+        # path = "${openvpnCertPath}/ca.crt";
+        # owner = "agl-admin";
     };
     
 }

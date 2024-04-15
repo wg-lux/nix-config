@@ -26,7 +26,7 @@ in
       ../shared/touchpad.nix
 
       # Networking
-      ./wpa_supplicant.nix
+      # ./wpa_supplicant.nix
 
       ( 
         import ./local-monitoring/local-monitoring.nix {

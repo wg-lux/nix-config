@@ -28,12 +28,12 @@ in
       # Networking
       # ./wpa_supplicant.nix
 
-      ( 
-        import ./local-monitoring/local-monitoring.nix {
-          inherit pkgs config ip;
-          inherit agl-network-config;
-        } 
-      )
+      # ( 
+      #   import ./local-monitoring/local-monitoring.nix {
+      #     inherit pkgs config ip;
+      #     inherit agl-network-config;
+      #   } 
+      # )
       ( import ./packages.nix {
          inherit config pkgs lib ; 
         })

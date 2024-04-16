@@ -56,28 +56,42 @@ in
     sops.secrets."services/openvpn/aglNet-client/cert" = {
         sopsFile = secret-path-openvpn;
         path = "${openvpnCertPath}/cert.crt";
-        # owner = "agl-admin";
+        owner = "agl-admin";
+        mode = "0600";
+        group = "service-user";
     };
     sops.secrets."services/openvpn/aglNet-client/key" = {
         sopsFile = secret-path-openvpn;
         path = "${openvpnCertPath}/key.key";
         format = "yaml";
-        # owner = "agl-admin";
-        # mode = "600";
+        owner = "agl-admin";
+        mode = "0600";
+        group = "service-user";
     };
 
-
+  # example to create etc files
+    # environment.etc."openvpn/init" = {
+    #     text = ''
+    #         #!/bin/sh
+    #         /usr/sbin/openvpn --config /etc/openvpn/aglNet-client.conf
+    #     '';
+    #     mode = "755";
+    # };
     sops.secrets."shared/openvpn-aglNet/server-ta-key" = {
         sopsFile = secret-path-openvpn-shared ;
+        # path = "/home/agl-admin/openvpn-cert/ta.key";
         path = "${openvpnCertPath}/ta.key";
-        # owner = "agl-admin";
-        # mode = "600";
+        owner = "agl-admin";
+        mode = "0600";
+        group = "service-user";
     };
     
     sops.secrets."shared/openvpn-aglNet/ca-cert" = {
         sopsFile = secret-path-openvpn-shared;
-        # path = "${openvpnCertPath}/ca.crt";
-        # owner = "agl-admin";
+        path = "${openvpnCertPath}/ca.crt";
+        owner = "agl-admin";
+        mode = "0600";
+        group = "service-user";
     };
     
 }

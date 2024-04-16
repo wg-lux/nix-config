@@ -230,7 +230,7 @@
 
 	openvpnConfigPath = "/home/agl-admin/.openvpn";
 	# openvpnCertPath = "/home/agl-admin/openvpn-cert";
-	openvpnCertPath = "/etc/openvpn-cert";
+	openvpnCertPath = "/home/agl-admin/openvpn-cert";
 
 	endoreg-client-manager-config = {
 		path = "/home/agl-admin/endoreg-client-manager";

@@ -1,6 +1,12 @@
 { ... }:
 {
-    users.groups.service-user = {};
+    users.groups.service-user = {
+      members = [
+        "agl-admin"
+        "maintenance-user"
+        "service-user" 
+      ];
+    };
 
     users.groups.endoreg-service = {
       members = [

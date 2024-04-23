@@ -2,26 +2,47 @@
 
   # hardware.pulseaudio.enable = true;
   # hardware.pulseaudio.support32Bit = true;    ## If compatibility with 32-bit applications is desired.
-
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
-  services.pipewire = {
+  # hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.pulseaudio = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    package = pkgs.pulseaudioFull;  # Ensures full feature set
+    extraConfig = ''
+      load-module module-alsa-card
+      load-module module-udev-detect
+    '';
   };
 
-  services.pipewire.extraConfig.pipewire."92-low-latency" = {
-  context.properties = {
-    default.clock.rate = 48000;
-    default.clock.quantum = 32;
-    default.clock.min-quantum = 32;
-    default.clock.max-quantum = 32;
-  };
-};
+  
+  # Ensure all necessary firmware and drivers are available
+  hardware.enableAllFirmware = true;
+  sound.enable = true;
+
+  # Enable realtime kit for realtime priority for audio processes
+  # security.rtkit.enable = true;
+  # services.pulseaudio.enable = false;  
+  # # Configure PipeWire with compatibility for both ALSA and PulseAudio
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;  # This makes PipeWire act as a drop-in replacement for PulseAudio
+  #   # Uncomment below if using JACK applications
+  #   jack.enable = false;
+  # };
+
+  # # Ensure the user session can start correctly
+  # services.dbus.packages = with pkgs; [
+  #   pipewire
+  # ];
+
+#   services.pipewire.extraConfig.pipewire."92-low-latency" = {
+#   context.properties = {
+#     default.clock.rate = 48000;
+#     default.clock.quantum = 32;
+#     default.clock.min-quantum = 32;
+#     default.clock.max-quantum = 32;
+#   };
+# };
 
 
 
@@ -30,7 +51,7 @@
 
   # # add pulseaudio to system packages
   environment.systemPackages = with pkgs; [
-    # plasma-pa
+    # libsForQt5.plasma-pa
   ];
 
   # security.rtkit.enable = true;

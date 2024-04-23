@@ -21,13 +21,13 @@
     # cudaPackages.tensorrt
     # cudaPackages.cudnn
     # cudatoolkit_12_1
-    # linuxPackages.nvidia_x11
+    linuxPackages.nvidia_x11
     # dcgm
     # prometheus-dcgm-exporter
 
     
-    # git gitRepo gnupg autoconf curl
-    # procps gnumake util-linux m4 gperf unzip
+    git gitRepo gnupg autoconf curl
+    procps gnumake util-linux m4 gperf unzip
     # cudatoolkit 
 
     # linuxPackages.nvidia_x11

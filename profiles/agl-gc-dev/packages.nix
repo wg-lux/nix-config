@@ -29,9 +29,17 @@
     # obs-studio-plugins.obs-pipewire-audio-capture
 
     # Audio Processing
-    ardour
-    strawberry
+    alsa-firmware
+    alsa-oss
+    alsa-lib
+    alsa-tools
+    alsa-plugins
+    # apulse
+    audacity
+    # ardour
+    # strawberry
     kdenlive
+    rnnoise-plugin
     # mixxx
 
     # Image Processing

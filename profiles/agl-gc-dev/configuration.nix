@@ -21,7 +21,7 @@ in
   imports =
     [ # Hardware
       ./hardware-configuration.nix
-      ./init-swap.nix
+      ./luks-devices.nix
       ./hardware-acceleration.nix
       ../shared/touchpad.nix
 

@@ -22,6 +22,10 @@
     keys = [
       # lux-root
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC/gVfFAeG/9CwqiPOxu5JoY/vx705a77wvGgh687a5d" 
+      # agl-gc-dev
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHwYnbv/tPCcTIPgFbOISXDOiGZGpyUtu6NmtJ+Pg9Dh agl-gpu-client-dev"
+      #agl-gc3
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM87xeXKvfTTfcVbL+pKorYMCnFRdIyvAgFZsZqqh3Ou eddsa-key-hild-laptop"
     ];
   };
 

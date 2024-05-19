@@ -9,6 +9,7 @@
     gnome.zenity
     spotify
     steam
+    nodejs_18
 
     # Database
     dbeaver

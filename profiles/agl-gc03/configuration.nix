@@ -10,8 +10,10 @@
   endoreg-client-manager-config,
   agl-nas-02-ip, nfs-share-all-local-path, nfs-share-all-mount-path,
   agl-network-config,
+
   ... 
 }:
+
 let
   hostname = "agl-gpu-client-03";
   testy = agl-network-config.services.nfs-share.ip;
@@ -24,9 +26,9 @@ in
       ./init-swap.nix
       ./hardware-acceleration.nix
       ../shared/touchpad.nix
-
       # Networking
       # ./wpa_supplicant.nix
+            # Add the Jenkins service here
 
 #      (
  #       import ./local-monitoring/local-monitoring.nix {
@@ -75,7 +77,7 @@ in
           inherit endoreg-client-manager-config;
         }
       )
-      
+
       ##### DEV SETUP STUFF ########
       # ../shared/onedrive.nix
 
@@ -97,7 +99,9 @@ in
       #( import ../../scripts/endoreg-client/data-umount-processed.nix {inherit pkgs config lib hostname;}) 
     ];
 
-
+  services.jenkins = {
+      enable = true;
+    };
   security.pam.loginLimits = [{
     domain = "*";
     type = "soft";
@@ -113,5 +117,12 @@ in
   hardware.acpilight.enable = true;
 
   system.stateVersion = "23.11";
+  programs.git = {
+      enable = true; # IF GIT SHOULD BREAK SOME IN THE PUSHES OR NEW BUILDS AFTER 24-01-18 its probably this
+      config = {
+      user.name = "maxhild";
+      user.email = "Maxhild10@gmail.com";
+    };
+  };
 
 }

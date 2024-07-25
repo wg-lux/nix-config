@@ -105,12 +105,15 @@ in
     value = "8192";
   }];
 
+  # services.udisks2.enable = true;
+  # services.udiskie.enable = true;
+
   security.polkit.enable = true;
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
 
-  hardware.acpilight.enable = true;
+  # hardware.acpilight.enable = true;
 
   system.stateVersion = "23.11";
 

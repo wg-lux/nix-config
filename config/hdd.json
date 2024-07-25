@@ -110,9 +110,9 @@
         "hdd": {
             "material-name": "agl-hdd-04",
             "uuid": {
-                "DropOff": "tba",
-                "Pseudo": "tba",
-                "Processed": "tba"
+                "DropOff": "a2be0bc3-632c-470e-a4d0-ae4d858bdbaf",
+                "Pseudo": "b81b056a-5c52-432f-8bea-e273d68bb6e5",
+                "Processed": "2a2857a4-0a13-4cce-a633-4e624703b7ae"
             },
             "mapper": {
                 "DropOff": "DropOff",

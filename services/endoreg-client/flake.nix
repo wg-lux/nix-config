@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    cachix.url = "github:cachix/cachix";
-    cachix.inputs.nixpkgs.follows = "nixpkgs";
+    # cachix.url = "github:cachix/cachix";
+    # cachix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, cachix, ... }: let
@@ -15,18 +15,18 @@
       config.cudaSupport = true;
     };
 
-    nvidiaCache = cachix.lib.mkCachixCache {
-      inherit (pkgs) lib;
-      name = "nvidia";
-      publicKey = "nvidia.cachix.org-1:dSyZxI8geDCJrwgvBfPH3zHMC+PO6y/BT7O6zLBOv0w=";
-      secretKey = null; # Not needed for pulling from the cache
-    };
+    # nvidiaCache = cachix.lib.mkCachixCache {
+    #   inherit (pkgs) lib;
+    #   name = "nvidia";
+    #   publicKey = "nvidia.cachix.org-1:dSyZxI8geDCJrwgvBfPH3zHMC+PO6y/BT7O6zLBOv0w=";
+    #   secretKey = null; # Not needed for pulling from the cache
+    # };
   in {
 
-    nixConfig = {
-      binary-caches = [nvidiaCache.binaryCachePublicUrl];
-      binary-cache-public-keys = [nvidiaCache.publicKey];
-    };
+    # nixConfig = {
+    #   binary-caches = [nvidiaCache.binaryCachePublicUrl];
+    #   binary-cache-public-keys = [nvidiaCache.publicKey];
+    # };
 
     nixosModules.endoreg-client-manager = { config, pkgs, lib, ... }: {
       options.services.endoreg-client-manager = {
@@ -99,8 +99,13 @@
         environment.systemPackages = with pkgs; [
           redis
           cudaPackages.cudatoolkit
-          cudaPackages.cudnn
-          linuxPackages.nvidia_x11
+          # cudaPackages.cudnn
+          # linuxPackages.nvidia_x11
+          libGLU libGL
+          glibc
+          xorg.libXi xorg.libXmu freeglut
+          xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib 
+          ncurses5 stdenv.cc binutils
         ];
         services.redis.servers."endoreg-client-manager"= { # results in service named: redis-endoreg-client-manager.service 
             enable = true;
@@ -179,9 +184,6 @@
               ];
             };
           };
-
-
-
         };
       };
     };

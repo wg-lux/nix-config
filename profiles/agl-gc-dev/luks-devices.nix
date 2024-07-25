@@ -62,26 +62,4 @@ in
     #     keyFile = "/keyfile";
     # };
   };
-
-    # Taken from hardware-configuration.nix
-    # fileSystems."${mountpoint_dropoff}" = {
-    #     device = "/dev/disk/by-uuid/${id_dropoff}";
-    #     fsType = "ext4";
-    #     options = ["nofail" "noatime" "x-systemd.device-timeout=1"];
-    # };
-
-    # fileSystems."${mountpoint_pseudo}" = {
-    #     device = "/dev/disk/by-uuid/${id_pseudo}";
-    #     fsType = "ext4";
-    #     options = ["nofail" "noatime" "x-systemd.device-timeout=1"];
-    # };
-
-    # fileSystems."${mountpoint_processed}" = {
-    #     device = "/dev/disk/by-uuid/${id_processed}";
-    #     fsType = "ext4";
-    #     options = [ "nofail" "noatime" "x-systemd.device-timeout=1"];
-    # };
-
-
-
 }

@@ -1,14 +1,14 @@
 {config, pkgs, nvidiaBusId, onboardGraphicBusId, ...}: 
 
 {
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    # driSupport = true;
+    # driSupport32Bit = true;
   };
 
   nixpkgs.config.cudaSupport = true;
-
+  
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [
     "nvidia"
@@ -59,7 +59,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
   hardware.nvidia.prime = {

@@ -1,5 +1,5 @@
 { ... }:
 
 {
-    services.xserver.libinput.touchpad.naturalScrolling = false;
+    services.libinput.touchpad.naturalScrolling = false;
 }

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, lib, ...}: {
   environment.systemPackages = with pkgs; [
     # obsidian
     # qFlipper
@@ -6,13 +6,12 @@
     pcsclite
     gnupg
     tesseract
-    gnome.zenity
+    zenity
     spotify
-    steam
     nodejs_18
 
     # Database
-    dbeaver
+    dbeaver-bin
     beekeeper-studio
 
     # Utility
@@ -56,8 +55,39 @@
     # System states
     ( import ../../scripts/endoreg-client/system-idle.nix {inherit pkgs;})
 
+    # Steam
+    steam-run
+    steam-tui
+    protonup-qt
+    protonup-ng
+
   ];
 
   programs.htop.enable = true; # Enable htop monitoring
+  
+  # enable thunderbird
+  programs.thunderbird.enable = true;
+  
+
+  # Steam
+  # https://nixos.wiki/wiki/Steam
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    extraCompatPackages = [
+      pkgs.proton-ge-bin
+    ];
+  };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-original"
+      "steam-run"
+    ];
+
+
+
 
 }

@@ -6,12 +6,12 @@
     pcsclite
     gnupg
     tesseract
-    gnome.zenity
+    zenity
     spotify
     steam
 
     # Database
-    dbeaver
+    dbeaver-bin
     beekeeper-studio
 
     # Utility

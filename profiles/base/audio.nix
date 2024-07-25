@@ -15,7 +15,7 @@
   
   # Ensure all necessary firmware and drivers are available
   hardware.enableAllFirmware = true;
-  sound.enable = true;
+  # sound.enable = true;
 
   # Enable realtime kit for realtime priority for audio processes
   # security.rtkit.enable = true;

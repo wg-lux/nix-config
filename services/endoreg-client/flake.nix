@@ -49,11 +49,13 @@
             default = 6379;
             description = "The port on which the Redis server will listen";
         };
+
         redis-bind = lib.mkOption {
             type = lib.types.str;
             default = "127.0.0.1";
             description = "The address on which the Redis server will listen";
         };
+
 
         working-directory = lib.mkOption {
             type = lib.types.str;
@@ -92,6 +94,25 @@
             default = {};
             description = "Other settings";
         };
+        agl-anonymizer-django-settings-module = lib.mkOption {
+            type = lib.types.str;
+            default = "agl_anonymizer.settings";
+            description = "Agl Anonymizer Django settings";
+
+        };
+        agl-anonymizer-dir  = lib.mkOption {
+            type = lib.types.str;
+            default = "/home/agl-admin/agl_anonymizer/agl_anonymizer";
+            description = "Agl Anonymizer path";
+
+        };
+        agl-anonymizer-port = lib.mkOption {
+            type = lib.types.int;
+            default = 9123;
+            description = "The port on which the Django server for the AGL Anonymizer API will listen";
+        };
+
+
       };
 
       config = lib.mkIf config.services.endoreg-client-manager.enable {
@@ -184,8 +205,51 @@
               ];
             };
           };
+          # Additional libraries for the environment
+          environment.systemPackages = with pkgs; [
+            redis
+            cudaPackages.cudatoolkit
+            libGLU
+            libGL
+            glibc
+            xorg.libXi xorg.libXmu freeglut
+            xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib 
+            ncurses5 stdenv.cc binutils
+          ];
+
+          # In the service configuration
+          systemd.services.agl-anonymizer = {
+            description = "Image Anonymizing Service";
+            after = [ "network.target" ];
+            wantedBy = [ "multi-user.target" ];
+            script = ''
+              set -e  # Exit immediately if a command exits with a non-zero status
+              export DJANGO_SECRET_KEY=CHANGE_ME
+              nix develop
+              exec gunicorn agl_anonymizer.wsgi:application --bind 0.0.0.0:${toString config.services.endoreg-client-manager.agl-anonymizer-port}
+            '';
+            serviceConfig = {
+              Restart = "always";
+              User = config.services.endoreg-client-manager.user;
+              Group = config.services.endoreg-client-manager.group;
+              WorkingDirectory = "${config.services.endoreg-client-manager.agl-anonymizer-dir}/agl_anonymizer";
+              Environment = [
+                "PATH=${config.services.endoreg-client-manager.working-directory}/.venv/bin:/run/current-system/sw/bin"
+                "LD_LIBRARY_PATH=${pkgs.glibc}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.libGL}/lib:${pkgs.libGLU}/lib" 
+                "CUDA_PATH=${pkgs.cudatoolkit}"
+                "DJANGO_SETTINGS_MODULE=${config.services.endoreg-client-manager.django-settings-module}"
+              ];
+              StandardOutput = "journal";
+              StandardError = "journal";
+            };
+          };
+
+
         };
       };
     };
-  };
+    
+    };
+
+  
 }

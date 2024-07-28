@@ -233,6 +233,9 @@
 		# openvpnCertPath = "/home/agl-admin/openvpn-cert";
 		openvpnCertPath = "/home/agl-admin/openvpn-cert";
 
+
+		agl-anonymizer-port = 9123;
+		agl-anonymizer-dir = "/home/agl-admin/agl_anonymizer/agl_anonymizer";
 		endoreg-client-manager-config = {
 			path = "/home/agl-admin/endoreg-client-manager";
 			dropoff-dir = "/mnt/hdd-sensitive/DropOff";
@@ -244,6 +247,9 @@
 			group = "pseudo-access";
 			redis-port = endoreg-client-manager-redis-port;
 			port = endoreg-client-manager-port;
+			agl-anonymizer-port = agl-anonymizer-port;
+			agl-anonymizer-dir = agl-anonymizer-dir;
+			agl-anonymizer-django-settings-module = "agl_anonymizer.settings";
 
 	};
 	endoRegClientManagerPath = "/home/agl-admin/endoreg-client-manager";

@@ -9,6 +9,9 @@ let
     endoreg-client-manager-path = endoreg-client-manager-config.path;
     custom-config-path = ../../config + ("/${config.networking.hostName}");
     custom-client-manager-config-path = custom-config-path + ("/client-manager-config.json");
+    agl-anonymizer-port = endoreg-client-manager-config.agl-anonymizer-port;
+    agl-anonymizer-dir = endoreg-client-manager-config.agl-anonymizer-dir;
+    agl-anonymizer-django-settings-module = endoreg-client-manager-config.agl-anonymizer-django-settings-module;
 
 
 in
@@ -36,6 +39,9 @@ in
             redis-port = endoreg-client-manager-config.redis-port;
             django-debug = endoreg-client-manager-config.django-debug;
             django-settings-module = endoreg-client-manager-config.django-settings-module;
+            agl-anonymizer-port = agl-anonymizer-port;
+            # agl-anonymizer-dir = agl-anonymizer-dir;
+            agl-anonymizer-django-settings-module = agl-anonymizer-django-settings-module;
         };
 
         environment.etc."endoreg-client-config/hdd.json".source = ../../config/hdd.json;

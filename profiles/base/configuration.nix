@@ -49,8 +49,8 @@
   programs.git = {
       enable = true; # IF GIT SHOULD BREAK SOME IN THE PUSHES OR NEW BUILDS AFTER 24-01-18 its probably this
       config = {
-      user.name = "maddonix";
-      user.email = "tlux14@googlemail.com"; 
+        #user.name = "maddonix";
+        #user.email = "tlux14@googlemail.com"; 
     };
   };
 

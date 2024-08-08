@@ -236,7 +236,6 @@ nixConfig = {
 		nfs-share-all-mount-path = "/volume1/agl-share";
 
 		openvpnConfigPath = "/home/agl-admin/.openvpn";
-		# openvpnCertPath = "/home/agl-admin/openvpn-cert";
 		openvpnCertPath = "/home/agl-admin/openvpn-cert";
 
 
@@ -246,7 +245,7 @@ nixConfig = {
 			path = "/home/agl-admin/endoreg-client-manager";
 			dropoff-dir = "/mnt/hdd-sensitive/DropOff";
 			pseudo-dir = "/mnt/hdd-sensitive/Pseudo";
-			processed-dir = "/mnt/hdd-sensitive/Processed";
+			processed-dir = "/mnt/hdd-sensitive/Process ed";
 			django-debug = true;
 			django-settings-module = "endoreg_client_manager.settings";
 			user = "agl-admin";

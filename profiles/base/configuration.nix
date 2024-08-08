@@ -2,12 +2,14 @@
   config, pkgs, lib, inputs, 
   network_interface, 
   openvpnCertPath,
-  openvpnConfigPath ? "home/agl-admin/.openvpn", 
+  openvpnConfigPath ? "home/agl-admin/.openvpn",
+  base-profile-settings,
   hostname,
-  ... }: 
+  ... 
+}: 
 
 {
-
+  # asd 
   imports = [
     ./etc.nix
     (import ./system-packages.nix {inherit config pkgs;})
@@ -38,8 +40,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.auto-optimise-store = true;
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+
+  };
   
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

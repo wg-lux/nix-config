@@ -9,13 +9,15 @@
   agl-home-django-package, #TODO CHECK IF STILL NEEDED
   endoreg-client-manager-config,
   agl-nas-02-ip, nfs-share-all-local-path, nfs-share-all-mount-path,
-  agl-network-config,
+  agl-network-config, 
+  base-profile-settings,
   ... 
 }:
 let
   hostname = "agl-gpu-client-dev";
   testy = agl-network-config.services.nfs-share.ip;
   endoreg-client-manager-path = endoreg-client-manager-config.path;
+  # nvidiaCache = base-profile-settings.nvidiaCache;
 in  
 { #
   imports =
@@ -49,7 +51,8 @@ in
       
       # ./wireguard.nix
       ( import ../base/configuration.nix { 
-        inherit config pkgs lib inputs network_interface; 
+        inherit config pkgs lib inputs network_interface;
+        inherit base-profile-settings; 
         inherit hostname openvpnCertPath; 
         users-mutable = true;
         })

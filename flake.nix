@@ -1,25 +1,24 @@
 {
   description = "AGL Nix Config";
 
-  nixConfig = {
+nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://cuda-maintainers.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-	  "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
     ];
   };
 
 
   inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-		
+
 		home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+
 
 		nix-index-database.url = "github:Mic92/nix-index-database";
 		nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +39,7 @@
 		endoreg-client-manager.url = "./services/endoreg-client";
 		endoreg-client-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+
   };
 
   outputs = { 
@@ -48,6 +48,8 @@
 		# CUSTOM SERVICE
 		# customService,
 		endoreg-client-manager,
+
+
 
 		...
 		}@inputs: #
@@ -65,6 +67,10 @@
 
 		agl-network-config = {
 			domain = "endo-reg.net";
+		};
+
+		base-profile-settings = {
+			
 		};
 
 		# SERVER / CLIENT IP CONFIG
@@ -262,6 +268,7 @@
 		nixosConfigurations = {
 			agl-server-01 = nixpkgs.lib.nixosSystem {
 				specialArgs = {
+					inherit base-profile-settings;
 					inherit inputs system;
 					inherit agl-server-01-ip;
 					inherit agl-network-config;
@@ -279,6 +286,7 @@
 			};
 			agl-server-02 = nixpkgs.lib.nixosSystem {
 				specialArgs = {
+					inherit base-profile-settings;
 					inherit inputs system;
 				};
 				
@@ -294,9 +302,10 @@
 
 			agl-server-03 = nixpkgs.lib.nixosSystem {
 				specialArgs = {
-				inherit inputs system;
-				inherit openvpnCertPath;
-				inherit agl-network-config;
+					inherit base-profile-settings;
+					inherit inputs system;
+					inherit openvpnCertPath;
+					inherit agl-network-config;
 				};
 
 				modules = [
@@ -321,6 +330,7 @@
 
 			agl-server-04 = nixpkgs.lib.nixosSystem {
 					specialArgs = {
+						inherit base-profile-settings;
 						inherit inputs system ;
 						inherit openvpnCertPath;
 						inherit agl-server-04-ip;
@@ -341,6 +351,7 @@
 			dev = nixpkgs.lib.nixosSystem {
 				specialArgs = {
 					inherit inputs system;
+					inherit base-profile-settings;
 					inherit openvpnCertPath;
 				};
 				
@@ -359,6 +370,7 @@
 				# inherit system; # NEW
 				specialArgs = {
 					inherit inputs system;
+					inherit base-profile-settings;
 					inherit openvpnCertPath;
 					inherit endoreg-client-manager-config;
 					inherit agl-network-config;
@@ -377,6 +389,12 @@
 							services.vscode-server.enable = true;
 						}
 					)
+					(
+						{ config, pkgs, ... }: {
+							environment.systemPackages = with pkgs; [
+							];
+						}
+					)
 					# CUSTOM SERVICE
 					# customService.nixosModules.custom-service
 					endoreg-client-manager.nixosModules.endoreg-client-manager
@@ -385,6 +403,7 @@
 			agl-gpu-client-01 = nixpkgs.lib.nixosSystem {
 				specialArgs = {
 					inherit inputs system;
+					inherit base-profile-settings;
 					inherit openvpnCertPath;
 					inherit endoRegClientManagerPath;
 					inherit nfs-share-all-local-path nfs-share-all-mount-path;	
@@ -403,6 +422,7 @@
 			
 				specialArgs = {
 					inherit inputs system;
+					inherit base-profile-settings;
 					inherit openvpnCertPath;
 					inherit endoreg-client-manager-config;
 					inherit agl-network-config;
@@ -427,6 +447,7 @@
 				# inherit system; # NEW
 				specialArgs = {
 					inherit inputs system;
+					inherit base-profile-settings;
 					inherit openvpnCertPath;
 					inherit endoreg-client-manager-config;
 					inherit agl-network-config;
@@ -456,6 +477,7 @@
 				# inherit system; # NEW
 				specialArgs = {
 					inherit inputs system;
+					inherit base-profile-settings;
 					inherit openvpnCertPath;
 					inherit endoreg-client-manager-config;
 					inherit agl-network-config;
@@ -485,6 +507,7 @@
 				# inherit system; # NEW
 				specialArgs = {
 					inherit inputs system;
+					inherit base-profile-settings;
 					inherit openvpnCertPath;
 					inherit endoreg-client-manager-config;
 					inherit agl-network-config;

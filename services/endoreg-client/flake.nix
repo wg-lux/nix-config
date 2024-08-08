@@ -117,17 +117,17 @@
 
       config = lib.mkIf config.services.endoreg-client-manager.enable {
         # setup redis server:
-        environment.systemPackages = with pkgs; [
-          redis
-          cudaPackages.cudatoolkit
-          # cudaPackages.cudnn
-          # linuxPackages.nvidia_x11
-          libGLU libGL
-          glibc
-          xorg.libXi xorg.libXmu freeglut
-          xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib 
-          ncurses5 stdenv.cc binutils
-        ];
+        # environment.systemPackages = with pkgs; [
+        #   redis
+        #   cudaPackages.cudatoolkit
+        #   # cudaPackages.cudnn
+        #   # linuxPackages.nvidia_x11
+        #   libGLU libGL
+        #   glibc
+        #   xorg.libXi xorg.libXmu freeglut
+        #   xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib 
+        #   ncurses5 stdenv.cc binutils
+        # ];
         services.redis.servers."endoreg-client-manager"= { # results in service named: redis-endoreg-client-manager.service 
             enable = true;
             bind = config.services.endoreg-client-manager.redis-bind; 
@@ -206,19 +206,19 @@
             };
           };
           # Additional libraries for the environment
-          environment.systemPackages = with pkgs; [
-            redis
-            cudaPackages.cudatoolkit
-            libGLU
-            libGL
-            glibc
-            xorg.libXi xorg.libXmu freeglut
-            xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib 
-            ncurses5 stdenv.cc binutils
-          ];
+          # environment.systemPackages = with pkgs; [
+          #   redis
+          #   cudaPackages.cudatoolkit
+          #   libGLU
+          #   libGL
+          #   glibc
+          #   xorg.libXi xorg.libXmu freeglut
+          #   xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib 
+          #   ncurses5 stdenv.cc binutils
+          # ];
 
           # In the service configuration
-          systemd.services.agl-anonymizer = {
+          agl-anonymizer = {
             description = "Image Anonymizing Service";
             after = [ "network.target" ];
             wantedBy = [ "multi-user.target" ];

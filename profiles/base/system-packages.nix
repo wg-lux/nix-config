@@ -18,6 +18,7 @@
     powertop
     unixtools.quota
     chromium
+    cachix
     # tmux
     # tmuxp
     

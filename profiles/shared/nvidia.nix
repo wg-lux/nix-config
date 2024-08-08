@@ -3,8 +3,6 @@
 {
   hardware.graphics = {
     enable = true;
-    # driSupport = true;
-    # driSupport32Bit = true;
   };
 
   nixpkgs.config.cudaSupport = true;
@@ -12,25 +10,17 @@
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [
     "nvidia"
-    #"displaylink"
-    # "modesetting"
     ];
 
   environment.systemPackages = with pkgs; [
     cudaPackages.cudatoolkit
-    # cudaPackages.tensorrt
-    # cudaPackages.cudnn
-    # cudatoolkit_12_1
     linuxPackages.nvidia_x11
-    # dcgm
-    # prometheus-dcgm-exporter
 
+    autoAddDriverRunpath
     
     git gitRepo gnupg autoconf curl
     procps gnumake util-linux m4 gperf unzip
-    # cudatoolkit 
 
-    # linuxPackages.nvidia_x11
     libGLU libGL
     glibc
     xorg.libXi xorg.libXmu freeglut

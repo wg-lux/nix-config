@@ -8,7 +8,8 @@
         # rtkit
     ];
 
-    hardware.graphics = {
+    # hardware.graphics = { # temporarily changed for backwardscompatibility for unstable to stable 24.05
+    hardware.opengl = {
         enable = true;
         extraPackages = with pkgs; [
             # intel-media-driver # LIBVA_DRIVER_NAME=iHD

@@ -6,7 +6,7 @@
     pcsclite
     gnupg
     tesseract
-    zenity
+    gnome.zenity
 
     # System states
     ( import ../../scripts/endoreg-client/system-idle.nix {inherit pkgs;})

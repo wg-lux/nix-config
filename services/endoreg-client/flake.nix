@@ -2,7 +2,7 @@
   description = "A flake providing both EndoReg Client Manager and AGL Anonymizer services in a CUDA enabled environment";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; # Ensure this URL is correct
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05"; # Ensure this URL is correct
   };
 
   outputs = { self, nixpkgs, ... }: let
@@ -104,7 +104,7 @@
               Restart = "always";
               User = config.services.endoreg-client-manager.user;
               Group = config.services.endoreg-client-manager.group;
-              WorkingDirectory = "${config.services.endoreg-client-manager.working-directory}";
+              WorkingDirectory = "${config.services.endoreg-client-manager.working-directory}/endoreg_client_manager";
               Environment = [
                 "PATH=${config.services.endoreg-client-manager.working-directory}/.venv/bin:/run/current-system/sw/bin"
                 "LD_LIBRARY_PATH=${pkgs.glibc}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.linuxPackages.nvidia_x11}/lib"
@@ -127,7 +127,7 @@
               Restart = "always";
               User = config.services.endoreg-client-manager.user;
               Group = config.services.endoreg-client-manager.group;
-              WorkingDirectory = "${config.services.endoreg-client-manager.working-directory}";
+              WorkingDirectory = "${config.services.endoreg-client-manager.working-directory}/endoreg_client_manager";
               Environment = [
                 "PATH=${config.services.endoreg-client-manager.working-directory}/.venv/bin:/run/current-system/sw/bin"
                 "LD_LIBRARY_PATH=${pkgs.glibc}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.linuxPackages.nvidia_x11}/lib"
@@ -149,7 +149,7 @@
               Restart = "always";
               User = config.services.endoreg-client-manager.user;
               Group = config.services.endoreg-client-manager.group;
-              WorkingDirectory = "${config.services.endoreg-client-manager.working-directory}";
+              WorkingDirectory = "${config.services.endoreg-client-manager.working-directory}/endoreg_client_manager";
               Environment = [
                 "PATH=${config.services.endoreg-client-manager.working-directory}/.venv/bin:/run/current-system/sw/bin"
                 "LD_LIBRARY_PATH=${pkgs.glibc}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.linuxPackages.nvidia_x11}/lib"
@@ -170,13 +170,13 @@
           enable = lib.mkEnableOption "Enable AGL Anonymizer service";
           user = lib.mkOption {
             type = lib.types.str;
-            default = "endoreg";
+            default = "service-user";
             description = "The user under which the AGL Anonymizer service will run";
           };
 
           group = lib.mkOption {
             type = lib.types.str;
-            default = "endoreg";
+            default = "endoreg-service";
             description = "The group under which the AGL Anonymizer service will run";
           };
 
@@ -238,16 +238,17 @@
 
         };
       };
+
     };
 
-    nixosConfigurations = {
-      "default" = nixpkgs.lib.nixosSystem {
-        system = system;
-        modules = [
-          self.nixosModules.endoreg-client-manager
-          self.nixosModules.agl-anonymizer
-        ];
-      };
-    };
+    # nixosConfigurations = {
+    #   "default" = nixpkgs.lib.nixosSystem {
+    #     system = system;
+    #     modules = [
+    #       self.nixosModules.endoreg-client-manager
+    #       # self.nixosModules.agl-anonymizer
+    #     ];
+    #   };
+    # };
   };
 }

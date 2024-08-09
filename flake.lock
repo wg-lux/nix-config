@@ -9,11 +9,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8Fh5nlH2VCaV367ZStgbwgPtE89uQ6Ii+Jdj3WkgWoY=",
-        "path": "/nix/store/8csm48q0lk8gmrh4jmi7y5522l9ci1bm-source/services/endoreg-client",
+        "path": "/nix/store/d913x1vxlcf0h83shfn3v4l23ghmsc3f-source/services/endoreg-client",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/8csm48q0lk8gmrh4jmi7y5522l9ci1bm-source/services/endoreg-client",
+        "path": "/nix/store/d913x1vxlcf0h83shfn3v4l23ghmsc3f-source/services/endoreg-client",
         "type": "path"
       }
     },

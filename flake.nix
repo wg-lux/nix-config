@@ -279,6 +279,7 @@ nixConfig = {
 					inherit agl-server-01-ip;
 					inherit agl-network-config;
 					inherit openvpnConfigPath openvpnCertPath;
+					inherit base-profile-settings;
 				};
 				
 				modules = [
@@ -312,6 +313,7 @@ nixConfig = {
 					inherit inputs system;
 					inherit openvpnCertPath;
 					inherit agl-network-config;
+					inherit base-profile-settings;
 				};
 
 				modules = [
@@ -342,6 +344,7 @@ nixConfig = {
 						inherit agl-server-04-ip;
 						inherit agl-network-config;
 						inherit endoRegHomeIP endoRegHomePort endoRegHomePath;
+						inherit base-profile-settings;
 						# inherit grafanaIP grafanaPort;
 					};
 					

@@ -6,6 +6,7 @@
   lib,
   agl-server-04-ip, 
   agl-network-config,
+  base-profile-settings,
   ... }:
 let
   hostname = "agl-server-04";
@@ -21,6 +22,7 @@ in
       ( import ../base/configuration.nix { 
         inherit config pkgs lib inputs network_interface; 
         inherit openvpnCertPath hostname; 
+        inherit base-profile-settings;
         })
       ../../services/postgresql.nix
       ( import ../../services/agl_home_django.nix { 

@@ -7,6 +7,7 @@
   agl-network-config,
   openvpnCertPath,
   openvpnConfigPath,
+  base-profile-settings,
   ... }:
 let
   hostname = "agl-server-01";
@@ -27,6 +28,7 @@ in
           inherit config pkgs lib inputs; 
           inherit network_interface openvpnCertPath openvpnConfigPath; 
           inherit hostname;
+          inherit base-profile-settings;
       })
       # ../../services/bind.nix
     ];

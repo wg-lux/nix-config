@@ -7,6 +7,7 @@
   lib,
   openvpnCertPath,
   agl-network-config,
+  base-profile-settings,
   ...
 }:
 let
@@ -21,6 +22,7 @@ in
       ( import ../base/configuration.nix { 
         inherit config pkgs lib inputs network_interface;
         inherit openvpnCertPath hostname; 
+        inherit base-profile-settings;
          })
       ( import ../../services/keycloak.nix { inherit config pkgs; })
       (import ../../services/main_nginx.nix {

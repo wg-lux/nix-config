@@ -34,6 +34,8 @@ in
         inherit agl-network-config;
         # inherit agl-nas-02-ip nfs-share-all-local-path nfs-share-all-mount-path; 
       } )
+
+      ../../services/utils/scheduled-reboot-nightly.nix
     ];
 
   networking.hostName = hostname;

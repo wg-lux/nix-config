@@ -2,7 +2,7 @@
     services.postgresql = {
         enable = true;
         package = pkgs.postgresql_15;
-        port = 5432;
+        settings.port = 5432;
         enableTCPIP = true;
         # dataDir= path;
 

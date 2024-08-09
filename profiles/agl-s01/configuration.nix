@@ -30,6 +30,7 @@ in
           inherit hostname;
           inherit base-profile-settings;
       })
+      ../../services/utils/scheduled-reboot-nightly.nix
       # ../../services/bind.nix
     ];
 

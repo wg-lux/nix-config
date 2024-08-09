@@ -33,6 +33,8 @@ in
         inherit config pkgs;
         inherit agl-network-config;
       })
+
+      ../../services/utils/scheduled-reboot-nightly.nix
     ];
 
   networking.hostName = hostname;

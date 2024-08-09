@@ -1,36 +1,30 @@
 {config, pkgs, nvidiaBusId, onboardGraphicBusId, ...}: 
 
 {
-  hardware.graphics = {
+  # hardware.graphics = { # temporarily changed for backwardscompatibility for unstable to stable 24.05
+  hardware.opengl = {
     enable = true;
-    # driSupport = true;
-    # driSupport32Bit = true;
   };
+
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  boot.initrd.kernelModules = [ "nvidia" ];
 
   nixpkgs.config.cudaSupport = true;
   
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [
     "nvidia"
-    #"displaylink"
-    # "modesetting"
     ];
 
   environment.systemPackages = with pkgs; [
     cudaPackages.cudatoolkit
-    # cudaPackages.tensorrt
-    # cudaPackages.cudnn
-    # cudatoolkit_12_1
     linuxPackages.nvidia_x11
-    # dcgm
-    # prometheus-dcgm-exporter
 
+    autoAddDriverRunpath
     
     git gitRepo gnupg autoconf curl
     procps gnumake util-linux m4 gperf unzip
-    # cudatoolkit 
 
-    # linuxPackages.nvidia_x11
     libGLU libGL
     glibc
     xorg.libXi xorg.libXmu freeglut
@@ -38,6 +32,7 @@
     ncurses5 stdenv.cc binutils
 
   ];
+
 
   hardware.nvidia = {
 
@@ -59,7 +54,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   hardware.nvidia.prime = {

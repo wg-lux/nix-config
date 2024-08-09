@@ -6,7 +6,8 @@
     pcsclite
     gnupg
     tesseract
-    zenity
+    # zenity #
+    gnome.zenity
     spotify
     nodejs_18
 
@@ -29,63 +30,66 @@
     # obs-studio-plugins.obs-pipewire-audio-capture
 
     # Audio Processing
-    alsa-firmware
-    alsa-oss
-    alsa-lib
-    alsa-tools
-    alsa-plugins
+    # alsa-firmware
+    # alsa-oss
+    # alsa-lib
+    # alsa-tools
+    # alsa-plugins
     # apulse
-    audacity
+    # audacity
     # ardour
     # strawberry
-    kdenlive
-    rnnoise-plugin
+    # kdenlive
+    # rnnoise-plugin
     # mixxx
 
     # Image Processing
-    gimp
-    inkscape
+    # gimp
+    # inkscape
 
     # Video Processing
 
     # CAD / Cutting / printing
-    openscad
-    appimage-run
+    # openscad
+    # appimage-run
 
     # System states
     ( import ../../scripts/endoreg-client/system-idle.nix {inherit pkgs;})
 
     # Steam
-    steam-run
-    steam-tui
-    protonup-qt
-    protonup-ng
+    # steam-run
+    # steam-tui
+    # protonup-qt
+    # protonup-ng
+
+    thunderbird
 
   ];
 
   programs.htop.enable = true; # Enable htop monitoring
   
   # enable thunderbird
-  programs.thunderbird.enable = true;
+  # programs.thunderbird.enable = true;
+
   
 
   # Steam
   # https://nixos.wiki/wiki/Steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
-    extraCompatPackages = [
-      pkgs.proton-ge-bin
-    ];
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  #   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  #   localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  #   extraCompatPackages = [
+  #     pkgs.proton-ge-bin
+  #   ];
+  # };
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "steam-run"
-    ];
+  # nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+  #     "steam"
+  #     "steam-original"
+  #     "steam-run"
+  #   ];
 
 
 

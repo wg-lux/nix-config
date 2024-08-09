@@ -5,8 +5,7 @@
 { inputs, config, pkgs, lib,
   openvpnCertPath,
   agl-home-django-package, #TODO CHECK IF STILL NEEDED
-  endoRegClientManagerPath, 
-  
+  endoRegClientManagerPath,
   ... }:
 let
   hostname = "agl-gpu-client-01";

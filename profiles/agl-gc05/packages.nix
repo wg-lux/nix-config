@@ -6,7 +6,7 @@
     pcsclite
     gnupg
     tesseract
-    zenity
+    gnome.zenity
     spotify
     steam
 

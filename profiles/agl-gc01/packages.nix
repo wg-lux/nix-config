@@ -6,7 +6,7 @@
     pcsclite
     gnupg
     tesseract
-    zenity
+    gnome.zenity
 
     # ( import  ../../scripts/endoreg-client/data-mount.nix { inherit pkgs ; })
     # ( import  ../../scripts/endoreg-client/data-umount.nix { inherit pkgs ; })

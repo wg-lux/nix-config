@@ -279,7 +279,6 @@ nixConfig = {
 					inherit agl-server-01-ip;
 					inherit agl-network-config;
 					inherit openvpnConfigPath openvpnCertPath;
-					inherit base-profile-settings;
 				};
 				
 				modules = [

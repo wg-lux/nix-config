@@ -6,7 +6,8 @@
     pcsclite
     gnupg
     tesseract
-    zenity
+    # zenity #
+    gnome.zenity
     spotify
     nodejs_18
 
@@ -61,12 +62,15 @@
     # protonup-qt
     # protonup-ng
 
+    thunderbird
+
   ];
 
   programs.htop.enable = true; # Enable htop monitoring
   
   # enable thunderbird
-  programs.thunderbird.enable = true;
+  # programs.thunderbird.enable = true;
+
   
 
   # Steam

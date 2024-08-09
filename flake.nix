@@ -12,10 +12,10 @@ nixConfig = {
 
 
   inputs = {
-		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+		nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
 		home-manager = {
-			url = "github:nix-community/home-manager";
+			url = "github:nix-community/home-manager/release-24.05";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
 
@@ -29,6 +29,9 @@ nixConfig = {
 		vscode-server.url = "github:nix-community/nixos-vscode-server";
 		vscode-server.inputs.nixpkgs.follows = "nixpkgs";
 
+		# add for flake usage with nixos stable
+		flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
+
 		# CUSTOM SERVICES
 		### Example
 		# customService.url = "./services/custom-service-flake"; # Adjust the path accordingly
@@ -39,6 +42,9 @@ nixConfig = {
 		endoreg-client-manager.url = "./services/endoreg-client";
 		endoreg-client-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+		# agl-anonymizer.url = "./services/agl-anonymizer";
+		# agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
+
 
   };
 
@@ -48,6 +54,7 @@ nixConfig = {
 		# CUSTOM SERVICE
 		# customService,
 		endoreg-client-manager,
+		# agl-anonymizer,
 
 
 
@@ -397,6 +404,7 @@ nixConfig = {
 					# CUSTOM SERVICE
 					# customService.nixosModules.custom-service
 					endoreg-client-manager.nixosModules.endoreg-client-manager
+					endoreg-client-manager.nixosModules.agl-anonymizer
 				];
 			};
 			agl-gpu-client-01 = nixpkgs.lib.nixosSystem {

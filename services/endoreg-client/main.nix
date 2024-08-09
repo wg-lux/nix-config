@@ -39,9 +39,18 @@ in
             redis-port = endoreg-client-manager-config.redis-port;
             django-debug = endoreg-client-manager-config.django-debug;
             django-settings-module = endoreg-client-manager-config.django-settings-module;
-            agl-anonymizer-port = agl-anonymizer-port;
+            # agl-anonymizer-port = agl-anonymizer-port;
             # agl-anonymizer-dir = agl-anonymizer-dir;
-            agl-anonymizer-django-settings-module = agl-anonymizer-django-settings-module;
+            # agl-anonymizer-django-settings-module = agl-anonymizer-django-settings-module;
+        };
+
+        services.agl-anonymizer = {
+            enable = true;
+            user = "agl-admin"; # should be "service-user" but then we lose access to the directory which is owned by agl-admin
+            group = "endoreg-service"; # is default
+            django-port = agl-anonymizer-port;
+            working-directory = agl-anonymizer-dir;
+            django-settings-module = agl-anonymizer-django-settings-module;
         };
 
         environment.etc."endoreg-client-config/hdd.json".source = ../../config/hdd.json;

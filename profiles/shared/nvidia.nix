@@ -1,9 +1,13 @@
 {config, pkgs, nvidiaBusId, onboardGraphicBusId, ...}: 
 
 {
-  hardware.graphics = {
+  # hardware.graphics = { # temporarily changed for backwardscompatibility for unstable to stable 24.05
+  hardware.opengl = {
     enable = true;
   };
+
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  boot.initrd.kernelModules = [ "nvidia" ];
 
   nixpkgs.config.cudaSupport = true;
   
@@ -29,6 +33,7 @@
 
   ];
 
+
   hardware.nvidia = {
 
     # Modesetting is required.
@@ -49,7 +54,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    # package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   hardware.nvidia.prime = {

@@ -277,6 +277,7 @@ nixConfig = {
 		user = "agl-admin";
 		group = "pseudo-access";
 		redis-port = 6379;
+		ip = agl-network-config.services.agl-home-django.ip;
 		port = agl-network-config.services.agl-home-django.port;
 		django-debug = false;
 		django-settings-module = "endoreg_home.settings_prod";

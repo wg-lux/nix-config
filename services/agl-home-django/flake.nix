@@ -65,6 +65,12 @@
             description = "The Django settings module";
           };
 
+          django-ip = lib.mkOption {
+            type = lib.types.str;
+            default = "172.16.255.4";
+            description = "The IP address on which the Django server will listen";
+        };
+
           django-port = lib.mkOption {
             type = lib.types.int;
             default = 9100;
@@ -115,7 +121,7 @@
             script = ''
               export DJANGO_SECRET_KEY=${config.services.agl-home-django.django-secret-key}
               nix develop
-              exec gunicorn endoreg_home.wsgi:application --bind 0.0.0.0:${toString config.services.agl-home-django.django-port}
+              exec gunicorn endoreg_home.wsgi:application --bind ${config.services.agl-home-django.django-ip}:${toString config.services.agl-home-django.django-port}
             '';
           };
 

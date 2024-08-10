@@ -8,12 +8,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-Q15iYFU/dUyMReHH8+zpyMIB0lhTa1po5J5tApIXGSo=",
-        "path": "/nix/store/b09cdzx4s4rl55q75mrdpgpx042dyb03-source/services/agl-home-django",
+        "narHash": "sha256-ikHzXoobOoq68n16CEYGEPHgS+OCv10jz3qb7/S71yQ=",
+        "path": "/nix/store/fj4vazh15fsz6iaxzn1bmk8c4gvbibbs-source/services/agl-home-django",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/b09cdzx4s4rl55q75mrdpgpx042dyb03-source/services/agl-home-django",
+        "path": "/nix/store/fj4vazh15fsz6iaxzn1bmk8c4gvbibbs-source/services/agl-home-django",
         "type": "path"
       }
     },
@@ -26,11 +26,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8Fh5nlH2VCaV367ZStgbwgPtE89uQ6Ii+Jdj3WkgWoY=",
-        "path": "/nix/store/b09cdzx4s4rl55q75mrdpgpx042dyb03-source/services/endoreg-client",
+        "path": "/nix/store/fj4vazh15fsz6iaxzn1bmk8c4gvbibbs-source/services/endoreg-client",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/b09cdzx4s4rl55q75mrdpgpx042dyb03-source/services/endoreg-client",
+        "path": "/nix/store/fj4vazh15fsz6iaxzn1bmk8c4gvbibbs-source/services/endoreg-client",
         "type": "path"
       }
     },

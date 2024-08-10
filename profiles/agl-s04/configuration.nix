@@ -30,7 +30,7 @@ in
       # ( import ../../services/agl_home_django.nix { 
       ( import ../../services/agl-home-django/main.nix { 
         inherit config pkgs lib;
-        inherit agl-home-django-config;
+        inherit agl-home-django-config agl-network-config;
       })
       ( import ../../services/grafana.nix {
         inherit config pkgs;

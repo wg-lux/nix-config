@@ -322,7 +322,7 @@ nixConfig = {
 					services.vscode-server.enable = true;
 				})
 				({ config, pkgs, ... }: {
-					services.jenkins.enable = true;
+					# services.jenkins.enable = true; # disable jenkins as it breaks keycloak
 				})
 				({ config, pkgs, ... }: {
 					environment.systemPackages = with pkgs; [

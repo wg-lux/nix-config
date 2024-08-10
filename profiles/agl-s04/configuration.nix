@@ -18,6 +18,7 @@ in
   imports =
     [
       ./hardware-configuration.nix
+      ./git.nix
       ( import ./packages.nix { inherit pkgs; })
       ( import ../base/configuration.nix { 
         inherit config pkgs lib inputs network_interface; 

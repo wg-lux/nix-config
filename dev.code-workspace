@@ -4,7 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "../endoreg-client-manager"
+			"path": "../agl-home-django"
 		},
 		{
 			"path": "../dev/endoreg-db"

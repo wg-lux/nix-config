@@ -19,6 +19,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./git.nix
       ( import ../base/configuration.nix { 
         inherit config pkgs lib inputs network_interface;
         inherit openvpnCertPath hostname; 

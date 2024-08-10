@@ -20,6 +20,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./packages.nix
+      ./git.nix
       ( import ../../services/dnsmasq.nix {inherit pkgs network_interface;} )
       ( import ./secrets.nix {
           inherit config openvpnCertPath openvpnConfigPath;

@@ -50,7 +50,8 @@ in
 
     script = ''
       # Activate the Python virtual environment
-      source ${endoreg-home-path}/.venv/bin/activate
+      # source ${endoreg-home-path}/.venv/bin/activate
+      nix develop
       
       # Set the Django settings module environment variable
       export DJANGO_SETTINGS_MODULE=endoreg_home.settings_prod
@@ -67,6 +68,11 @@ in
       # Group = "agl-admin"; # Replace with the group you want the service to run as
       # It's important to set the working directory to where your Django project is
       WorkingDirectory = "${endoreg-home-path}/endoreg_home";
+      Environment = [
+                "PATH=${endoreg-home-path}/.venv/bin:/run/current-system/sw/bin"
+                "LD_LIBRARY_PATH=${pkgs.glibc}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.linuxPackages.nvidia_x11}/lib"
+                "DJANGO_SETTINGS_MODULE=endoreg_home.settings_prod"
+              ];
       # Add environment variables if necessary
       # Environment = [
       #   "PATH=/run/current-system/sw/bin:$PATH"
@@ -74,3 +80,10 @@ in
     };
   };
 }
+
+
+# export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [
+#                 pkgs.stdenv.cc.cc
+#                 pkgs.ncurses5
+#                 pkgs.gcc
+#       ]}

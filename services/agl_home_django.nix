@@ -80,10 +80,3 @@ in
     };
   };
 }
-
-
-# export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [
-#                 pkgs.stdenv.cc.cc
-#                 pkgs.ncurses5
-#                 pkgs.gcc
-#       ]}

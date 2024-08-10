@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "agl-home-django": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-Q15iYFU/dUyMReHH8+zpyMIB0lhTa1po5J5tApIXGSo=",
+        "path": "/nix/store/b09cdzx4s4rl55q75mrdpgpx042dyb03-source/services/agl-home-django",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/b09cdzx4s4rl55q75mrdpgpx042dyb03-source/services/agl-home-django",
+        "type": "path"
+      }
+    },
     "endoreg-client-manager": {
       "inputs": {
         "nixpkgs": [
@@ -9,11 +26,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8Fh5nlH2VCaV367ZStgbwgPtE89uQ6Ii+Jdj3WkgWoY=",
-        "path": "/nix/store/db3i93f43xybr7alidcxj863zzx657xp-source/services/endoreg-client",
+        "path": "/nix/store/b09cdzx4s4rl55q75mrdpgpx042dyb03-source/services/endoreg-client",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/db3i93f43xybr7alidcxj863zzx657xp-source/services/endoreg-client",
+        "path": "/nix/store/b09cdzx4s4rl55q75mrdpgpx042dyb03-source/services/endoreg-client",
         "type": "path"
       }
     },
@@ -124,6 +141,7 @@
     },
     "root": {
       "inputs": {
+        "agl-home-django": "agl-home-django",
         "endoreg-client-manager": "endoreg-client-manager",
         "flake-compat": "flake-compat",
         "home-manager": "home-manager",

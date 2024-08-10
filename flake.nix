@@ -38,9 +38,15 @@ nixConfig = {
 		# customService.inputs.nixpkgs.follows = "nixpkgs";
 
 		## EndoReg Client Manager
-		# endoreg-client-manager.url = "github:EndoReg/endoreg-client-manager";
+		# endoreg-client-manager.url = "github:wg-lux/endoreg-client-manager";
 		endoreg-client-manager.url = "./services/endoreg-client";
 		endoreg-client-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+		## AGL Home Django
+		# agl-home-django.url = "github:wg-lux/agl-home-django";
+		agl-home-django.url = "./services/agl-home-django";
+		agl-home-django.inputs.nixpkgs.follows = "nixpkgs";
+
 
 		# agl-anonymizer.url = "./services/agl-anonymizer";
 		# agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
@@ -54,6 +60,7 @@ nixConfig = {
 		# CUSTOM SERVICE
 		# customService,
 		endoreg-client-manager,
+		agl-home-django,
 		# agl-anonymizer,
 
 
@@ -172,9 +179,9 @@ nixConfig = {
 			local-monitoring = local-monitoring-config;
 
 			# EndoReg Home
-			endoreg-home = {
+			agl-home-django = {
 				ip = agl-server-04-ip;
-				port = 9100;
+				port = 9129;
 				path = "/home/agl-admin/agl-home-django";
 			};
 
@@ -207,12 +214,11 @@ nixConfig = {
 		};
 
 		#### TODO REMOVE
-		endoRegHomePort = endoreg-client-manager-port;
-		endoRegHomeIP = "172.16.255.4" ;
-		endoRegHomePath = "/home/agl-admin/agl-home-django";
+		# endoRegHomeIP = "172.16.255.4" ;
+		# endoRegHomePath = "/home/agl-admin/agl-home-django";
 
-		grafanaIP = "172.16.255.4";
-		grafanaPort = 2342;
+		# grafanaIP = "172.16.255.4";
+		# grafanaPort = 2342;
 
 
 		agl-gpu-client-dev-network-interface = "wlo1";
@@ -265,6 +271,16 @@ nixConfig = {
 
 	};
 	endoRegClientManagerPath = "/home/agl-admin/endoreg-client-manager";
+
+	agl-home-django-config = {
+		path = agl-network-config.services.agl-home-django.path;
+		user = "agl-admin";
+		group = "pseudo-access";
+		redis-port = 6379;
+		port = agl-network-config.services.agl-home-django.port;
+		django-debug = false;
+		django-settings-module = "endoreg_home.settings_prod";
+	};
 
 	#######################################################
 
@@ -341,7 +357,8 @@ nixConfig = {
 						inherit openvpnCertPath;
 						inherit agl-server-04-ip;
 						inherit agl-network-config;
-						inherit endoRegHomeIP endoRegHomePort endoRegHomePath;
+						# inherit endoRegHomeIP endoRegHomePort endoRegHomePath;
+						inherit agl-home-django-config;
 						# inherit grafanaIP grafanaPort;
 					};
 					
@@ -352,6 +369,7 @@ nixConfig = {
 						({ config, pkgs, ... }: {
 							services.vscode-server.enable = true;
 						})
+						agl-home-django.nixosModules.agl-home-django
 					];
 				};
 			dev = nixpkgs.lib.nixosSystem {

@@ -7,6 +7,7 @@
   agl-server-04-ip, 
   agl-network-config,
   base-profile-settings,
+  agl-home-django-config,
   ... }:
 let
   hostname = "agl-server-04";
@@ -26,9 +27,10 @@ in
         inherit base-profile-settings;
         })
       ../../services/postgresql.nix
-      ( import ../../services/agl_home_django.nix { 
-        inherit config pkgs;
-        inherit agl-network-config;
+      # ( import ../../services/agl_home_django.nix { 
+      ( import ../../services/agl-home-django/main.nix { 
+        inherit config pkgs lib;
+        inherit agl-home-django-config;
       })
       ( import ../../services/grafana.nix {
         inherit config pkgs;

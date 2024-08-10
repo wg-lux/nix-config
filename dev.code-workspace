@@ -8,7 +8,12 @@
 		},
 		{
 			"path": "../dev/endoreg-db"
+		},
+		{
+			"path": "../dev/agl-predict-endo-frame"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"djlint.showInstallError": false
+	}
 }

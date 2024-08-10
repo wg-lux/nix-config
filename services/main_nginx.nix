@@ -141,7 +141,7 @@ in
         sslCertificate = sslCertificatePath;
         sslCertificateKey = sslCertificateKeyPath;
         locations."/" = {
-          proxyPass = "http://${agl-network-config.services.endoreg-home.ip}:${toString agl-network-config.services.endoreg-home.port}";
+          proxyPass = "http://${agl-network-config.services.agl-home-django.ip}:${toString agl-network-config.services.agl-home-django.port}";
           extraConfig = all-extraConfig;
         };
       };

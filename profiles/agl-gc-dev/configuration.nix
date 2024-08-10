@@ -26,6 +26,7 @@ in
       ./luks-devices.nix
       ./hardware-acceleration.nix
       ../shared/touchpad.nix
+      ./git.nix
 
       # Networking
       # ./wpa_supplicant.nix

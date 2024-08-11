@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../dev/agl-predict-endo-frame"
+		},
+		{
+			"path": "../dev/endoreg-client-manager"
 		}
 	],
 	"settings": {

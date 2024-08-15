@@ -123,7 +123,7 @@
               };
               script = ''
                 nix develop
-                exec gunicorn agl_monitor.wsgi:application --bind ${config.services.agl-monitor.bind}:${toString config.services.agl-monitor.django-port}
+                exec gunicorn agl_monitor.wsgi:application --bind 0.0.0.0:${toString config.services.agl-monitor.django-port}
               '';
             };
 

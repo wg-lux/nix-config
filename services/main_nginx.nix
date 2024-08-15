@@ -145,6 +145,16 @@ in
           extraConfig = all-extraConfig;
         };
       };
+
+      "agl-monitor-intern.endo-reg.net" = {
+        forceSSL = true;
+        sslCertificate = sslCertificatePath;
+        sslCertificateKey = sslCertificateKeyPath;
+        locations."/" = {
+          proxyPass = "http://${agl-network-config.services.agl-monitor.ip}:${toString agl-network-config.services.agl-monitor.port}";
+          extraConfig = all-extraConfig + intern-endoreg-net-extraConfig;
+        };
+      };
     };
   };
 }

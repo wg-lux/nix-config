@@ -47,6 +47,11 @@ nixConfig = {
 		agl-home-django.url = "./services/agl-home-django";
 		agl-home-django.inputs.nixpkgs.follows = "nixpkgs";
 
+		## AGL Monitor
+		# agl-monitor.url = "github:wg-lux/agl-monitor";
+		agl-monitor.url = "./services/agl-monitor";
+		agl-monitor.inputs.nixpkgs.follows = "nixpkgs";
+
 
 		# agl-anonymizer.url = "./services/agl-anonymizer";
 		# agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
@@ -61,6 +66,7 @@ nixConfig = {
 		# customService,
 		endoreg-client-manager,
 		agl-home-django,
+		agl-monitor,
 		# agl-anonymizer,
 
 
@@ -184,6 +190,19 @@ nixConfig = {
 				port = 9129;
 				path = "/home/agl-admin/agl-home-django";
 			};
+
+			agl-monitor = {
+				ip = agl-network-config.ips.agl-server-04;
+				port = 9243;
+				path = "/home/agl-admin/agl-monitor";
+				user = "agl-admin";
+				group = "pseudo-access";
+				redis-port = 6382;
+				redis-bind = "127.0.0.1";
+				django-debug = false;
+				django-settings-module = "agl_monitor.settings";				
+			};
+			
 
 			# EndoReg Local
 			endoreg-client-manager = {
@@ -371,6 +390,7 @@ nixConfig = {
 							services.vscode-server.enable = true;
 						})
 						agl-home-django.nixosModules.agl-home-django
+						agl-monitor.nixosModules.agl-monitor
 					];
 				};
 			dev = nixpkgs.lib.nixosSystem {
@@ -400,6 +420,7 @@ nixConfig = {
 					inherit endoreg-client-manager-config;
 					inherit agl-network-config;
 					inherit agl-nas-02-ip nfs-share-all-local-path nfs-share-all-mount-path	;
+					
 					ip = agl-gpu-client-dev-ip;
 					network_interface = agl-gpu-client-dev-network-interface;
 					nvidiaBusId = agl-gpu-client-dev-nvidiaBusId;
@@ -424,6 +445,7 @@ nixConfig = {
 					# customService.nixosModules.custom-service
 					endoreg-client-manager.nixosModules.endoreg-client-manager
 					endoreg-client-manager.nixosModules.agl-anonymizer
+					agl-monitor.nixosModules.agl-monitor
 				];
 			};
 			agl-gpu-client-01 = nixpkgs.lib.nixosSystem {

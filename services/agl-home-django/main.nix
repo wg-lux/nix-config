@@ -52,5 +52,5 @@ in
             django-settings-module = agl-home-django-config.django-settings-module;
         };
 
-        environment.etc."agl-home-django/agl-home-django.json".source = custom-client-manager-config-path;
+        environment.etc."agl-home-django/config.json".source = custom-client-manager-config-path;
     }

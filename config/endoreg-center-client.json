@@ -16,5 +16,6 @@
     "CELERY_TASK_SERIALIZER": "json",
     "CELERY_RESULT_SERIALIZER": "json",
     "CELERY_TIMEZONE": "UTC",
-    "CELERY_BEAT_SCHEDULER": "django_celery_beat.schedulers:DatabaseScheduler"
+    "CELERY_BEAT_SCHEDULER": "django_celery_beat.schedulers:DatabaseScheduler",
+    "CELERY_SIGNAL_LOGFILE_NAME": "celery_signals.log"
 }

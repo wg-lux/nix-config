@@ -43,6 +43,10 @@ in
       ( import ../shared/local-nginx.nix { 
         inherit agl-network-config;
        } )
+      (import ../../services/agl-monitor/main.nix {
+        inherit config pkgs lib;
+        inherit agl-network-config;
+      })
       (import ../shared/nvidia.nix { inherit config pkgs nvidiaBusId onboardGraphicBusId; })
       (import ../shared/obsidian.nix { inherit pkgs ; })
       (import ../shared/ffmpeg.nix { inherit pkgs ; })

@@ -1,0 +1,25 @@
+session_name: ssh-reboot-servers
+windows:
+- window_name: main window
+  layout: tiled
+  shell_command_before:
+    - cd ~/nix-config # run as a first command in all panes
+  panes:
+    - shell_command: # pane no. 1
+      - echo first pane
+    - shell_command: # pane no. 2
+      - ssh 172.16.255.1
+      # echo "perform reboot in 10 seconds" and add delay
+      - echo "perform reboot in 5 seconds"
+      - sleep 10
+      - sudo reboot
+    - shell_command: # pane no. 3
+      - ssh 172.16.255.3
+      - echo "perform reboot in 20 seconds"
+      - sleep 20
+      - sudo reboot
+    - shell_command: # pane no. 4
+      - ssh 172.16.255.4
+      - echo "perform reboot in 30 seconds"
+      - sleep 30
+      - sudo reboot

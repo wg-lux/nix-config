@@ -1,0 +1,24 @@
+session_name: ssh-update-servers
+windows:
+- window_name: main window
+  layout: tiled
+  shell_command_before:
+    - cd ~/nix-config # run as a first command in all panes
+  panes:
+    - shell_command: # pane no. 1
+      - echo first pane
+    - shell_command: # pane no. 2
+      - ssh 172.16.255.1
+      - cd ~/nix-config
+      - git pull
+      - un
+    - shell_command: # pane no. 3
+      - ssh 172.16.255.3
+      - cd ~/nix-config
+      - git pull
+      - un
+    - shell_command: # pane no. 4
+      - ssh 172.16.255.4
+      - cd ~/nix-config
+      - git pull
+      - un

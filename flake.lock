@@ -9,11 +9,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-QruXccwIY7KGtxHPZZV/xHulqGHKM4k/s79w0fkzJog=",
-        "path": "/nix/store/qw6a563bz1fysib36jkn5wghymvdqmyv-source/services/agl-home-django",
+        "path": "/nix/store/z1c5wyyc42d3n7wp6fhk9vm9p7bsa8pv-source/services/agl-home-django",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/qw6a563bz1fysib36jkn5wghymvdqmyv-source/services/agl-home-django",
+        "path": "/nix/store/z1c5wyyc42d3n7wp6fhk9vm9p7bsa8pv-source/services/agl-home-django",
         "type": "path"
       }
     },
@@ -26,11 +26,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-tRvRhFg50MLwA1qjrGWqHCTAaQzIJA0iu9pHDD9b+sE=",
-        "path": "/nix/store/qw6a563bz1fysib36jkn5wghymvdqmyv-source/services/agl-monitor",
+        "path": "/nix/store/z1c5wyyc42d3n7wp6fhk9vm9p7bsa8pv-source/services/agl-monitor",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/qw6a563bz1fysib36jkn5wghymvdqmyv-source/services/agl-monitor",
+        "path": "/nix/store/z1c5wyyc42d3n7wp6fhk9vm9p7bsa8pv-source/services/agl-monitor",
         "type": "path"
       }
     },
@@ -43,11 +43,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8Fh5nlH2VCaV367ZStgbwgPtE89uQ6Ii+Jdj3WkgWoY=",
-        "path": "/nix/store/qw6a563bz1fysib36jkn5wghymvdqmyv-source/services/endoreg-client",
+        "path": "/nix/store/z1c5wyyc42d3n7wp6fhk9vm9p7bsa8pv-source/services/endoreg-client",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/qw6a563bz1fysib36jkn5wghymvdqmyv-source/services/endoreg-client",
+        "path": "/nix/store/z1c5wyyc42d3n7wp6fhk9vm9p7bsa8pv-source/services/endoreg-client",
         "type": "path"
       }
     },

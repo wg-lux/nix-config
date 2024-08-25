@@ -1,5 +1,5 @@
 {
-    "DJANGO_SETTINGS_MODULE": "endoreg_home.settings_prod",
+    "DJANGO_SETTINGS_MODULE": "agl_monitor.settings_prod",
     "DJANGO_DEBUG": true,
     "CACHES": {
         "default": {

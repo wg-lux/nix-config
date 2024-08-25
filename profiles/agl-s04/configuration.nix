@@ -32,8 +32,14 @@ in
         inherit config pkgs lib;
         inherit agl-home-django-config agl-network-config;
       })
-      ( import ../../services/grafana.nix {
-        inherit config pkgs;
+
+      # ( import ../../services/grafana.nix {
+      #   inherit config pkgs;
+      #   inherit agl-network-config;
+      # })
+
+      (import ../../services/agl-monitor/main.nix {
+        inherit config pkgs lib;
         inherit agl-network-config;
       })
 

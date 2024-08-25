@@ -243,14 +243,6 @@ nixConfig = {
 
 		};
 
-		#### TODO REMOVE
-		# endoRegHomeIP = "172.16.255.4" ;
-		# endoRegHomePath = "/home/agl-admin/agl-home-django";
-
-		# grafanaIP = "172.16.255.4";
-		# grafanaPort = 2342;
-
-
 		agl-gpu-client-dev-network-interface = "wlo1";
 		agl-gpu-client-dev-nvidiaBusId = "PCI:1:0:0";
 		agl-gpu-client-dev-onboardGraphicBusId = "PCI:0:2:0";

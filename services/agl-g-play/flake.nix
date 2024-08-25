@@ -5,8 +5,9 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }: flake-utils.lib.eachDefaultSystem (system:
+  outputs = { self, nixpkgs, flake-utils, ... }: 
     let
+      system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
@@ -46,6 +47,13 @@
               default = "agl-admin";
               description = "The user under which the Vue.js frontend service will run";
             };
+            
+            bind = lib.mkOption {
+              type = lib.types.str;
+              default = "127.0.0.1";
+              description = "The IP address on which the Vue.js frontend will listen";
+            }; 
+
             group = lib.mkOption {
               type = lib.types.str;
               default = "agl-admin";
@@ -77,46 +85,24 @@
                 WorkingDirectory = config.services.agl-g-play.working-directory;
                 Environment = [
                   "NODE_ENV=production"
+                  "PATH=${config.services.agl-g-play.working-directory}/node_modules/.bin:/run/current-system/sw/bin"
+                  
                 ];
-                ExecStart = ''
-                  ${config.services.agl-g-play.working-directory}/node_modules/.bin/vue-cli-service serve --port ${toString config.services.agl-g-play.port} --host 0.0.0.0
-                '';
+                #ExecStart = ''
+                #  ${config.services.agl-g-play.working-directory}/node_modules/.bin/vue-cli-service serve --port ${toString config.services.agl-g-play.port} --host ${config.services.agl-g-play.bind}
+                #'';
               };
+                # export PATH="$PATH:$(yarn global bin)"
+                #
+              
+              #TODO: implement "professional" startup command
+              script = ''
+                nix develop
+                exec npm run start
+              '';
             };
           };
         };
       };
-
-      # Default package definition
-      defaultPackage = pkgs.mkDerivation {
-        name = "agl-g-play";
-        src = ../../../agl-g-play;
-
-        buildInputs = commonBuildInputs;
-        shellHook = commonShellHook;
-
-        # Define the build phase
-        buildPhase = ''
-          yarn install
-          yarn build
-        '';
-
-        # Define the install phase (optional, for copying build artifacts)
-        installPhase = ''
-          mkdir -p $out
-          cp -r * $out/
-        '';
-
-        # Define the run command for the app
-        passthru = {
-          run = "${self.defaultPackage}/bin/start";
-        };
-      };
-
-      # Example of defining other outputs if necessary
-      packages = {
-        aglFrontend = self.defaultPackage;
-      };
-    }
-  );
+    };
 }

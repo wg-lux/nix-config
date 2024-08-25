@@ -52,6 +52,11 @@ nixConfig = {
 		agl-monitor.url = "./services/agl-monitor";
 		agl-monitor.inputs.nixpkgs.follows = "nixpkgs";
 
+		## AGL G-Play Validator
+		# agl-g-play-validator.url = "github:wg-lux/agl-g-play-validator";
+		agl-g-play.url = "./services/agl-g-play";
+		agl-g-play.inputs.nixpkgs.follows = "nixpkgs";
+
 
 		# agl-anonymizer.url = "./services/agl-anonymizer";
 		# agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
@@ -68,6 +73,7 @@ nixConfig = {
 		agl-home-django,
 		agl-monitor,
 		# agl-anonymizer,
+		agl-g-play,
 
 
 
@@ -201,6 +207,11 @@ nixConfig = {
 				redis-bind = "127.0.0.1";
 				django-debug = false;
 				django-settings-module = "agl_monitor.settings";				
+			};
+
+			# G-Play
+			agl-g-play = {
+
 			};
 			
 
@@ -518,6 +529,8 @@ nixConfig = {
 					# CUSTOM SERVICE
 					# customService.nixosModules.custom-service
 					endoreg-client-manager.nixosModules.endoreg-client-manager
+					endoreg-client-manager.nixosModules.agl-anonymizer
+					agl-g-play.nixosModules.agl-g-play
 				];
 			};
 			agl-gpu-client-04 = nixpkgs.lib.nixosSystem {

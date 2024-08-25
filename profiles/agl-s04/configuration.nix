@@ -38,10 +38,10 @@ in
       #   inherit agl-network-config;
       # })
 
-      (import ../../services/agl-monitor/main.nix {
-        inherit config pkgs lib;
-        inherit agl-network-config;
-      })
+      # (import ../../services/agl-monitor/main.nix {
+      #   inherit config pkgs lib;
+      #   inherit agl-network-config;
+      # })
 
       ../../services/utils/scheduled-reboot-nightly.nix
     ];

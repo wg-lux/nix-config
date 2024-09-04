@@ -552,6 +552,8 @@ nixConfig = {
 					# CUSTOM SERVICE
 					# customService.nixosModules.custom-service
 					endoreg-client-manager.nixosModules.endoreg-client-manager
+					endoreg-client-manager.nixosModules.agl-anonymizer
+					agl-g-play.nixosModules.agl-g-play
 				];
 			};
 
@@ -580,8 +582,9 @@ nixConfig = {
 						}
 					)
 					# CUSTOM SERVICE
-					# customService.nixosModules.custom-service
 					endoreg-client-manager.nixosModules.endoreg-client-manager
+					endoreg-client-manager.nixosModules.agl-anonymizer
+					agl-g-play.nixosModules.agl-g-play
 				];
 			};
 		};

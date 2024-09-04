@@ -8,6 +8,7 @@
   nvidiaBusId, onboardGraphicBusId,
   agl-home-django-package, #TODO CHECK IF STILL NEEDED
   endoreg-client-manager-config,
+  base-profile-settings,
   agl-nas-02-ip, nfs-share-all-local-path, nfs-share-all-mount-path,
   agl-network-config,
   ... 
@@ -52,6 +53,7 @@ in
       ( import ../base/configuration.nix { 
         inherit config pkgs lib inputs network_interface; 
         inherit hostname openvpnCertPath; 
+        inherit base-profile-settings;
         users-mutable = true;
         })
       (import ../shared/python/main.nix { inherit pkgs; })

@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "agl-g-play": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-oi+uSN9Yj129hHYOXXGmTA2xscIHKwEfT7p68DmTBSQ=",
+        "path": "/nix/store/rr4f8mvrx3bp6a3268bh9varda4ka6wv-source/services/agl-g-play",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/rr4f8mvrx3bp6a3268bh9varda4ka6wv-source/services/agl-g-play",
+        "type": "path"
+      }
+    },
     "agl-home-django": {
       "inputs": {
         "nixpkgs": [
@@ -9,11 +27,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-QruXccwIY7KGtxHPZZV/xHulqGHKM4k/s79w0fkzJog=",
-        "path": "/nix/store/a2cwfimipi1n7wh1s3zvlrb4lww8136v-source/services/agl-home-django",
+        "path": "/nix/store/rr4f8mvrx3bp6a3268bh9varda4ka6wv-source/services/agl-home-django",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/a2cwfimipi1n7wh1s3zvlrb4lww8136v-source/services/agl-home-django",
+        "path": "/nix/store/rr4f8mvrx3bp6a3268bh9varda4ka6wv-source/services/agl-home-django",
         "type": "path"
       }
     },
@@ -25,12 +43,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-tRvRhFg50MLwA1qjrGWqHCTAaQzIJA0iu9pHDD9b+sE=",
-        "path": "/nix/store/a2cwfimipi1n7wh1s3zvlrb4lww8136v-source/services/agl-monitor",
+        "narHash": "sha256-EfO6OzIsMt8/QqdUsQ1B4VCBnyjJ01GRWJkJX+sR/5I=",
+        "path": "/nix/store/rr4f8mvrx3bp6a3268bh9varda4ka6wv-source/services/agl-monitor",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/a2cwfimipi1n7wh1s3zvlrb4lww8136v-source/services/agl-monitor",
+        "path": "/nix/store/rr4f8mvrx3bp6a3268bh9varda4ka6wv-source/services/agl-monitor",
         "type": "path"
       }
     },
@@ -43,11 +61,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8Fh5nlH2VCaV367ZStgbwgPtE89uQ6Ii+Jdj3WkgWoY=",
-        "path": "/nix/store/a2cwfimipi1n7wh1s3zvlrb4lww8136v-source/services/endoreg-client",
+        "path": "/nix/store/rr4f8mvrx3bp6a3268bh9varda4ka6wv-source/services/endoreg-client",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/a2cwfimipi1n7wh1s3zvlrb4lww8136v-source/services/endoreg-client",
+        "path": "/nix/store/rr4f8mvrx3bp6a3268bh9varda4ka6wv-source/services/endoreg-client",
         "type": "path"
       }
     },
@@ -68,6 +86,24 @@
     "flake-utils": {
       "inputs": {
         "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1681202837,
@@ -158,6 +194,7 @@
     },
     "root": {
       "inputs": {
+        "agl-g-play": "agl-g-play",
         "agl-home-django": "agl-home-django",
         "agl-monitor": "agl-monitor",
         "endoreg-client-manager": "endoreg-client-manager",
@@ -205,9 +242,24 @@
         "type": "github"
       }
     },
+    "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "vscode-server": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs"
         ]

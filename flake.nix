@@ -504,6 +504,10 @@ nixConfig = {
 					({ config, pkgs, ... }: {
 						  services.vscode-server.enable = true;
 					})
+					# CUSTOM SERVICE
+					endoreg-client-manager.nixosModules.endoreg-client-manager
+					endoreg-client-manager.nixosModules.agl-anonymizer
+					# agl-g-play.nixosModules.agl-g-play
 				];
 			};
 			agl-gpu-client-03 = nixpkgs.lib.nixosSystem {

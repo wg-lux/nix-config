@@ -40,17 +40,17 @@ in
     networking.firewall.allowedTCPPorts = [ agl-home-django-config.port ];
 
 
-        services.agl-home-django = {
-            enable = true;
-            working-directory = agl-home-django-config.path;
-            user = agl-home-django-config.user;
-            django-ip = agl-home-django-config.ip;
-            django-port = agl-home-django-config.port;
-            group = agl-home-django-config.group;
-            redis-port = agl-home-django-config.redis-port;
-            django-debug = agl-home-django-config.django-debug;
-            django-settings-module = agl-home-django-config.django-settings-module;
-        };
+      services.agl-home-django = {
+          enable = true;
+          working-directory = agl-home-django-config.path;
+          user = agl-home-django-config.user;
+          django-ip = agl-home-django-config.ip;
+          django-port = agl-home-django-config.port;
+          group = agl-home-django-config.group;
+          redis-port = agl-home-django-config.redis-port;
+          django-debug = agl-home-django-config.django-debug;
+          django-settings-module = agl-home-django-config.django-settings-module;
+      };
 
-        environment.etc."agl-home-django/config.json".source = custom-client-manager-config-path;
+      environment.etc."agl-home-django/config.json".source = custom-client-manager-config-path;
     }

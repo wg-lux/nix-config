@@ -123,27 +123,6 @@ in
   }];
 
 
-#######
-  programs.wireshark = {
-    enable = true; # adds wireshark-cli to systemPackages
-  };
-
-  users.users.agl-admin.extraGroups = [ "wireshark" ];
-
-  environment.systemPackages = with pkgs; [
-    wireshark
-    aircrack-ng
-    qt5.full
-    wireless_tools
-  ];
-
-
-
-######
-
-  # services.udisks2.enable = true;
-  # services.udiskie.enable = true;
-
   security.polkit.enable = true;
 
   networking.hostName = hostname;

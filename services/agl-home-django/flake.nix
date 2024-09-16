@@ -117,8 +117,8 @@
                 "CUDA_PATH=${pkgs.cudatoolkit}"
                 "DJANGO_SETTINGS_MODULE=${config.services.agl-home-django.django-settings-module}"
                 "DJANGO_SECRET_KEY=${config.services.agl-home-django.django-secret-key}"
-                "KEYCLOAK_CLIENT=${config.sops.secrets."services/agl-home-django/keycloak-client-id".secret}"
-                "KEYCLOAK_SECRET=${config.sops.secrets."services/agl-home-django/keycloak-client-id".secret}"
+                "KEYCLOAK_CLIENT=$(cat ${config.sops.secrets."services/agl-home-django/keycloak-client-id".path})"
+                "KEYCLOAK_SECRET=$(cat ${config.sops.secrets."services/agl-home-django/keycloak-client-id".path})"
               ];
             };
             # get keycloak client id and secret from sops secrets

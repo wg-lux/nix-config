@@ -102,7 +102,7 @@
             settings = {};
           };
 
-          systemd.services.agl-home-django = {
+        systemd.services.agl-home-django = {
             description = "agl-home-django Service";
             after = [ "network.target" ];
             wantedBy = [ "multi-user.target" ];
@@ -117,10 +117,10 @@
                 "CUDA_PATH=${pkgs.cudatoolkit}"
                 "DJANGO_SETTINGS_MODULE=${config.services.agl-home-django.django-settings-module}"
                 "DJANGO_SECRET_KEY=${config.services.agl-home-django.django-secret-key}"
-                "KEYCLOAK_CLIENT=$(cat ${config.sops.secrets."services/agl-home-django/keycloak-client-id".path})"
-                "KEYCLOAK_SECRET=$(cat ${config.sops.secrets."services/agl-home-django/keycloak-client-id".path})"
+                "KEYCLOAK_CLIENT=${config.sops.secrets."services/agl-home-django/keycloak-client-id"})"
+                "KEYCLOAK_SECRET=${config.sops.secrets."services/agl-home-django/keycloaclient-idnt-id"})"
               ];
-            };
+            };     
             # get keycloak client id and secret from sops secrets
             ## sops.secrets."services/agl-home-django/keycloak-client-id"
             script = ''

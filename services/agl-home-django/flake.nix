@@ -116,10 +116,14 @@
                 "LD_LIBRARY_PATH=${pkgs.glibc}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.linuxPackages.nvidia_x11}/lib"
                 "CUDA_PATH=${pkgs.cudatoolkit}"
                 "DJANGO_SETTINGS_MODULE=${config.services.agl-home-django.django-settings-module}"
+                "DJANGO_SECRET_KEY=${config.services.agl-home-django.django-secret-key}"
+                "KEYCLOAK_CLIENT=${config.sops.secrets."services/agl-home-django/keycloak-client-id".secret}"
+                "KEYCLOAK_SECRET=${config.sops.secrets."services/agl-home-django/keycloak-client-id".secret}"
               ];
             };
+            # get keycloak client id and secret from sops secrets
+            ## sops.secrets."services/agl-home-django/keycloak-client-id"
             script = ''
-              export DJANGO_SECRET_KEY=${config.services.agl-home-django.django-secret-key}
               nix develop
               exec gunicorn endoreg_home.wsgi:application --bind ${config.services.agl-home-django.django-ip}:${toString config.services.agl-home-django.django-port}
             '';

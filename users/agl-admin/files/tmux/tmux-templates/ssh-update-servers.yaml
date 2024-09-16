@@ -11,14 +11,17 @@ windows:
       - ssh 172.16.255.1
       - cd ~/nix-config
       - git pull
+      - sudo nix flake update
       - un
     - shell_command: # pane no. 3
       - ssh 172.16.255.3
       - cd ~/nix-config
       - git pull
+      - sudo nix flake update
       - un
     - shell_command: # pane no. 4
       - ssh 172.16.255.4
       - cd ~/nix-config
       - git pull
+      - sudo nix flake update
       - un

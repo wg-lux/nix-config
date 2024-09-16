@@ -2,12 +2,12 @@
   description = "AGL Nix Config";
 
 nixConfig = {
-    extra-substituters = [
-      "https://nix-community.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
+    # extra-substituters = [
+    #   "https://nix-community.cachix.org"
+    # ];
+    # extra-trusted-public-keys = [
+    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    # ];
   };
 
 
@@ -434,17 +434,17 @@ nixConfig = {
 				modules = [
 					./profiles/agl-gc-dev/configuration.nix
 
-					({ config, pkgs, ... }: {
-						nix.settings = {
-							substituters = [
-							"https://cache.nixos.org"
-							"https://cuda-maintainers.cachix.org"
-							];
-							trusted-public-keys = [
-							"cuda-maintainers.cachix.org-1:vhrkqcYrsik88rCLZstL+EEz1S8nAAJHb6XwmT57Hio="
-							];
-						};
-					})
+					# ({ config, pkgs, ... }: {
+					# 	nix.settings = {
+					# 		substituters = [
+					# 		"https://cache.nixos.org"
+					# 		"https://cuda-maintainers.cachix.org"
+					# 		];
+					# 		trusted-public-keys = [
+					# 		"cuda-maintainers.cachix.org-1:vhrkqcYrsik88rCLZstL+EEz1S8nAAJHb6XwmT57Hio="
+					# 		];
+					# 	};
+					# })
 					sops-nix.nixosModules.sops
 					vscode-server.nixosModules.default (
 						{ config, pkgs, ... }: {
@@ -592,17 +592,17 @@ nixConfig = {
 				
 				modules = [
 					./profiles/agl-gc05/configuration.nix
-					({ config, pkgs, ... }: {
-						nix.settings = {
-							substituters = [
-							"https://cache.nixos.org"
-							"https://cuda-maintainers.cachix.org"
-							];
-							trusted-public-keys = [
-							"cuda-maintainers.cachix.org-1:vhrkqcYrsik88rCLZstL+EEz1S8nAAJHb6XwmT57Hio="
-							];
-						};
-					})
+					# ({ config, pkgs, ... }: {
+					# 	nix.settings = {
+					# 		substituters = [
+					# 		"https://cache.nixos.org"
+					# 		"https://cuda-maintainers.cachix.org"
+					# 		];
+					# 		trusted-public-keys = [
+					# 		"cuda-maintainers.cachix.org-1:vhrkqcYrsik88rCLZstL+EEz1S8nAAJHb6XwmT57Hio="
+					# 		];
+					# 	};
+					# })
 					sops-nix.nixosModules.sops
 					vscode-server.nixosModules.default (
 						{ config, pkgs, ... }: {

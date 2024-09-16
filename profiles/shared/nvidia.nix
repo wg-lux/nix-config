@@ -10,6 +10,27 @@
   boot.initrd.kernelModules = [ "nvidia" ];
 
   nixpkgs.config.cudaSupport = true;
+
+  # Manual nvidia driver installation since linux 6.10 and 550 driver version are currently incompatible
+    hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "555.58.02";
+      sha256_64bit = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
+      sha256_aarch64 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
+      openSha256 = "sha256-8hyRiGB+m2hL3c9MDA/Pon+Xl6E788MZ50WrrAGUVuY=";
+      settingsSha256 = "sha256-ZpuVZybW6CFN/gz9rx+UJvQ715FZnAOYfHn5jt5Z2C8=";
+      persistencedSha256 = "sha256-xctt4TPRlOJ6r5S54h5W6PT6/3Zy2R4ASNFPu8TSHKM=";
+    };
+
+    nix.settings = {
+        substituters = [
+          "https://cuda-maintainers.cachix.org"
+        ];
+        trusted-public-keys = [
+          "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        ];
+      };
+
+
   
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [

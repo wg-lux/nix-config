@@ -118,7 +118,7 @@
                 "DJANGO_SETTINGS_MODULE=${config.services.agl-home-django.django-settings-module}"
                 "DJANGO_SECRET_KEY=${config.services.agl-home-django.django-secret-key}"
                 "KEYCLOAK_CLIENT=${config.sops.secrets."services/agl-home-django/keycloak-client-id"})"
-                "KEYCLOAK_SECRET=${config.sops.secrets."services/agl-home-django/keycloak-se"})"
+                "KEYCLOAK_SECRET=${config.sops.secrets."services/agl-home-django/keycloak-secret"})"
               ];
             };     
             # get keycloak client id and secret from sops secrets

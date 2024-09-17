@@ -24,8 +24,16 @@ in
 
 
         # Configure Firewall
-
         networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+        # set up db
+        # services.mysql = {
+        #     enable = true;
+        #     package = pkgs.mariadb;
+        #     dataDir = "/var/lib/mysql";
+        #     # ensureDatabases = [ "nextcloud" ];
+        # };
+
 
 		services.nextcloud = {
 			enable = true;
@@ -58,7 +66,7 @@ in
 			notify_push.enable = false;
 			notify_push.socketPath = "/run/nextcloud-notify_push/sock"; # default
 
-			# configureRedis = true; # default is same as notify_push.enable
+			configureRedis = true; # default is same as notify_push.enable
 
 			# Data Dir #
 			# datadir = INSERT DATA DIR # Default is config.services.nextcloud.home

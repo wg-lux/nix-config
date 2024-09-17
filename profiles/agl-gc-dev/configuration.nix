@@ -43,7 +43,7 @@ in
         })
       ( import ../shared/local-nginx.nix { 
         inherit agl-network-config;
-       } )
+      })
       (import ../../services/agl-monitor/main.nix {
         inherit config pkgs lib;
         inherit agl-network-config;
@@ -52,7 +52,7 @@ in
       (import ../shared/obsidian.nix { inherit pkgs ; })
       (import ../shared/ffmpeg.nix { inherit pkgs ; })
       (import ../shared/opencv.nix { inherit pkgs ; })
-      (import ../shared/docker.nix { inherit pkgs ; })
+      # (import ../shared/docker.nix { inherit pkgs ; })
       (import ../shared/wireless-config.nix { inherit pkgs ; })
       
       # ./wireguard.nix
@@ -128,8 +128,6 @@ in
 
   networking.hostName = hostname;
   networking.networkmanager.enable = true;
-
-  # hardware.acpilight.enable = true;
 
   system.stateVersion = "23.11";
 

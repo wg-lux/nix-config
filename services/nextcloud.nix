@@ -38,7 +38,8 @@ in
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud28;
-			hostName = hostname;
+			# hostName = hostname;
+            hostname = "agl-nextcloud";
 			https = true;
             # database.createLocally = true;
 			config = {

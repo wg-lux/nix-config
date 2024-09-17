@@ -19,6 +19,7 @@
     synology-drive-client
     libreoffice-fresh
     sticky
+    nextcloud-client
 
     # Video Recording
 

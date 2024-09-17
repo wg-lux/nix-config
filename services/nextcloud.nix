@@ -6,7 +6,7 @@ let
 	nextcloud-system-user = agl-network-config.services.nextcloud.user;
 	nextcloud-system-group = agl-network-config.services.nextcloud.group;
 	nextcloud-port = agl-network-config.services.nextcloud.port;
-	nextcloud-domain = agl-network-config.services.nextcloud.nextcloud-domain;
+	nextcloud-domain = agl-network-config.services.nextcloud.domain;
 	
 	main-nginx-ip = agl-network-config.services.nextcloud.proxy-ip;
 	

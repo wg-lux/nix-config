@@ -34,7 +34,7 @@ in
 			https = true;
             database.createLocally = true;
 			config = {
-                dbtype = "pgsql";
+                # dbtype = "pgsql";
 				adminuser = "root";
 				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
 			};

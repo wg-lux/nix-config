@@ -38,30 +38,30 @@ in
         networking.firewall.allowedTCPPorts = [ 80 443 ];
 
         # set up db
-        services.mysql = {
-            enable = true;
-            package = pkgs.mariadb;
-            ensureDatabases = [ "nextcloud" ];
-            ensureUsers = [
-                {
-                    name = nextcloud-system-user;
-                    ensurePermissions = {
-                        "nextcloud.*" = "ALL PRIVILEGES";
-                    };
-                }
-            ];
-            # dataDir = "/var/lib/mysql"; # default
+        # services.mysql = {
+        #     enable = true;
+        #     package = pkgs.mariadb;
+        #     ensureDatabases = [ "nextcloud" ];
+        #     ensureUsers = [
+        #         {
+        #             name = nextcloud-system-user;
+        #             ensurePermissions = {
+        #                 "nextcloud.*" = "ALL PRIVILEGES";
+        #             };
+        #         }
+        #     ];
+        #     # dataDir = "/var/lib/mysql"; # default
 
-            # override default settings EXAMPLE
-            # configFile = pkgs.writeText "my.cnf" ''
-            #     [mysqld]
-            #     datadir = /var/lib/mysql
-            #     bind-address = 127.0.0.1
-            #     port = 3336
+        #     # override default settings EXAMPLE
+        #     # configFile = pkgs.writeText "my.cnf" ''
+        #     #     [mysqld]
+        #     #     datadir = /var/lib/mysql
+        #     #     bind-address = 127.0.0.1
+        #     #     port = 3336
 
-            #     !includedir /etc/mysql/conf.d/
-            # '';
-        };
+        #     #     !includedir /etc/mysql/conf.d/
+        #     # '';
+        # };
 
 
 		services.nextcloud = {

@@ -2,7 +2,7 @@
 
 let
 	hostname = config.networking.hostName;
-	nextcloud-secret-path = ../secrets + ("/" + "${hostname}/nextcloud.yaml");
+	nextcloud-secret-path = ../secrets + ("/" + "${hostname}/services/nextcloud.yaml");
 	nextcloud-system-user = agl-network-config.services.nextcloud.user;
 	nextcloud-system-group = agl-network-config.services.nextcloud.group;
 	nextcloud-port = agl-network-config.services.nextcloud.port;

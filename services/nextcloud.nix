@@ -12,12 +12,12 @@ let
 	
 in
 	{
-		environment.etc."nextcloud-admin-pass".text = "PWD";
 		sops.secrets."services/nextcloud/admin-pass" = {
 			sopsFile = nextcloud-secret-path;
 			path = "/etc/nextcloud-admin-pass";
-			user = nextcloud-system-user;
-			group = nextcloud-system-group;
+            # key = "services/nextcloud/admin-pass"; # by default same as sops.secrets."X", but can be changed
+            ## especially useful if you want to use the same secret in multiple places / with multiple users
+			owner = config.systemd.services.nextcloud.serviceConfig.User;
 	};
 
   

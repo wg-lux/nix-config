@@ -113,7 +113,7 @@ in
 			
             notify_push = {
                 enable = true;
-                dbuser = ;          # default is config.services.nextcloud.config.dbuser
+                # dbuser = ;          # default is config.services.nextcloud.config.dbuser
 
                 dbtype = "mysql";
             };

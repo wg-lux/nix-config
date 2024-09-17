@@ -70,11 +70,12 @@ in
 			hostName = hostname;
             # hostName = "agl-nextcloud";
 			https = true;
+            nginx.recommendedHttpHeaders = true;
+
 
 
             database.createLocally = true;
 			config = {
-                # dbtype = "pgsql";
 				adminuser = nextcloud-system-user;
 				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
                 # dbuser = "root";
@@ -109,7 +110,7 @@ in
 			
             notify_push = {
                 enable = true;
-                dbuser = "root"; # default is config.services.nextcloud.config.dbuser
+                dbuser = nextcloud-system-user; # default is config.services.nextcloud.config.dbuser
 
                 # dbtype = nextcloud-db-type; # default is config.services.nextcloud.config.dbtype
             };

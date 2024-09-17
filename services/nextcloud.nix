@@ -32,7 +32,7 @@ in
 			package = pkgs.nextcloud28;
 			hostName = hostname;
 			https = true;
-            database.createLocally = true;
+            # database.createLocally = true;
 			config = {
                 # dbtype = "pgsql";
 				adminuser = "root";
@@ -55,7 +55,7 @@ in
 			
 			autoUpdateApps.enable = true;
 			enableImagemagick = true; 
-			notify_push.enable = true;
+			notify_push.enable = false;
 			notify_push.socketPath = "/run/nextcloud-notify_push/sock"; # default
 
 			# configureRedis = true; # default is same as notify_push.enable

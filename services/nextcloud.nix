@@ -50,7 +50,7 @@ in
                     };
                 }
             ];
-            dataDir = "/var/lib/mysql"; # default
+            # dataDir = "/var/lib/mysql"; # default
 
             # override default settings EXAMPLE
             # configFile = pkgs.writeText "my.cnf" ''
@@ -77,13 +77,13 @@ in
                 # dbtype = "pgsql";
 				adminuser = nextcloud-system-user;
 				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
-                dbuser = nextcloud-system-user;
-                dbtype = "mysql";
-                dbname = nextcloud-db-name;
+                # dbuser = "root";
+                dbtype = nextcloud-db-type;
+                # dbname = nextcloud-db-name;
                 # dbhost = "localhost:9000"; # not necessary for mysql + create locally
                 # dbpassFile = config.sops.secrets."services/nextcloud/mysql-root-pass".path; # not necessary for mysql + create locally
             };
-			home = "/var/lib/nextcloud"; # default TODO: point to mounted folder (check if nfs-share is still working)
+			# home = "/var/lib/nextcloud"; # default TODO: point to mounted folder (check if nfs-share is still working)
 
 			settings = {
 				trusted_proxies = [
@@ -109,9 +109,9 @@ in
 			
             notify_push = {
                 enable = true;
-                # dbuser = ;          # default is config.services.nextcloud.config.dbuser
+                dbuser = "root"; # default is config.services.nextcloud.config.dbuser
 
-                dbtype = "mysql";
+                # dbtype = nextcloud-db-type; # default is config.services.nextcloud.config.dbtype
             };
 			# notify_push.socketPath = "/run/nextcloud-notify_push/sock"; # default
 

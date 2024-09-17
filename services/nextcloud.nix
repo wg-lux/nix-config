@@ -61,7 +61,7 @@ in
 
         #     #     !includedir /etc/mysql/conf.d/
         #     # '';
-        # };
+        };
 
 
 		services.nextcloud = {

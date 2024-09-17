@@ -15,7 +15,7 @@ let
     deny all;
   '';
 
-  nextcloud-domain = agl-network-config.services.nextcloud.nextcloud-domain;
+  nextcloud-domain = agl-network-config.services.nextcloud.domain;
   nextcloud-port = toString agl-network-config.services.nextcloud.port;
     
 

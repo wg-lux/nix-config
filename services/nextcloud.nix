@@ -30,6 +30,25 @@ in
         services.mysql = {
             enable = true;
             ensureDatabases = [ "nextcloud" ];
+            ensureUsers = [
+                {
+                    name = "nextcloud";
+                    ensurePermissions = {
+                        "nextcloud.*" = "ALL PRIVILEGES";
+                    };
+                }
+            ];
+            dataDir = "/var/lib/mysql"; # default
+
+            # override default settings
+            configFile = pkgs.writeText "my.cnf" ''
+                [mysqld]
+                datadir = /var/lib/mysql
+                bind-address = 127.0.0.1
+                port = 3336
+
+                !includedir /etc/mysql/conf.d/
+            '';
         };
 
 

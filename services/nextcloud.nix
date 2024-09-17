@@ -32,7 +32,7 @@ in
 			package = pkgs.nextcloud28;
 			hostName = hostname;
 			https = true;
-
+            database.createLocally = true;
 			config = {
                 dbtype = "pgsql";
 				adminuser = "root";

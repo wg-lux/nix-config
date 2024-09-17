@@ -165,7 +165,7 @@ nixConfig = {
 
 		agl-network-config.services = {
 			main_nginx = {
-				ip = main_nginx-ip;
+				ip = main-nginx-ip;
 				# port = local-nginx-port; # Default ports
 			};
 			local_nginx = {

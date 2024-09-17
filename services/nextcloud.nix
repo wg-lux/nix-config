@@ -75,8 +75,7 @@ in
             database.createLocally = true;
 			config = {
                 # dbtype = "pgsql";
-				# adminuser = nextcloud-system-user;#
-                adminuser = "root";
+				adminuser = nextcloud-system-user;
 				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
                 # dbuser = "root";
                 dbtype = nextcloud-db-type;

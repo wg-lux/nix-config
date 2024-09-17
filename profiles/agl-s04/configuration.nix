@@ -38,10 +38,10 @@ in
       #   inherit agl-network-config;
       # })
 
-      ( import ../../services/nextcloud.nix {
-        inherit config pkgs;
-        inherit agl-network-config;
-      })
+      # ( import ../../services/nextcloud.nix {
+      #   inherit config pkgs;
+      #   inherit agl-network-config;
+      # })
 
       (import ../../services/agl-monitor/main.nix {
         inherit config pkgs lib;

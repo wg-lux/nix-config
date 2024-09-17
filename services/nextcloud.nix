@@ -38,18 +38,18 @@ in
         networking.firewall.allowedTCPPorts = [ 80 443 ];
 
         # set up db
-        # services.mysql = {
-        #     enable = true;
-        #     package = pkgs.mariadb;
-        #     ensureDatabases = [ "nextcloud" ];
-        #     ensureUsers = [
-        #         {
-        #             name = nextcloud-system-user;
-        #             ensurePermissions = {
-        #                 "nextcloud.*" = "ALL PRIVILEGES";
-        #             };
-        #         }
-        #     ];
+        services.mysql = {
+            enable = true;
+            package = pkgs.mariadb;
+            # ensureDatabases = [ "nextcloud" ];
+            ensureUsers = [
+                {
+                    name = nextcloud-system-user;
+                    ensurePermissions = {
+                        "nextcloud.*" = "ALL PRIVILEGES";
+                    };
+                }
+            ];
         #     # dataDir = "/var/lib/mysql"; # default
 
         #     # override default settings EXAMPLE
@@ -66,7 +66,7 @@ in
 
 		services.nextcloud = {
 			enable = true;
-			package = pkgs.nextcloud28;
+			# package = pkgs.nextcloud28;
 			# hostName = hostname;
             hostName = "localhost";
 			https = true;

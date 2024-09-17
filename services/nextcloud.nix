@@ -9,7 +9,6 @@ let
 	nextcloud-domain = agl-network-config.services.nextcloud.nextcloud-domain;
 	
 	main-nginx-ip = agl-network-config.services.nextcloud.proxy-ip;
-	nextcloud-port = agl-network-config.services.nextcloud.port;
 	
 in
 	{

@@ -17,7 +17,9 @@ in
 			path = "/etc/nextcloud-admin-pass";
             # key = "services/nextcloud/admin-pass"; # by default same as sops.secrets."X", but can be changed
             ## especially useful if you want to use the same secret in multiple places / with multiple users
-			owner = config.systemd.services.nextcloud.serviceConfig.User;
+			# owner = config.systemd.services.nextcloud.serviceConfig.User;
+            owner = nextcloud-system-user;
+            
 	};
 
   

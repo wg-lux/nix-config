@@ -101,10 +101,6 @@ in
 			
 				# skeletondirectory = ""; The directory where the skeleton files are located. These files will be copied to the data directory of new users. Leave empty to not copy any skeleton files.
 			};
-
-            nginx = {
-                recommendedHTTPHeaders = true;
-            };
 			
 			autoUpdateApps.enable = true;
             autoUpdateApps.startAt = "05:00:00";

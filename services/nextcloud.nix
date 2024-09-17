@@ -63,7 +63,7 @@ in
 			
 			autoUpdateApps.enable = true;
 			enableImagemagick = true; 
-			notify_push.enable = false;
+			notify_push.enable = true;
 			notify_push.socketPath = "/run/nextcloud-notify_push/sock"; # default
 
 			configureRedis = true; # default is same as notify_push.enable

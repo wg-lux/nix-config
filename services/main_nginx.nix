@@ -1,13 +1,6 @@
 { 
     pkgs, 
     agl-network-config,
-    # local-nginx-port,
-    # grafanaIP, grafanaPort, 
-    # endoRegHomeIP, endoRegHomePort,
-    # agl-nas-02-ip, synology-dsm-port,
-    # synology-drive-ip, synology-drive-port,
-    # synology-chat-ip, synology-chat-port,
-    # synology-video-ip, synology-video-port,
     ... 
 }:
 let
@@ -21,6 +14,10 @@ let
     allow 172.16.255.0/24; 
     deny all;
   '';
+
+  nextcloud-domain = agl-network-config.services.nextcloud.nextcloud-domain;
+  nextcloud-port = toString agl-network-config.services.nextcloud.port;
+    
 
 in
 {
@@ -67,6 +64,18 @@ in
           extraConfig = all-extraConfig;
         };
       };
+
+      # Nextcloud
+      "${nextcloud-domain}" = {
+        forceSSL = true;
+        sslCertificate = sslCertificatePath;
+        sslCertificateKey = sslCertificateKeyPath;
+        locations."/" = {
+          proxyPass = "http://${agl-network-config.services.nextcloud.ip}:${nextcloud-port}";
+          extraConfig = all-extraConfig;
+        };
+      };
+
       "ldap.endo-reg.net" = {
         forceSSL = true;
         sslCertificate = sslCertificatePath;

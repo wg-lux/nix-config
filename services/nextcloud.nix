@@ -22,14 +22,19 @@ in
             
 	};
 
-  
+
+        # Configure Firewall
+
+        networking.firewall.allowedTCPPorts = [ 80 443 ];
 
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud28;
 			hostName = hostname;
 			https = true;
+
 			config = {
+                dbtype = "pgsql";
 				adminuser = "root";
 				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
 			};

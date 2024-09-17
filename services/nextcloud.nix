@@ -56,9 +56,10 @@ in
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud28;
-			# hostName = hostname;
-            hostName = "agl-nextcloud";
+			hostName = hostname;
+            # hostName = "agl-nextcloud";
 			https = true;
+            nginx.enable = true;
             # database.createLocally = true;
 			config = {
                 # dbtype = "pgsql";

@@ -190,11 +190,13 @@ nixConfig = {
 
 			nextcloud = {
 				ip = nextcloud-ip;
-				port = 9296;
+				port = 9296; # not necessary  with local db and dbtype mysql or pgsql
 				user = "nextcloud";
 				group = "aglnet-public-service";
 				domain = nextcloud-public-domain;
 				proxy-ip = main-nginx-ip;
+				db-name = "nextcloud";
+				db-type = "mysql";
 			};
 
 			# Synology public nas (quickconnect: agl-public-nas.quickconnect.to)

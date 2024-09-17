@@ -29,7 +29,7 @@ in
 			https = true;
 			config = {
 				adminuser = "root";
-				adminpassFile = config.sops.secrets."services/services/nextcloud/admin-pass".path;
+				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
 			};
 			home = "/var/lib/nextcloud"; # default TODO: point to mounted folder (check if nfs-share is still working)
 

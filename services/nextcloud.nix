@@ -27,12 +27,12 @@ in
         networking.firewall.allowedTCPPorts = [ 80 443 ];
 
         # set up db
-        # services.mysql = {
-        #     enable = true;
-        #     package = pkgs.mariadb;
-        #     dataDir = "/var/lib/mysql";
-        #     # ensureDatabases = [ "nextcloud" ];
-        # };
+        services.mysql = {
+            enable = true;
+            package = pkgs.mariadb;
+            dataDir = "/var/lib/mysql";
+            # ensureDatabases = [ "nextcloud" ];
+        };
 
 
 		services.nextcloud = {

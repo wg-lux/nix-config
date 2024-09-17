@@ -52,15 +52,15 @@ in
             ];
             dataDir = "/var/lib/mysql"; # default
 
-            # override default settings
-            configFile = pkgs.writeText "my.cnf" ''
-                [mysqld]
-                datadir = /var/lib/mysql
-                bind-address = 127.0.0.1
-                port = 3336
+            # override default settings EXAMPLE
+            # configFile = pkgs.writeText "my.cnf" ''
+            #     [mysqld]
+            #     datadir = /var/lib/mysql
+            #     bind-address = 127.0.0.1
+            #     port = 3336
 
-                !includedir /etc/mysql/conf.d/
-            '';
+            #     !includedir /etc/mysql/conf.d/
+            # '';
         };
 
 
@@ -81,6 +81,7 @@ in
                 dbtype = "mysql";
                 dbname = nextcloud-db-name;
                 # dbhost = "localhost:9000"; # not necessary for mysql + create locally
+                # dbpassFile = config.sops.secrets."services/nextcloud/mysql-root-pass".path; # not necessary for mysql + create locally
             };
 			home = "/var/lib/nextcloud"; # default TODO: point to mounted folder (check if nfs-share is still working)
 
@@ -92,10 +93,18 @@ in
 				trusted_domains = [
 					nextcloud-domain
 				];
+
+                overwriteprotocol = "https";
 				"profile.enabled" = true;
+
+                default_phone_region = "DE";
 			
 				# skeletondirectory = ""; The directory where the skeleton files are located. These files will be copied to the data directory of new users. Leave empty to not copy any skeleton files.
 			};
+
+            nginx = {
+                recommendedHTTPHeaders = true;
+            };
 			
 			autoUpdateApps.enable = true;
             autoUpdateApps.startAt = "05:00:00";

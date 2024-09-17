@@ -108,12 +108,12 @@ in
 
 			enableImagemagick = true; 
 			
-            notify_push = {
-                enable = true;
-                dbuser = nextcloud-system-user; # default is config.services.nextcloud.config.dbuser
+            # notify_push = {
+            #     enable = true;
+            #     dbuser = nextcloud-system-user; # default is config.services.nextcloud.config.dbuser
 
-                # dbtype = nextcloud-db-type; # default is config.services.nextcloud.config.dbtype
-            };
+            #     # dbtype = nextcloud-db-type; # default is config.services.nextcloud.config.dbtype
+            # };
 			# notify_push.socketPath = "/run/nextcloud-notify_push/sock"; # default
 
 			configureRedis = true; # default is same as notify_push.enable

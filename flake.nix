@@ -140,7 +140,10 @@ nixConfig = {
 		endoreg-client-manager-port = 9100;
 		endoreg-client-manager-redis-port = 6379;
 
-		nextcloud-ip = agl-gpu-client-dev-ip;
+		main-nginx-ip = agl-server-03-ip;
+
+		nextcloud-ip = agl-network-config.ips.agl-server-04;
+		nextcloud-public-domain = "cloud.endo-reg.net";
 
 		synology-drive-ip = agl-nas-02-ip;
 		synology-chat-ip = agl-nas-02-ip;
@@ -162,7 +165,7 @@ nixConfig = {
 
 		agl-network-config.services = {
 			main_nginx = {
-				ip = agl-server-03-ip;
+				ip = main_nginx-ip;
 				# port = local-nginx-port; # Default ports
 			};
 			local_nginx = {
@@ -183,6 +186,15 @@ nixConfig = {
 			synology-dsm = {
 				ip = synology-service-ip;
 				port = synology-dsm-port;
+			};
+
+			nextcloud = {
+				ip = nextcloud-ip;
+				port = 9296;
+				user = "nextcloud";
+				group = "aglnet-public-service";
+				domain = nextcloud-public-domain;
+				proxy-ip = main-nginx-ip;
 			};
 
 			# Synology public nas (quickconnect: agl-public-nas.quickconnect.to)

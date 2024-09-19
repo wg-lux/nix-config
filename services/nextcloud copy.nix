@@ -24,51 +24,88 @@ in
             owner = nextcloud-system-user;
 	    };
 
+        # Mysql secrets
+        # sops.secrets."services/nextcloud/mysql-root-pass" = {
+        #     sopsFile = ../secrets + ("/" + "${hostname}/services/mysql.yaml");
+        #     path = "/etc/mysql-root-pass";
+        #     owner = "root";
+        # };
+
+
         # Configure Firewall
         networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+        # set up db
+        services.mysql = {
+            enable = true;
+            package = pkgs.mariadb;
+            
+            ensureDatabases = [
+                "nextcloud" 
+            ];
+            ensureUsers = [
+                {
+                    name = nextcloud-system-user;
+                    ensurePermissions = {
+                        "nextcloud.*" = "ALL PRIVILEGES";
+                    };
+                }
+            ];
+        #     # dataDir = "/var/lib/mysql"; # default
+
+        #     # override default settings EXAMPLE
+        #     # configFile = pkgs.writeText "my.cnf" ''
+        #     #     [mysqld]
+        #     #     datadir = /var/lib/mysql
+        #     #     bind-address = 127.0.0.1
+        #     #     port = 3336
+
+        #     #     !includedir /etc/mysql/conf.d/
+        #     # '';
+        };
 
 
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud29;
-			# hostName = hostname;
-            hostName = "localhost";
-			# https = true;
-            # nginx.recommendedHttpHeaders = true;
+			hostName = hostname;
+            # hostName = "localhost";
+			https = true;
+            nginx.recommendedHttpHeaders = true;
 
             # database.createLocally = true;
 			config = {
-				# adminuser = nextcloud-system-user;
+				adminuser = nextcloud-system-user;
 				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
                 # dbuser = "root";
-                # dbtype = nextcloud-db-type;
+                dbtype = nextcloud-db-type;
                 # dbname = nextcloud-db-name;
                 # dbhost = "localhost:9000"; # not necessary for mysql + create locally
                 # dbpassFile = config.sops.secrets."services/nextcloud/mysql-root-pass".path; # not necessary for mysql + create locally
             };
 			# home = "/var/lib/nextcloud"; # default TODO: point to mounted folder (check if nfs-share is still working)
 
-			# settings = {
-			# 	trusted_proxies = [
-			# 		main-nginx-ip
-			# 	];
+			settings = {
+				trusted_proxies = [
+					main-nginx-ip
+				];
 
-			# 	trusted_domains = [
-			# 		nextcloud-domain
-			# 	];
+				trusted_domains = [
+					nextcloud-domain
+				];
 
-            #     overwriteprotocol = "https";
-			# 	"profile.enabled" = true;
+                overwriteprotocol = "https";
+				"profile.enabled" = true;
 
-            #     default_phone_region = "DE";
+                default_phone_region = "DE";
 			
-			# 	# skeletondirectory = ""; The directory where the skeleton files are located. These files will be copied to the data directory of new users. Leave empty to not copy any skeleton files.
-			# };
+				# skeletondirectory = ""; The directory where the skeleton files are located. These files will be copied to the data directory of new users. Leave empty to not copy any skeleton files.
+			};
 			
-			# autoUpdateApps.enable = true;
-            # autoUpdateApps.startAt = "05:00:00";
+			autoUpdateApps.enable = true;
+            autoUpdateApps.startAt = "05:00:00";
 
-			# enableImagemagick = true; 
+			enableImagemagick = true; 
 			
             # notify_push = {
             #     enable = true;
@@ -78,7 +115,7 @@ in
             # };
 			# notify_push.socketPath = "/run/nextcloud-notify_push/sock"; # default
 
-			# configureRedis = true; # default is same as notify_push.enable
+			configureRedis = true; # default is same as notify_push.enable
 
 			# Data Dir #
 			# datadir = INSERT DATA DIR # Default is config.services.nextcloud.home

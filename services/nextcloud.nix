@@ -79,7 +79,7 @@ in
             # };
 			# notify_push.socketPath = "/run/nextcloud-notify_push/sock"; # default
 
-			# configureRedis = true; # default is same as notify_push.enable
+			configureRedis = true; # default is same as notify_push.enable
 
 			# Data Dir #
 			# datadir = INSERT DATA DIR # Default is config.services.nextcloud.home

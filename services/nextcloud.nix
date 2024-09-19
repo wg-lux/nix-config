@@ -41,7 +41,10 @@ in
         services.mysql = {
             enable = true;
             package = pkgs.mariadb;
-            # ensureDatabases = [ "nextcloud" ];
+            
+            ensureDatabases = [
+                "nextcloud" 
+            ];
             ensureUsers = [
                 {
                     name = nextcloud-system-user;

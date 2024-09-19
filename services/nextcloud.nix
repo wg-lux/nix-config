@@ -15,18 +15,18 @@ let
 in
 	{
         # Nextcloud secret
-		sops.secrets."services/nextcloud/admin-pass" = {
-			sopsFile = nextcloud-secret-path;
-			path = "/etc/nextcloud-admin-pass";
-            # key = "services/nextcloud/admin-pass"; # by default same as sops.secrets."X", but can be changed
-            ## especially useful if you want to use the same secret in multiple places / with multiple users
-			# owner = config.systemd.services.nextcloud.serviceConfig.User;
-            owner = nextcloud-system-user;
-	    };
+		# sops.secrets."services/nextcloud/admin-pass" = {
+		# 	sopsFile = nextcloud-secret-path;
+		# 	path = "/etc/nextcloud-admin-pass";
+        #     # key = "services/nextcloud/admin-pass"; # by default same as sops.secrets."X", but can be changed
+        #     ## especially useful if you want to use the same secret in multiple places / with multiple users
+		# 	# owner = config.systemd.services.nextcloud.serviceConfig.User;
+        #     owner = nextcloud-system-user;
+	    # };
 
         # Configure Firewall
         networking.firewall.allowedTCPPorts = [ 80 443 ];
-
+        environment.etc."nextcloud-admin-pass".text = "PWD";
 
 		services.nextcloud = {
 			enable = true;
@@ -39,7 +39,8 @@ in
             # database.createLocally = true;
 			config = {
 				# adminuser = nextcloud-system-user;
-				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
+				# adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;
+                adminpassFile = "/etc/nextcloud-admin-pass";
                 # dbuser = "root";
                 # dbtype = nextcloud-db-type;
                 # dbname = nextcloud-db-name;

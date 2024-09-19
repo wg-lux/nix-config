@@ -32,8 +32,6 @@ in
         # };
 
 
-
-
         # Configure Firewall
         networking.firewall.allowedTCPPorts = [ 80 443 ];
 
@@ -75,9 +73,7 @@ in
 			https = true;
             nginx.recommendedHttpHeaders = true;
 
-
-
-            database.createLocally = true;
+            # database.createLocally = true;
 			config = {
 				adminuser = nextcloud-system-user;
 				adminpassFile = config.sops.secrets."services/nextcloud/admin-pass".path;

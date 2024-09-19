@@ -67,8 +67,8 @@ in
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud29;
-			# hostName = hostname;
-            hostName = "localhost";
+			hostName = hostname;
+            # hostName = "localhost";
 			https = true;
             nginx.recommendedHttpHeaders = true;
 

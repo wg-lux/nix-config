@@ -26,6 +26,10 @@
     synology-drive-port = 12313;
     synology-chat-port = 22323;
 
+    # OpenVPN
+    openvpn-tcp-ports = [53];
+    openvpn-udp-ports = [53];
+
     # main-nginx-port = 443; #TODO test if change from default to strict definition breaks anything
 
     

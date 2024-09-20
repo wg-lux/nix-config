@@ -1,7 +1,7 @@
 {pkgs, config, lib, openvpn-config-path, openvpn-cert-path,...}: 
 let
   hostname = config.networking.hostName;
-  secretPath = ../../secrets + ("/" + "${hostname}/services/openvpn-aglNet.yaml");
+  secretPath = ../secrets + ("/" + "${hostname}/services/openvpn-aglNet.yaml");
 
 in
 lib.mkIf (config.networking.hostName == "agl-server-01") {

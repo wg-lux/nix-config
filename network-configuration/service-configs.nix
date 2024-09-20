@@ -11,6 +11,9 @@ in
     nextcloud-db-name = "nextcloud";
     nextcloud-db-type = "mysql";
 
+    # OpenVPN
+    openvpn-network-interface = "tun0";
+
     # Groups
     agl-monitor-group = "pseudo-access";
     nextcloud-group = "aglnet-public-service";

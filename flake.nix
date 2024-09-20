@@ -129,6 +129,7 @@ nixConfig = {
 					({ config, pkgs, ... }: {
 						  services.vscode-server.enable = true;
 					})
+					agl-monitor.nixosModules.agl-monitor
 				];
 			};
 			agl-server-02 = nixpkgs.lib.nixosSystem {
@@ -145,6 +146,7 @@ nixConfig = {
 					({ config, pkgs, ... }: {
 						  services.vscode-server.enable = true;
 					})
+					agl-monitor.nixosModules.agl-monitor
 				];
 			};
 
@@ -162,15 +164,7 @@ nixConfig = {
 					({ config, pkgs, ... }: {
 						services.vscode-server.enable = true;
 					})
-					# ({ config, pkgs, ... }: {
-						# services.jenkins.enable = true; # disable jenkins as it breaks keycloak
-					# })
-					# ({ config, pkgs, ... }: {
-					# 	environment.systemPackages = with pkgs; [
-					# 	python3
-					# 	python3Packages.numpy
-					# 	];
-					# })
+					agl-monitor.nixosModules.agl-monitor
 				];
 			};
 
@@ -239,6 +233,7 @@ nixConfig = {
 					({ config, pkgs, ... }: {
 						  services.vscode-server.enable = true;
 					})
+					agl-monitor.nixosModules.agl-monitor
 				];
 			};
 
@@ -259,6 +254,7 @@ nixConfig = {
 					
 					endoreg-client-manager.nixosModules.endoreg-client-manager
 					endoreg-client-manager.nixosModules.agl-anonymizer
+					# agl-monitor.nixosModules.agl-monitor
 				];
 			};
 
@@ -283,6 +279,7 @@ nixConfig = {
 					endoreg-client-manager.nixosModules.endoreg-client-manager
 					endoreg-client-manager.nixosModules.agl-anonymizer
 					agl-g-play.nixosModules.agl-g-play
+					agl-monitor.nixosModules.agl-monitor
 				];
 			};
 
@@ -305,6 +302,7 @@ nixConfig = {
 					
 					endoreg-client-manager.nixosModules.endoreg-client-manager
 					endoreg-client-manager.nixosModules.agl-anonymizer
+					agl-monitor.nixosModules.agl-monitor
 				];
 			};
 
@@ -328,6 +326,7 @@ nixConfig = {
 					
 					endoreg-client-manager.nixosModules.endoreg-client-manager
 					endoreg-client-manager.nixosModules.agl-anonymizer
+					agl-monitor.nixosModules.agl-monitor
 				];
 			};
 		};

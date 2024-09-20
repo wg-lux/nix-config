@@ -3,6 +3,7 @@ let
 
     ## Servers
     agl-server-01 = "${vpn-ip-prefix}.1";
+    agl-server-01-local = "192.168.179.18";
     agl-server-02 = "${vpn-ip-prefix}.2";
     agl-server-03 = "${vpn-ip-prefix}.3";
     agl-server-04 = "${vpn-ip-prefix}.4";
@@ -18,6 +19,11 @@ let
     agl-gpu-client-05 = "${vpn-ip-prefix}.145";
 
     main-nginx = agl-server-03;
+
+    openvpn-host-ip = agl-server-01;
+    openvpn-host-local-ip = agl-server-01-local;
+    openvpn-subnet = "172.16.255.0";
+    openvpn-subnet-suffix = "32";
 
 in
 {
@@ -39,6 +45,12 @@ in
 
 
     ## Services
+    ### S01
+    openvpn-host-ip = openvpn-host-ip;
+    openvpn-host-local-ip = openvpn-host-local-ip;
+    openvpn-subnet = openvpn-subnet;
+    openvpn-subnet-suffix = openvpn-subnet-suffix;
+
     ### S02
 
     ### S03

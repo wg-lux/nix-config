@@ -1,26 +1,39 @@
-{ pkgs, network_interface, ... }: 
+{ pkgs, agl-network-config, ... }: 
 
 let 
-    local_network_ip = "192.168.179.18";
-    openvpn_network_interface = "tun0";
-    openvpn_network_ip = "172.16.255.1";
+    ips = agl-network-config.ips;
+    ports = agl-network-config.ports;
+    domains = agl-network-config.domains;
+
+    openvpn-host-ip = ips.openvpn-host-ip;
+    tcp = ports.openvpn-tcp-ports;
+    udp = ports.openvpn-tcp-ports;
+    domain = domains.main-domain;
+    intern-suffix = domains.intern-subdomain-suffix;
+    domain-intern = "${intern-suffix}.${domain}";
+    vpn-subnet = "${ips.openvpn-subnet}/${ips.openvpn-subnet-suffix}";
+
 in
     {
 
-        networking.firewall.allowedTCPPorts = [ 53 ];
-        networking.firewall.allowedUDPPorts = [ 53 ];
+        networking.firewall.allowedTCPPorts = tcp;
+        networking.firewall.allowedUDPPorts = udp;
+
         services.dnsmasq = {
             enable = true;
             settings = {
                 # no-resolv = true;
                 server = [
-                    "/*intern.endo-reg.net/172.16.255.1"
+                    # route requests to intern domains to own dns
+                    "/*${domain-intern}/${openvpn-host-ip}"
+
+                    # For all other Requests:
                     "8.8.8.8"
                     "1.1.1.1" 
                 ];
-                domain = "intern.endo-reg.net,172.16.255.0/32,local";
-                # local = "/intern.endo-reg-net/";
-                address = "/*intern.endo-reg.net/172.16.255.3"; # Only for intern.endo-reg.net domain    
+
+                domain = "${domain-intern},${vpn-subnet},local";
+                address = "/*${domain-intern}/172.16.255.3"; # Only for intern.endo-reg.net domains    
 
                 ##### if not provided, we listen on all adresses 
                 # listen-address= "::1,127.0.0.1,192.168.1.1";                                  

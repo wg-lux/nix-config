@@ -19,7 +19,7 @@ let
   openvpn-host-hostname = openvpn-config.host-hostname;
   openvpn-host-tcp = openvpn-config.host-tcp-ports;
 
-  # secret-path-openvpn-shared = ../secrets/shared/openvpn.yaml;
+  secret-path-openvpn-shared = ../secrets/shared/openvpn.yaml;
   secret-path-openvpn = ../secrets + ("/" + "${hostname}/services/openvpn-aglNet.yaml");
 
 in
@@ -43,21 +43,40 @@ lib.mkIf (config.networking.hostName == openvpn-host-hostname) {
     sopsFile = secret-path-openvpn;
     path = "${openvpn-cert-path}/dh.pem";
     format = "yaml";
-    owner = "agl-admin";
+    mode = openvpn-file-mode;
+    owner = openvpn-user;
   };
 
   sops.secrets."services/openvpn-aglNet/server-cert" = {
     sopsFile = secret-path-openvpn;
     path = "${openvpn-cert-path}/server.crt";
     format = "yaml";
-    owner = "agl-admin";
+    mode = openvpn-file-mode;
+    owner = openvpn-user;
   };
 
   sops.secrets."services/openvpn-aglNet/server-key" = {
     sopsFile = secret-path-openvpn;
     path = "${openvpn-cert-path}/server.key";
     format = "yaml";
-    owner = "agl-admin";
+    mode = openvpn-file-mode;
+    owner = openvpn-user;
   };
+
+  sops.secrets."shared/openvpn-aglNet/server-ta-key" = {
+      sopsFile = secret-path-openvpn-shared;
+      path = "${openvpn-cert-path}/ta.key";
+      owner = openvpn-user;
+      mode = openvpn-file-mode;
+      group = openvpn-group;
+  };
+
+    sops.secrets."shared/openvpn-aglNet/ca-cert" = {
+        sopsFile = secret-path-openvpn-shared;
+        path = "${openvpn-cert-path}/ca.crt";
+        owner = openvpn-user;
+        mode = openvpn-file-mode;
+        group = openvpn-group;
+    };
 }
 

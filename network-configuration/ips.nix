@@ -22,7 +22,7 @@ let
 
     openvpn-host-ip = agl-server-01;
     openvpn-host-local-ip = agl-server-01-local;
-    openvpn-subnet = "172.16.255.0";
+    openvpn-subnet = "${vpn-ip-prefix}.0";
     openvpn-subnet-suffix = "32";
 
 in

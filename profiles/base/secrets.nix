@@ -1,4 +1,4 @@
-{ hostname, openvpnCertPath, ... }:
+{ hostname, openvpn-cert-path, ... }:
 
 let
 
@@ -55,14 +55,14 @@ in
 
     sops.secrets."services/openvpn/aglNet-client/cert" = {
         sopsFile = secret-path-openvpn;
-        path = "${openvpnCertPath}/cert.crt";
+        path = "${openvpn-cert-path}/cert.crt";
         owner = "agl-admin";
         mode = "0600";
         group = "service-user";
     };
     sops.secrets."services/openvpn/aglNet-client/key" = {
         sopsFile = secret-path-openvpn;
-        path = "${openvpnCertPath}/key.key";
+        path = "${openvpn-cert-path}/key.key";
         format = "yaml";
         owner = "agl-admin";
         mode = "0600";
@@ -80,7 +80,7 @@ in
     sops.secrets."shared/openvpn-aglNet/server-ta-key" = {
         sopsFile = secret-path-openvpn-shared ;
         # path = "/home/agl-admin/openvpn-cert/ta.key";
-        path = "${openvpnCertPath}/ta.key";
+        path = "${openvpn-cert-path}/ta.key";
         owner = "agl-admin";
         mode = "0600";
         group = "service-user";
@@ -88,7 +88,7 @@ in
     
     sops.secrets."shared/openvpn-aglNet/ca-cert" = {
         sopsFile = secret-path-openvpn-shared;
-        path = "${openvpnCertPath}/ca.crt";
+        path = "${openvpn-cert-path}/ca.crt";
         owner = "agl-admin";
         mode = "0600";
         group = "service-user";

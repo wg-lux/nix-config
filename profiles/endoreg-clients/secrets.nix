@@ -1,4 +1,4 @@
-{config, endoRegClientManagerPath, hostname,...}:
+{config, endoreg-client-manager-path, hostname,...}:
 
 let
 
@@ -10,7 +10,7 @@ in
     {
         sops.secrets."endoreg-center-client/django-secret-key" = {
             sopsFile = endoreg-center-client-secrets-path;
-            path = "${endoRegClientManagerPath}/.env/secret";
+            path = "${endoreg-client-manager-path}/.env/secret";
             format = "yaml";
             owner = "agl-admin";
         };

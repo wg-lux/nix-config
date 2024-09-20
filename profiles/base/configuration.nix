@@ -1,60 +1,74 @@
 { 
   config, pkgs, lib, inputs, 
-  network_interface, 
-  openvpnCertPath,
-  openvpnConfigPath ? "home/agl-admin/.openvpn",
-  base-profile-settings,
-  hostname,
+  agl-network-config, custom-hardware-config,
+  hostname, ip,
   ... 
 }: 
 
+let
+  openvpn-config-path = agl-network-config.paths.openvpn-config-path;
+  openvpn-cert-path = agl-network-config.paths.openvpn-cert-path;
+  network-interface = custom-hardware-config.network-interface;
+
+in
 {
   # asd 
   imports = [
-    ./etc.nix
-    (import ./system-packages.nix {inherit config pkgs;})
-    (import ./users.nix { inherit hostname config pkgs inputs openvpnCertPath; })
-    (import ./xserver.nix {inherit pkgs; } )
-    ./vscode.nix
+    # Users
+    (import ./users.nix { inherit hostname config pkgs inputs openvpn-cert-path; })
+    
+    # Console Environment
     ./zsh.nix
+
+    # Custom Config Files
+    ./etc.nix
+
     # base services
     ../../services/firewall.nix
     ../../services/sops.nix
     ../../services/ssh.nix
     ./direnv.nix
-    (import ./wake-on-lan.nix {inherit network_interface;})
+
+    # Monitoring
+    (import ../../services/agl-monitor/main.nix {
+        inherit config pkgs lib;
+        inherit agl-network-config;
+      })
+
+    # Network Services
+    (import ./wake-on-lan.nix {inherit network-interface;})
+    
+    ## OpenVPN
     (import ../../services/openvpn.nix {inherit pkgs config lib;})
-    ( import ../../services/openvpn-host.nix {inherit pkgs config lib openvpnConfigPath;})
+    (import ../../services/openvpn-host.nix {
+      inherit pkgs config lib;
+      inherit openvpn-cert-path openvpn-config-path;
+    })
+    
     ./power-settings.nix
+
     (import ../../services/garbage-collector.nix {inherit config pkgs;})
 
     # base config
     ( import ./secrets.nix {
-      inherit openvpnCertPath hostname;
+      inherit openvpn-cert-path hostname;
     } )
+
+    # UI
+    (import ./xserver.nix {inherit pkgs; } )
+    ./fonts.nix
+
+    # Other Packages
+    ./vscode.nix
+    (import ./system-packages.nix {inherit config pkgs;})
+
+    # Utility Scripts
+    ../../scripts/util-scripts.nix
+
+    # Misc
     ./locale-settings.nix
     ./printer.nix
     ./audio.nix
-    ../../scripts/util-scripts.nix
   ];
-
-  nixpkgs.config.allowUnfree = true;
-
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
-
-  };
-  
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelPackages = pkgs.linuxPackages_6_9; 
-  boot.kernelPackages = pkgs.linuxPackages_6_10;
-
-  programs.git = {
-      enable = true;
-  };
 
 }

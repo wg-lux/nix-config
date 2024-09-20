@@ -1,5 +1,5 @@
-{network_interface, ...}:
+{network-interface, ...}:
 {
-    networking.interfaces.${network_interface}.wakeOnLan.enable = true;
+    networking.interfaces.${network-interface}.wakeOnLan.enable = true;
 
 }

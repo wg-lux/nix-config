@@ -7,3 +7,4 @@ users/shared/files/for-reference_kde-config
 dev.code-workspace
 *.kate-swp
 *.kismet
+flake.nix

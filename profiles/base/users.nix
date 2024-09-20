@@ -1,5 +1,5 @@
 { config, pkgs, inputs, 
-openvpnCertPath, users-mutable ? true,
+openvpn-cert-path, users-mutable ? true,
 ... }:
 
 let
@@ -11,7 +11,7 @@ in
       [ 
         inputs.home-manager.nixosModules.home-manager
         ./groups.nix
-        ( import ./secrets.nix { inherit hostname openvpnCertPath; } )
+        ( import ./secrets.nix { inherit hostname openvpn-cert-path; } )
       ];
 
     home-manager = {

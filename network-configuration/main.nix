@@ -53,7 +53,6 @@ in
             port = ports.nextcloud-port;
         };
 
-        # Synology public nas (quickconnect: agl-public-nas.quickconnect.to)
         agl-public-nas = {
             ip = ips.agl-nas-01;
             port = ports.agl-public-nas-port;

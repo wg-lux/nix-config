@@ -45,6 +45,25 @@ in
             port = ports.synology-dsm-port;
         };
 
+        openvpn = {
+            network-interface = service-configs.openvpn-network-interface;
+            host-hostname = service-configs.openvpn-host-hostname;
+
+            host-tcp-ports = ports.openvpn-tcp-ports;
+            host-ip = ips.openvpn-host-ip;
+            host-local-ip = ips.openvpn-host-local-ip;
+
+            cert-path = paths.openvpn-cert-path;
+            config-path = paths.openvpn-config-path;
+            
+            client-config-file = paths.openvpn-client-config-file;
+            host-config-file = paths.openvpn-host-config-file;
+
+            user = service-configs.openvpn-cert-owner;
+            group = service-configs.openvpn-cert-group;
+            file-mode = service-configs.openvpn-cert-mode;
+        };
+
         nextcloud = {
             ip = ips.nextcloud;
             user = service-configs.nextcloud-user;

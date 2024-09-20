@@ -1,4 +1,4 @@
-{ ... }:
+{ openvpn-config, ... }:
 {
     users.groups.service-user = {
       members = [
@@ -35,6 +35,12 @@
       members = [
         "service-user"
         "agl-admin" #TODO REMOVE AFTER TESTING
+      ];
+    };
+
+    users.groups."${openvpn-config.group}" = {
+      members = [
+        openvpn-config.user
       ];
     };
 }

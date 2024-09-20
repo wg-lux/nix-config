@@ -1,45 +1,49 @@
-{ config, pkgs, inputs, 
-openvpn-cert-path, users-mutable ? true,
+{ config, pkgs, inputs, agl-network-config,
+openvpn-config, users-mutable ? true,
 ... }:
 
 let
   hostname = config.networking.hostName;
+  openvpn-cert-path = openvpn-config.cert-path;
+
+  admin-user-name = agl-network-config.service-configs.admin-user;
+
+  maintenance-user-name = agl-network-config.service-configs.maintenance-user;
+  service-user-name = agl-network-config.service-configs.service-user;
+  service-group = agl-network-config.service-configs.service-group;
+  openvpn-user-name = openvpn-config.user;
+
+  center-user-name = agl-network-config.service-configs.center-user;
+
+  admin-user-extra-groups = agl-network-config.service-configs.admin-user-extra-groups;
+  base-user-extra-groups = agl-network-config.service-configs.base-user-extra-groups;
+  service-user-extra-groups = agl-network-config.service-configs.service-user-extra-groups;
 
 in
   {
     imports =
       [ 
         inputs.home-manager.nixosModules.home-manager
-        ./groups.nix
-        ( import ./secrets.nix { inherit hostname openvpn-cert-path; } )
       ];
 
     home-manager = {
       extraSpecialArgs = { inherit inputs; };
       users = {
-        agl-admin = import ../../users/agl-admin/home.nix;
-        maintenance-user = import ../../users/maintenance-user/home.nix;
-        center-user = import ../../users/center-user/home.nix;
+        "${admin-user-name}" = import ../../users/${admin-user-name}/home.nix;
+        "${maintenance-user-name}"  = import ../../users/${maintenance-user-name}/home.nix;
+        "${center-user-name}"  = import ../../users/${center-user-name}/home.nix;
       };
     };
-
 
     # users.mutableUsers = false;
     users.mutableUsers = users-mutable;
 
     users.users = {
-      agl-admin = {
+      "${admin-user-name}" = {
         isNormalUser = true;
-        description = "agl-admin";
-        hashedPasswordFile = config.sops.secrets."user/nix/agl-admin/pwd".path;
-        extraGroups = [ 
-          "networkmanager" 
-          "wheel" 
-          "video" 
-          "sound"
-          "audio"
-          "pulse-access"
-        ];
+        description = "${admin-user-name}";
+        hashedPasswordFile = config.sops.secrets."user/nix/${admin-user-name}/pwd".path;
+        extraGroups = admin-user-extra-groups;
 
         # shell = pkgs.zsh;
         packages = with pkgs; [
@@ -48,35 +52,43 @@ in
         ];
       };
       
-      center-user = {
+      "${center-user-name}" = {
         isNormalUser = true;
         description = "Center User";
-        hashedPasswordFile = config.sops.secrets."user/nix/center-user/pwd".path;
-        extraGroups = [ 
-          "audio" 
-          "sound"
-        ];
+        hashedPasswordFile = config.sops.secrets."user/nix/${center-user-name}/pwd".path;
+        extraGroups = base-user-extra-groups;
       };
-      service-user = {
+
+      "${service-user-name}" = {
         isSystemUser = true;
-        description = "Endoreg Service User";
-        extraGroups = [ "networkmanager" "wheel" ];
-        group = "service-user";
-        hashedPasswordFile = config.sops.secrets."user/nix/service-user/pwd".path;
-        packages = with pkgs; [
-        ];
+        description = "Service User";
+        extraGroups = service-user-extra-groups;
+        group = service-group;
+        hashedPasswordFile = config.sops.secrets."user/nix/${service-user-name}/pwd".path;
       };
-      maintenance-user = {
+
+      "${maintenance-user-name}" = {
         isNormalUser = true;
         description = "Maintenance User";
-        extraGroups = [ "networkmanager" "wheel" ];
-        hashedPasswordFile = config.sops.secrets."user/nix/maintenance-user/pwd".path;
-        shell = pkgs.bash;
-        packages = with pkgs; [
-          firefox
-          vscode
-        ];
+        extraGroups = service-user-extra-groups;
+        hashedPasswordFile = config.sops.secrets."user/nix/${maintenance-user-name}/pwd".path;
+        # shell = pkgs.bash;
+        # packages = with pkgs; [
+        #   firefox
+        #   vscode
+        # ];
       };
+
+      # OpenVPN User
+      "${openvpn-user-name}" = {
+        isSystemUser = true;
+        group = openvpn-config.group;
+        description = "OpenVPN User";
+        extraGroups = service-user-extra-groups;
+      };
+
+
+
       # default_user = {
       #   isNormalUser = true;
       #   description = "default / empty";

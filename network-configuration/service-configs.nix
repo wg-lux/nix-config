@@ -1,22 +1,66 @@
 let
     base-service-user = "agl-admin";
+    service-user = "service-user";
+    agl-admin-user = "agl-admin";
+    maintenance-user = "maintenance-user";
+    center-user = "center-user";
+
+    service-group = "service-user";
+
+    endoreg-client-pseudo-access-group = "pseudo-access";
 in
 {
     # Users
     base-service-user = base-service-user;
-    endoreg-client-pseudo-access-group = "pseudo-access";
+    service-user = service-user;
+    admin-user = agl-admin-user;
+    maintenance-user = maintenance-user;
+    center-user = center-user;
+
+    openvpn-cert-owner = "openvpn";
+
+    # Groups
+    service-group = service-group;
+    agl-admin-user = agl-admin-user;
+    endoreg-client-pseudo-access-group = endoreg-client-pseudo-access-group;
+
+    agl-monitor-group = "agl-monitor";
+    nextcloud-group = "aglnet-public-service";
+    openvpn-cert-group = "openvpn";
+
+    # Users Extra Groups
+    admin-user-extra-groups = [ 
+        "networkmanager" 
+        "wheel" 
+        "video" 
+        "sound"
+        "audio"
+        "pulse-access"
+    ];
+
+    service-user-extra-groups = [ 
+        "networkmanager"
+        "wheel" 
+    ];
+
+    base-user-extra-groups = [ 
+        "audio" 
+        "sound"
+    ];
+
+    # Custom Services
     agl-monitor-user = base-service-user;
 
+    # Nextcloud
     nextcloud-user = "nextcloud";
     nextcloud-db-name = "nextcloud";
     nextcloud-db-type = "mysql";
 
     # OpenVPN
     openvpn-network-interface = "tun0";
+    openvpn-host-hostname = "agl-server-01";
+    openvpn-cert-mode = "0600";
 
-    # Groups
-    agl-monitor-group = "pseudo-access";
-    nextcloud-group = "aglnet-public-service";
     
     # Binds
     agl-monitor-redis-bind = "127.0.0.1";

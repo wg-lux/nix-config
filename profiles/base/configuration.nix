@@ -6,22 +6,28 @@
 }: 
 
 let
-  openvpn-config-path = agl-network-config.paths.openvpn-config-path;
-  openvpn-cert-path = agl-network-config.paths.openvpn-cert-path;
-  network-interface = custom-hardware-config.network-interface;
+  hostname = config.networking.hostName;
+  openvpn-config = agl-network-config.services.openvpn;
+  network-interface = agl-network-config.hardware.${hostname}.network-interface;
 
 in
 {
   # asd 
   imports = [
     # Users
-    (import ./users.nix { inherit hostname config pkgs inputs openvpn-cert-path; })
+    (import ./users.nix { inherit config pkgs inputs agl-network-config openvpn-config; })
+    (import ./groups.nix { inherit openvpn-config; })
+    (import ./secrets.nix {
+      inherit config;
+    })
     
     # Console Environment
     ./zsh.nix
 
     # Custom Config Files
-    ./etc.nix
+    (import ./etc/main.nix {
+      inherit config pkgs openvpn-config;
+    })
 
     # base services
     ../../services/firewall.nix
@@ -39,20 +45,18 @@ in
     (import ./wake-on-lan.nix {inherit network-interface;})
     
     ## OpenVPN
-    (import ../../services/openvpn.nix {inherit pkgs config lib;})
+    (import ../../services/openvpn.nix {
+      inherit pkgs config lib;
+      inherit openvpn-config;
+    })
     (import ../../services/openvpn-host.nix {
       inherit pkgs config lib;
-      inherit openvpn-cert-path openvpn-config-path;
+      inherit openvpn-config;
     })
     
     ./power-settings.nix
 
     (import ../../services/garbage-collector.nix {inherit config pkgs;})
-
-    # base config
-    ( import ./secrets.nix {
-      inherit openvpn-cert-path hostname;
-    } )
 
     # UI
     (import ./xserver.nix {inherit pkgs; } )

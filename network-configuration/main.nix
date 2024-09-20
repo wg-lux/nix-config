@@ -49,7 +49,7 @@ in
             ip = ips.nextcloud;
             user = service-configs.nextcloud-user;
             group = service-configs.nextcloud-group;
-            domain = service-configs.nextcloud-public-domain;
+            domain = domains.nextcloud-public-domain;
             port = ports.nextcloud-port;
         };
 

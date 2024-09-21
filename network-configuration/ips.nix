@@ -59,6 +59,7 @@ in
     ### S04
     nextcloud = agl-server-04;
     nextcloud-proxy = main-nginx;
+    agl-home-django = agl-server-04;
 
     ### NAS02
     synology-service = agl-nas-02;

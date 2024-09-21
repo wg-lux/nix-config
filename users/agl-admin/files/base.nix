@@ -9,17 +9,6 @@
     target = "/.ssh"; # default is name defined in home.file.NAME#FIXME
     recursive = true;
   };
-  
-  home.file.".openvpn" = {
-    source = ./.openvpn;
-    target = "./.openvpn";
-    # recursive = true;
-  };
-
-  # home.file."openvpn-cert" = {
-  #   source = ./openvpn-cert/init;
-  #   target = "./openvpn-cert/init";
-  # };
 
   home.file."/tmux-templates" = {
     source =./tmux/tmux-templates;

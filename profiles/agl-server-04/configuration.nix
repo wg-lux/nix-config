@@ -2,6 +2,10 @@
   inputs, config, pkgs, lib,
   custom-hardware-config, ip, hostname, agl-network-config,
   ... }:
+let 
+  agl-home-django-config = agl-network-config.services.agl-home-django;
+
+in
 {
   imports =
     [

@@ -94,9 +94,17 @@ in
 
         # EndoReg Home
         agl-home-django = {
-            ip = ips.agl-server-04;
+            ip = ips.agl-home-django;
             port = ports.agl-home-django-port;
             path = paths.agl-home-django-path;
+
+            user = service-configs.base-service-user; #TODO
+            group = service-configs.endoreg-client-pseudo-access-group; #TODO
+            redis-port = ports.agl-home-django-redis-port;
+
+            django-debug = service-configs.agl-home-django-django-debug;
+            django-settings-module = service-configs.agl-home-django-django-settings-module;
+	
         };
 
         agl-monitor = {
@@ -158,16 +166,5 @@ in
         agl-anonymizer-dir = paths.agl-anonymizer-dir;
         agl-anonymizer-django-settings-module = service-configs.agl-anonymizer-django-settings-module;
     };
-
-    agl-home-django-config = {
-		path = paths.agl-network-config.services.agl-home-django.path;
-		user = service-configs.base-service-user;
-		group = service-configs.endoreg-client-pseudo-access-group;
-		redis-port = ports.agl-home-django-redis-port;
-		ip = ips.agl-network-config.services.agl-home-django.ip;
-		port = ports.agl-network-config.services.agl-home-django.port;
-		django-debug = service-configs.agl-home-django-django-debug;
-		django-settings-module = service-configs.agl-home-django-django-settings-module;
-	};
 
 }

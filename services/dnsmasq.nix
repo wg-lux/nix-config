@@ -12,6 +12,7 @@ let
     dnsmasq-config = services.dnsmasq;
 
     openvpn-host-ip = openvpn-config.host-ip;
+    main-nginx-ip = ips.main-nginx;
     tcp = dnsmasq-config.tcp;
     udp = dnsmasq-config.udp;
     domain = openvpn-config.domain;

@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  
+  #TODO change ssh port to deviate from default
   environment.systemPackages = [
     # (import ../scripts/base-ssh-add.nix {inherit config pkgs;})
   ];
@@ -16,6 +16,9 @@
     port = 22;  # You can change the SSH port here
     # Additional configurations can be added here
   };
+
+  # open the firewall port for SSH
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
 # User configuration,
   users.users.agl-admin.openssh.authorizedKeys = {

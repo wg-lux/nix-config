@@ -23,6 +23,8 @@
     # kdePackages.kdenlive
     # kdePackages.wrapQtAppsHook
     kdePackages.xdg-desktop-portal-kde
+    kdePackages.kwallet
+    kdePackages.kwalletmanager
     kdePackages.svgpart
     # kdePackages.zanshin
     # # kdePackages.umbrello

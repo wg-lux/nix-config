@@ -5,12 +5,17 @@ let
     ports = agl-network-config.ports;
     domains = agl-network-config.domains;
 
-    openvpn-host-ip = ips.openvpn-host-ip;
-    main-nginx-ip = ips.main-nginx;
-    tcp = ports.openvpn-tcp-ports;
-    udp = ports.openvpn-tcp-ports;
-    domain = domains.main-domain;
-    intern-suffix = domains.intern-subdomain-suffix;
+    # Should be the preferred way to access the variables
+    # Improves maintainability
+    services = agl-network-config.services;
+    openvpn-config = services.openvpn;
+
+    openvpn-host-ip = openvpn-config.host-ip;
+    tcp = openvpn-config.host-tcp-ports;
+    udp = openvpn-config.host-tcp-ports;
+    domain = openvpn-config.domain;
+    intern-suffix = openvpn-config.intern-subdomain-suffix;
+
     domain-intern = "${intern-suffix}.${domain}";
     vpn-subnet = "${ips.openvpn-subnet}/${ips.openvpn-subnet-suffix}";
 

@@ -46,10 +46,14 @@ in
         };
 
         openvpn = {
+            domain = domains.main-domain;
+
             network-interface = service-configs.openvpn-network-interface;
             host-hostname = service-configs.openvpn-host-hostname;
+            intern-subdomain-suffix = domains.intern-subdomain-suffix;
 
             host-tcp-ports = ports.openvpn-host-tcp-ports;
+            host-udp-ports = ports.openvpn-host-udp-ports;
             client-tcp-ports = ports.openvpn-client-tcp-ports;
             client-udp-ports = ports.openvpn-client-udp-ports;
 

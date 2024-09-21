@@ -19,7 +19,8 @@ in
     networking.hostName = hostname;
     networking.networkmanager.enable = true;
     
-    imports = [   
+    imports = [  
+        ../services/ssh.nix 
         (import ./shared/python/main.nix { inherit pkgs; })
         (import ./shared/wireless-config.nix { inherit pkgs ; })
 

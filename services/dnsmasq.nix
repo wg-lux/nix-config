@@ -6,6 +6,7 @@ let
     domains = agl-network-config.domains;
 
     openvpn-host-ip = ips.openvpn-host-ip;
+    main-nginx-ip = ips.main-nginx;
     tcp = ports.openvpn-tcp-ports;
     udp = ports.openvpn-tcp-ports;
     domain = domains.main-domain;
@@ -33,7 +34,7 @@ in
                 ];
 
                 domain = "${domain-intern},${vpn-subnet},local";
-                address = "/*${domain-intern}/172.16.255.3"; # Only for intern.endo-reg.net domains    
+                address = "/*${domain-intern}/${main-nginx-ip}"; # Only for intern.endo-reg.net domains    
 
                 ##### if not provided, we listen on all adresses 
                 # listen-address= "::1,127.0.0.1,192.168.1.1";                                  

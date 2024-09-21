@@ -45,6 +45,11 @@ in
             port = ports.synology-dsm-port;
         };
 
+        dnsmasq = {
+            tcp = ports.dnsmasq-client-tcp-ports;
+            udp = ports.dnsmasq-client-udp-ports;
+        };
+
         openvpn = {
             domain = domains.main-domain;
 

@@ -27,8 +27,10 @@
     synology-chat-port = 22323;
 
     # OpenVPN
-    openvpn-client-tcp-ports = [53];
-    openvpn-client-udp-ports = [53];
+    openvpn-client-tcp-ports = [53]; #TODO Actually DNSMASQ Ports; DEPRECEATED
+    openvpn-client-udp-ports = [53]; 
+    dnsmasq-client-tcp-ports = [53]; #TODO Use
+    dnsmasq-client-udp-ports = [53]; 
     openvpn-host-tcp-ports = [1194];
     openvpn-host-udp-ports = [1194];
 

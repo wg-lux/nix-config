@@ -9,10 +9,11 @@ let
     # Improves maintainability
     services = agl-network-config.services;
     openvpn-config = services.openvpn;
+    dnsmasq-config = services.dnsmasq;
 
     openvpn-host-ip = openvpn-config.host-ip;
-    tcp = openvpn-config.host-tcp-ports;
-    udp = openvpn-config.host-tcp-ports;
+    tcp = dnsmasq-config.tcp;
+    udp = dnsmasq-config.udp;
     domain = openvpn-config.domain;
     intern-suffix = openvpn-config.intern-subdomain-suffix;
 
@@ -21,7 +22,6 @@ let
 
 in
     {
-
         networking.firewall.allowedTCPPorts = tcp;
         networking.firewall.allowedUDPPorts = udp;
 

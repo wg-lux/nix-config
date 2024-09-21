@@ -20,7 +20,13 @@ in
     networking.networkmanager.enable = true;
     
     imports = [  
-        ../services/ssh.nix 
+
+        (import ../services/ssh.nix {
+            inherit config pkgs agl-network-config;
+        }) 
+        (import ../services/age.nix {
+            inherit config pkgs agl-network-config;
+        })
         (import ./shared/python/main.nix { inherit pkgs; })
         (import ./shared/wireless-config.nix { inherit pkgs ; })
 

@@ -71,12 +71,12 @@ lib.mkIf (config.networking.hostName == openvpn-host-hostname) {
       group = openvpn-group;
   };
 
-    sops.secrets."shared/openvpn-aglNet/ca-cert" = {
-        sopsFile = secret-path-openvpn-shared;
-        path = "${openvpn-cert-path}/ca.crt";
-        owner = openvpn-user;
-        mode = openvpn-file-mode;
-        group = openvpn-group;
-    };
+  sops.secrets."shared/openvpn-aglNet/ca-cert" = {
+      sopsFile = secret-path-openvpn-shared;
+      path = "${openvpn-cert-path}/ca.crt";
+      owner = openvpn-user;
+      mode = openvpn-file-mode;
+      group = openvpn-group;
+  };
 }
 

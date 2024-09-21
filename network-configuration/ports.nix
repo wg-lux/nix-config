@@ -1,4 +1,5 @@
 {
+    ssh-port = 22;
     agl-public-nas-port = 443;
     ldap-port = 389;
 

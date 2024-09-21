@@ -17,7 +17,6 @@ in
     maintenance-user = maintenance-user;
     center-user = center-user;
 
-    openvpn-cert-owner = "openvpn";
 
     # Groups
     service-group = service-group;
@@ -51,16 +50,24 @@ in
     # Custom Services
     agl-monitor-user = base-service-user;
 
+    # Sops
+    sops-default-format = "yaml";
+    sops-user = agl-admin-user;
+
     # Nextcloud
     nextcloud-user = "nextcloud";
     nextcloud-db-name = "nextcloud";
     nextcloud-db-type = "mysql";
 
     # OpenVPN
+    openvpn-cert-owner = "openvpn";
     openvpn-network-interface = "tun0";
     openvpn-host-hostname = "agl-server-01";
     openvpn-cert-mode = "0600";
 
+    # SSH
+    ssh-user = agl-admin-user;
+    ssh-secret-file-mode = "0600";
     
     # Binds
     agl-monitor-redis-bind = "127.0.0.1";

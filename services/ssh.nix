@@ -1,4 +1,13 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, agl-network-config, ... }: 
+let 
+
+  hostname = config.networking.hostName;
+  ssh-id-ed25519-file-path = agl-network-config.services.ssh.id-ed25519-file-path;
+  ssh-agent-user = agl-network-config.services.ssh.user;
+  secret-path-id_ed25519 = ../secrets + ("/" + "${hostname}/id_ed25519.yaml");
+
+in
+{
   #TODO change ssh port to deviate from default
   environment.systemPackages = [
     # (import ../scripts/base-ssh-add.nix {inherit config pkgs;})
@@ -7,6 +16,14 @@
   # Enable the OpenSSH daemon
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
+
+  # Create identity secret file
+  sops.secrets."identity/id_ed25519" = {
+    sopsFile = secret-path-id_ed25519;
+    path = ssh-id-ed25519-file-path;
+    format = "yaml";
+    owner = ssh-agent-user;
+  };
 
   # Optional: Configure additional settings
   services.openssh.settings = {

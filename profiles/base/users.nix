@@ -23,11 +23,11 @@ in
   {
     imports =
       [ 
-        inputs.home-manager.nixosModules.home-manager
+        inputs.home-manager.nixosModules.home-manager 
       ];
 
     home-manager = {
-      extraSpecialArgs = { inherit inputs; };
+      extraSpecialArgs = { inherit inputs agl-network-config; };
       users = {
         "${admin-user-name}" = import ../../users/${admin-user-name}/home.nix;
         "${maintenance-user-name}"  = import ../../users/${maintenance-user-name}/home.nix;

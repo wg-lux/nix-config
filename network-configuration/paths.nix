@@ -7,9 +7,18 @@
     # openvpnConfigPath = "/home/agl-admin/.openvpn";
     # openvpnCertPath = "/home/agl-admin/openvpn-cert";
     openvpn-config-path = "/etc/openvpn";
-    openvpn-cert-path = "/etc/openvpn-cert";
     openvpn-client-config-file = "aglNet.conf";
     openvpn-host-config-file = "aglNetHost.conf";
+
+    openvpn-cert-path = "/etc/openvpn-cert";
+
+    ssh-id-ed25519-file-path = "/etc/agl-admin-identity/id_ed25519";
+    age-key-file-path = "/etc/agl-admin-identity/age-keys.txt";
+
+    # This path is used in home-manager to copy the age key file to the user's home directory
+    # the path is relative to the user's home directory even though it starts with a slash
+    # ssh-id-ed25519-user-file-path = "/.ssh/id_ed25519";
+    # age-key-user-file-path = "/.config/age/keys.txt" ;
 
     # endoRegClientManagerPath = "/home/agl-admin/endoreg-client-manager"; #TODO DELETE
     endoreg-client-manager-path = "/home/agl-admin/endoreg-client-manager";

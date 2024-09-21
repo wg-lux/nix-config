@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, agl-network-config, ... }:
 
 {
 
@@ -14,7 +14,7 @@
     ../shared/autoSuspendAndLogin.nix
 
     # Files
-    ( import ./files/base.nix { inherit config lib pkgs; })
+    ( import ./files/base.nix { inherit config lib pkgs agl-network-config; })
   ];
 
   home.username = "agl-admin";

@@ -20,6 +20,13 @@ in
 
     # hostnames = {};
 
+    identity-file-paths = {
+        age-key-file = paths.age-key-file-path;
+        age-key-file-user = paths.age-key-user-file-path;
+        ssh-id-ed25519-file = paths.ssh-id-ed25519-file-path;
+        ssh-id-ed25519-user-file = paths.ssh-id-ed25519-user-file-path;
+    };
+
     services = {
         main_nginx = {
             ip = ips.main-nginx;
@@ -159,6 +166,20 @@ in
             ip = ips.agl-nas-02; #
             local-path = paths.nfs-share-all-local-path;
             mount-path = paths.nfs-share-all-mount-path;
+        };
+
+        ssh = {
+            port = ports.ssh-port;
+            id-ed25519-file-path = paths.ssh-id-ed25519-file-path;
+            user = service-configs.admin-user;
+            secret-file-mode = service-configs.ssh-secret-file-mode;
+        };
+
+        sops = {
+            # default-sops-file = ../secrets/secrets.yaml;
+            default-format = service-configs.sops-default-format;
+            default-key-file = paths.age-key-file-path;
+            user = service-configs.sops-user;
         };
 
     };

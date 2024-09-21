@@ -18,7 +18,8 @@ let
   network-interface = openvpn-config.network-interface;
 
   openvpn-host-hostname = openvpn-config.host-hostname;
-  openvpn-host-tcp = openvpn-config.host-tcp-ports;
+  openvpn-client-tcp = openvpn-config.client-tcp-ports;
+  openvpn-client-udp = openvpn-config.client-udp-ports;
 
 
   secret-path-openvpn-shared = ../secrets/shared/openvpn.yaml;
@@ -31,6 +32,10 @@ lib.mkIf (config.networking.hostName != openvpn-host-hostname) {
   environment.systemPackages = [
     pkgs.openvpn
   ];
+
+  # Allow firewall tcp / udp 
+  networking.firewall.allowedTCPPorts = openvpn-client-tcp;
+  networking.firewall.allowedUDPPorts = openvpn-client-udp;
 
   services.openvpn.servers = {
     aglNet = { 

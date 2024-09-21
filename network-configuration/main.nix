@@ -49,7 +49,10 @@ in
             network-interface = service-configs.openvpn-network-interface;
             host-hostname = service-configs.openvpn-host-hostname;
 
-            host-tcp-ports = ports.openvpn-tcp-ports;
+            host-tcp-ports = ports.openvpn-host-tcp-ports;
+            client-tcp-ports = ports.openvpn-client-tcp-ports;
+            client-udp-ports = ports.openvpn-client-udp-ports;
+
             host-ip = ips.openvpn-host-ip;
             host-local-ip = ips.openvpn-host-local-ip;
 

@@ -14,6 +14,7 @@
 
     ssh-id-ed25519-file-path = "/etc/agl-admin-identity/id_ed25519";
     age-key-file-path = "/etc/agl-admin-identity/age-keys.txt";
+    age-key-file-user-path = "/home/agl-admin/.config/sops/age/keys.txt";
 
     # This path is used in home-manager to copy the age key file to the user's home directory
     # the path is relative to the user's home directory even though it starts with a slash

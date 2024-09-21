@@ -178,7 +178,8 @@ in
         sops = {
             # default-sops-file = ../secrets/secrets.yaml;
             default-format = service-configs.sops-default-format;
-            default-key-file = paths.age-key-file-path;
+            # default-key-file = paths.age-key-file-path;
+            default-key-file = paths.age-key-file-user-path; #TODO Manual copy necessary
             user = service-configs.sops-user;
         };
 

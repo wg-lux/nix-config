@@ -20,12 +20,12 @@ in
         ../shared/touchpad.nix
         ./packages.nix
 
-        (
-            import ../../services/agl-monitor/main.nix {
-                inherit config pkgs lib;
-                inherit agl-network-config;
-            }
-        )
+        # (
+        #     import ../../services/agl-monitor/main.nix {
+        #         inherit config pkgs lib;
+        #         inherit agl-network-config;
+        #     }
+        # )
 
         (import ./luks-devices.nix { inherit config custom-hardware-config; })
 

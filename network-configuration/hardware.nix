@@ -98,7 +98,7 @@
 		agl-server-02 = {
 			network-interface = "enp4s0";
 			secondary-network-interface = "eno1";
-			wireless-network-interface = "";
+			wireless-network-interface = "wlp3s0";
 			nvidiaBusId = "";
 			onboardGraphicBusId = "";
 

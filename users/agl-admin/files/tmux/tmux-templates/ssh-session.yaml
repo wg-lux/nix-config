@@ -6,9 +6,9 @@ windows:
     - cd ~/ # run as a first command in all panes
   panes:
     - shell_command: # pane no. 1
-      - echo first pane
-    - shell_command: # pane no. 2
       - ssh 172.16.255.1
+    - shell_command: # pane no. 2
+      - ssh 172.16.255.2
     - shell_command: # pane no. 2
       - ssh 172.16.255.3
     - shell_command: # pane no. 2

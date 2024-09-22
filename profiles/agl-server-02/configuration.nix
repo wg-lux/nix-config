@@ -14,10 +14,12 @@
     ];
 
 
-  networking.defaultGateway = {
-    interface = custom-hardware-config.network-interface;
+  #TODO How to use multiple network interfaces? 
+  # Preferably one for external communication and a dedicated one for local communication
+  # networking.defaultGateway = {
+  #   interface = custom-hardware-config.network-interface;
 
-  };
+  # };
 
   system.stateVersion = "23.11";
 

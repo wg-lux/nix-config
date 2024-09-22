@@ -42,7 +42,7 @@
     users.groups.processed-access = {
       members = [
         "service-user"
-        # "agl-admin" #TODO REMOVE AFTER TESTING
+        "agl-admin" #TODO REMOVE AFTER TESTING
       ];
     };
 

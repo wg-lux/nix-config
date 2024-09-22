@@ -8,6 +8,14 @@
       ];
     };
 
+    users.groups.keys = {
+      members = [
+        "agl-admin"
+        # "maintenance-user"
+        # "service-user" 
+      ];
+    };
+
     users.groups.endoreg-service = {
       members = [
         "agl-admin"
@@ -34,7 +42,7 @@
     users.groups.processed-access = {
       members = [
         "service-user"
-        "agl-admin" #TODO REMOVE AFTER TESTING
+        # "agl-admin" #TODO REMOVE AFTER TESTING
       ];
     };
 

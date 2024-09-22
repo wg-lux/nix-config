@@ -22,8 +22,9 @@ in
     sopsFile = secret-path-id_ed25519;
     path = ssh-id-ed25519-file-path;
     format = "yaml";
-    owner = ssh-agent-user;
-    mode = "600";
+    owner = config.users.users."${ssh-agent-user}".name;
+    group = config.users.users."${ssh-agent-user}".group;
+    mode = "0400";
   };
 
   # Optional: Configure additional settings

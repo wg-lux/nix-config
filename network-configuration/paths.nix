@@ -13,6 +13,7 @@
     openvpn-cert-path = "/etc/openvpn-cert";
 
     ssh-id-ed25519-file-path = "/etc/agl-admin-identity/id_ed25519";
+    # ssh-id-ed25519-file-path = "/home/agl-admin/id_ed25519";
     age-key-file-path = "/etc/agl-admin-identity/age-keys.txt";
     age-key-file-user-path = "/home/agl-admin/.config/sops/age/keys.txt";
 

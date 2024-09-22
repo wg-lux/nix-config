@@ -23,6 +23,7 @@ in
     path = ssh-id-ed25519-file-path;
     format = "yaml";
     owner = ssh-agent-user;
+    mode = "600";
   };
 
   # Optional: Configure additional settings

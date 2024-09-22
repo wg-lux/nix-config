@@ -26,6 +26,7 @@ in
 lib.mkIf (config.networking.hostName == openvpn-host-hostname) {
   environment.systemPackages = [
     pkgs.openvpn
+    pkgs.vault
   ];
 
   # Allow firewall tcp 1194

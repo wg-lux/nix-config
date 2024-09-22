@@ -15,10 +15,22 @@ in
     service-configs = service-configs;
     hardware = hardware;
 
+    users = {
+        base-service-user = service-configs.base-service-user;
+        service-user = service-configs.service-user;
+        admin-user = service-configs.agl-admin-user;
+        maintenance-user = service-configs.maintenance-user;
+        center-user = service-configs.center-user;
+    };
+
     custom-logs = {
         owner = service-configs.service-user;
         group = service-configs.service-group;
         dir = paths.custom-logs-dir;
+
+        clear-logs-script-name = service-configs.clear-custom-logs-script-name;
+
+        openvpn-custom-log-script-name = service-configs.openvpn-custom-log-script-name;
         openvpn-log = paths.openvpn-custom-log-path;
         openvpn-error-log = paths.openvpn-custom-error-log-path;
 
@@ -70,6 +82,7 @@ in
 
         openvpn = {
             domain = domains.main-domain;
+            service-name = service-configs.openvpn-service-name;
 
             network-interface = service-configs.openvpn-network-interface;
             host-hostname = service-configs.openvpn-host-hostname;

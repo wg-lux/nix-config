@@ -14,7 +14,7 @@ let
 
         # Ensure the correct owner, group, and permissions
         chown ${service-user}:${service-group} "${custom-log-dir}"
-        chmod 0775 "${custom-log-dir}"
+        chmod 775 "${custom-log-dir}"
     '';
 
 

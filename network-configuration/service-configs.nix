@@ -64,6 +64,11 @@ in
     openvpn-network-interface = "tun0";
     openvpn-host-hostname = "agl-server-01";
     openvpn-cert-mode = "0600";
+    openvpn-service-name = "openvpn-aglNet";
+
+    # CustomScript Names
+    openvpn-custom-log-script-name = "log-openvpn";
+    clear-custom-logs-script-name = "clear-custom-logs";
 
     # SSH
     ssh-user = agl-admin-user;

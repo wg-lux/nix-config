@@ -13,10 +13,8 @@
       ../../services/utils/scheduled-reboot-nightly.nix
     ];
 
-  ##### CUSTOM HARDWARE CONFIGURATION #####
 
-  networking.interfaces.eno1.useDHCP = false;
-  networking.interfaces.enp4s0.useDHCP = true;
+  networking.defaultGatewayInterfaces = [ custom-hardware-config.network-interface ];
 
   system.stateVersion = "23.11";
 

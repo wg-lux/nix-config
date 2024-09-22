@@ -15,7 +15,7 @@
 
 
   networking.defaultGateway = {
-    interfaces = [ custom-hardware-config.network-interface ];
+    interface = custom-hardware-config.network-interface;
 
   };
 

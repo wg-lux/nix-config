@@ -11,12 +11,14 @@ windows:
       - git stash
       - git pull
       - un
+      - reboot
     - shell_command: # pane no. 2
       - ssh 172.16.255.2
       - cd ~/nix-config
       - git stash
       - git pull
       - un
+      - reboot
     - shell_command: # pane no. 3
       - ssh 172.16.255.3
       - cd ~/nix-config
@@ -24,9 +26,11 @@ windows:
       - git pull
       - sudo nix flake update
       - un
+      - reboot
     - shell_command: # pane no. 4
       - ssh 172.16.255.4
       - cd ~/nix-config
       - git stash
       - git pull
       - un
+      - reboot

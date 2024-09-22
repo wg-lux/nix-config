@@ -16,6 +16,12 @@ in
 {
     security.polkit.enable = true;
 
+    nix.settings.trusted-users = [
+        "root"
+        agl-network-config.users.admin-user
+        # @wheel # Would allow all users in the wheel group as trusted users.
+    ];
+
     networking.hostName = hostname;
     networking.networkmanager.enable = true;
     
@@ -48,6 +54,11 @@ in
             inherit hostname ip;
             inherit agl-network-config custom-hardware-config; 
             users-mutable = true;
+        })
+
+        # Base Polkit rules.
+        (import ../polkit/admin-rebuild-system.nix {
+            inherit agl-network-config;
         })
     ];
 

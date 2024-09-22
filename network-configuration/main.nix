@@ -15,6 +15,17 @@ in
     service-configs = service-configs;
     hardware = hardware;
 
+    custom-logs = {
+        owner = service-configs.service-user;
+        group = service-configs.service-group;
+        dir = paths.custom-logs-dir;
+        openvpn-log = paths.openvpn-custom-log-path;
+        openvpn-error-log = paths.openvpn-custom-error-log-path;
+
+        ping-vpn-ip = ips.openvpn-host-ip;
+        ping-www-ip = "8.8.8.8";
+    };
+
     #TODO Resolve this duplication?
     domain = domains.main-domain;
 
@@ -72,9 +83,10 @@ in
             host-ip = ips.openvpn-host-ip;
             host-local-ip = ips.openvpn-host-local-ip;
 
+            custom-log-path = paths.openvpn-custom-log-path;
             cert-path = paths.openvpn-cert-path;
             config-path = paths.openvpn-config-path;
-            
+
             client-config-file = paths.openvpn-client-config-file;
             host-config-file = paths.openvpn-host-config-file;
 

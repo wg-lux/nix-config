@@ -41,15 +41,13 @@ in
             } 
         )
 
-        (
-            import ../../services/endoreg-client/main.nix {
-                inherit config pkgs lib; 
-                inherit endoreg-client-manager-config;
-            } 
-        )
+        # (
+        #     import ../../services/endoreg-client/main.nix {
+        #         inherit config pkgs lib; 
+        #         inherit endoreg-client-manager-config;
+        #     } 
+        # )
       
     ];
-
-  system.stateVersion = "23.11";
 
 }

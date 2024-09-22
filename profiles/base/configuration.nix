@@ -26,7 +26,7 @@ in
 
     # Custom Config Files
     (import ./etc/main.nix {
-      inherit config pkgs openvpn-config;
+      inherit config pkgs agl-network-config;
     })
 
     # base services
@@ -41,6 +41,11 @@ in
     #     inherit agl-network-config;
     #   })
 
+    # Custom Loggers
+    ( import ./custom-logs.nix {
+      inherit config pkgs lib agl-network-config;
+    })
+    
     # Network Services
     (import ./wake-on-lan.nix {inherit network-interface;})
     

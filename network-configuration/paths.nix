@@ -1,3 +1,7 @@
+let
+    custom-logs-dir = "/etc/custom-logs"; # Relative to /etc
+
+in
 {
     # Paths
     agl-home-django-path = "/home/agl-admin/agl-home-django";
@@ -9,6 +13,10 @@
     openvpn-config-path = "/etc/openvpn";
     openvpn-client-config-file = "aglNet.conf";
     openvpn-host-config-file = "aglNetHost.conf";
+
+    custom-logs-dir = custom-logs-dir;
+    openvpn-custom-log-path = "/etc/custom-logs/openvpn-aglNet-log.csv";
+    openvpn-custom-error-log-path = "/etc/custom-logs/openvpn-aglNet-error.log";
 
     openvpn-cert-path = "/etc/openvpn-cert";
 

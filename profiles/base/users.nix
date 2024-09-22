@@ -27,6 +27,7 @@ in
       ];
 
     home-manager = {
+			backupFileExtension = "~backup";
       extraSpecialArgs = { inherit inputs agl-network-config; };
       users = {
         "${admin-user-name}" = import ../../users/${admin-user-name}/home.nix;

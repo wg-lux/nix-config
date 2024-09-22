@@ -22,13 +22,6 @@ in
         }
       )
 
-      # Custom Loggers
-      (
-        import ../../scripts/logging/check-openvpn.nix {
-          inherit config pkgs lib agl-network-config;
-        }
-      )
-
       # Auto Decrypt Hdd on Dev Machine
       (import ../endoreg-clients/luks-base-decrypt.nix { inherit config custom-hardware-config; })
 

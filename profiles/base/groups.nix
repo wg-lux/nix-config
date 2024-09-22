@@ -4,7 +4,7 @@
       members = [
         "agl-admin"
         "maintenance-user"
-        "service-user" 
+        "service-user"
       ];
     };
 

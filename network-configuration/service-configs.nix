@@ -17,7 +17,6 @@ in
     maintenance-user = maintenance-user;
     center-user = center-user;
 
-
     # Groups
     service-group = service-group;
     agl-admin-user = agl-admin-user;
@@ -39,7 +38,8 @@ in
 
     service-user-extra-groups = [ 
         "networkmanager"
-        "wheel" 
+        "wheel"
+        service-group
     ];
 
     base-user-extra-groups = [ 

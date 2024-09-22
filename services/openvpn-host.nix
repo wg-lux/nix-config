@@ -31,6 +31,7 @@ lib.mkIf (config.networking.hostName == openvpn-host-hostname) {
   # Allow firewall tcp 1194
   networking.firewall.allowedTCPPorts = openvpn-host-tcp;
 
+  services.openvpn.restartAfterSleep = true;
   services.openvpn.servers = {
     aglNetHost = { 
       config = '' config ${openvpn-config-path}/${openvpn-config-file}'';

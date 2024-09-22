@@ -29,7 +29,7 @@ lib.mkIf (config.networking.hostName != openvpn-host-hostname) {
   environment.systemPackages = [
     pkgs.openvpn
   ];
-
+  services.openvpn.restartAfterSleep = true;
   services.openvpn.servers = {
     aglNet = { 
       config = '' config ${openvpn-config-path}/${openvpn-config-file} '';

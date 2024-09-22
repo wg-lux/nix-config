@@ -9,7 +9,7 @@ keys:
   - &agl-gpu-client-05 age17safzahag4965lc9cxz66quyc82x50nws940tft9velkngqxkqzq5hwfle # ColoReg UKW
   - &agl-gpu-workstation age1h3kajn0t674dhggsjrn7rtzkurtrzy3fpt7528j3w3rejht4l35sx75xdy
   - &agl-server-01 age1zlty6e9vn8td20zn3a8xq4dlnz9d9n83f6mj9ykdsq9x6lgfr54supx0fn
-  - &agl-server-02 age12thy8rvwk9p7s6yr688p64am0mkxwed6swcf8jzgkl3v22nwnpyqln663m
+  - &agl-server-02 age1fvn47mkn44t49dfjkefpjwrd0s556qythz5xm3czay7vp2z4jajsxnvaw8
   - &agl-server-03 age1pg47c2vyqr2d00j9ds2n7dx0lvudmey29v5y9rym2trltg8r7pjq7llxrg
   - &agl-server-04 age1a3uv2j0wg5hd0vd8mmx3teyyrfs0c0ff233l90u9luxqsm5z4grq75vd3l
 # secrets/agl-gpu-client-dev/.*\.(yaml|json|env|ini|txt|tmp)$

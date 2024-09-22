@@ -14,7 +14,10 @@
     ];
 
 
-  networking.defaultGatewayInterfaces = [ custom-hardware-config.network-interface ];
+  networking.defaultGateway = {
+    interfaces = [ custom-hardware-config.network-interface ];
+
+  };
 
   system.stateVersion = "23.11";
 

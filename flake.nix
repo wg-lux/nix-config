@@ -70,8 +70,6 @@ inputs = {
 
 	# agl-anonymizer.url = "./services/agl-anonymizer";
 	# agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
-
-
   };
 
 
@@ -94,19 +92,6 @@ let
 		cuda-support = true;
 	};
 
-	hostnames = {
-		server-01 = "agl-server-01";
-		server-02 = "agl-server-02";
-		server-03 = "agl-server-03";
-		server-04 = "agl-server-04";
-		gpu-client-dev = "agl-gpu-client-dev";
-		gpu-client-01 = "agl-gpu-client-01";
-		gpu-client-02 = "agl-gpu-client-02";
-		gpu-client-03 = "agl-gpu-client-03";
-		gpu-client-04 = "agl-gpu-client-04";
-		gpu-client-05 = "agl-gpu-client-05";
-	};
-
 	system = base-config.system;
 	pkgs = import nixpkgs {
 		system = system;
@@ -117,6 +102,7 @@ let
 	};
 
 	agl-network-config = import ./network-configuration/main.nix;
+	hostnames = agl-network-config.hostnames;
 
 	custom-services = {
 		monitor = agl-monitor;

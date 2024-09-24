@@ -41,7 +41,7 @@ in
     #TODO Resolve this duplication?
     domain = domains.main-domain;
 
-    # hostnames = {};
+    hostnames = import ./hostnames.nix;
 
     identity-file-paths = {
         age-key-file = paths.age-key-file-path;

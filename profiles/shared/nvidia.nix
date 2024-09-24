@@ -44,6 +44,7 @@
   environment.systemPackages = with pkgs; [
     cudaPackages.cudatoolkit
     # linuxKernel.packages.linux_6_10.nvidia_x11
+    # linuxPackages.nvidia_x11
 
     autoAddDriverRunpath
     
@@ -75,7 +76,7 @@
     modesetting.enable = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;

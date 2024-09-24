@@ -21,6 +21,7 @@
     cachix
     tmux
     tmuxp
+    tree
     
     # Implement custom script example
     (import ../../scripts/test-script.nix { inherit pkgs; })

@@ -132,255 +132,27 @@ let
 
 	os-base-args = {
 		nixpkgs = nixpkgs;
-			pkgs = pkgs;
-			base-config = base-config;
-			inputs = inputs;
-			agl-network-config = agl-network-config;
+		pkgs = pkgs;
+		base-config = base-config;
+		inputs = inputs;
+		agl-network-config = agl-network-config;
+		hostnames = hostnames;
 	};
 
 	# import os configurations
-	# os-configs = {
-	# 	server-01 = import ./os-configs/agl-server.nix {
-	# 		nixpkgs = nixpkgs;
-	# 		hostname = hostnames.server-01;
-	# 		extra-modules = extra-modules;
-	# 		custom-services = custom-services;
-	# 	} os-base-args;
+	_os-configurations = import ./os-configs/main.nix (
+		{
+			os-base-args = os-base-args;
+			agl-network-config = agl-network-config;
+			extra-modules = extra-modules;
+			custom-services = custom-services;
+		}
+	);
+	os-configurations = _os-configurations.os-configs;
 
-	# }; 
-	
-	test = import ./os-configs/gpu-client-dev.nix {
-		nixpkgs = nixpkgs;
-		pkgs = pkgs;
-		base-config = base-config;
-		hostname = hostnames.gpu-client-dev;
-		inputs = inputs;
-		agl-network-config = agl-network-config;
-		extra-modules = extra-modules;
-		custom-services = custom-services;
-	};
-
-		
   in
 	{
-		nixosConfigurations = {
-			agl-server-01 = nixpkgs.lib.nixosSystem {
-				specialArgs = { 
-					hostname = "agl-server-01";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-				
-				modules = [
-					./profiles/main.nix
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default
-					({ config, pkgs, ... }: {
-						  services.vscode-server.enable = true;
-					})
-					agl-monitor.nixosModules.agl-monitor
-				];
-			};
-			agl-server-02 = nixpkgs.lib.nixosSystem {
-				specialArgs = { 
-					hostname = "agl-server-02";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-				
-				modules = [
-					./profiles/main.nix
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default
-					({ config, pkgs, ... }: {
-						  services.vscode-server.enable = true;
-					})
-					agl-monitor.nixosModules.agl-monitor
-				];
-			};
-
-			agl-server-03 = nixpkgs.lib.nixosSystem {
-				specialArgs = { 
-					hostname = "agl-server-03";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-
-				modules = [
-					./profiles/main.nix
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default
-					({ config, pkgs, ... }: {
-						services.vscode-server.enable = true;
-					})
-					agl-monitor.nixosModules.agl-monitor
-				];
-			};
-
-			agl-server-04 = nixpkgs.lib.nixosSystem {
-				specialArgs = {
-				hostname = "agl-server-04";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-				
-				modules = [
-					./profiles/main.nix
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default
-					({ config, pkgs, ... }: {
-						services.vscode-server.enable = true;
-					})
-					agl-home-django.nixosModules.agl-home-django
-					agl-monitor.nixosModules.agl-monitor
-				];
-			};
-
-			agl-gpu-client-dev = test;
-
-			###
-			# agl-gpu-client-dev = nixpkgs.lib.nixosSystem {
-			# 	system = "x86_64-linux";
-
-			# 	specialArgs = {
-			# 		hostname = "agl-gpu-client-dev";
-			# 		inherit inputs system; 
-			# 		inherit agl-network-config;
-					
-			# 	};
-				
-			# 	modules = [
-			# 		./profiles/main.nix
-			# 		sops-nix.nixosModules.sops
-			# 		vscode-server.nixosModules.default (
-			# 			{ config, pkgs, ... }: {
-			# 				services.vscode-server.enable = true;
-			# 			}
-			# 		)
-			# 		(
-			# 			{ config, pkgs, ... }: {
-			# 				environment.systemPackages = with pkgs; [
-			# 				];
-			# 			}
-			# 		)
-
-			# 		endoreg-client-manager.nixosModules.endoreg-client-manager
-			# 		endoreg-client-manager.nixosModules.agl-anonymizer
-			# 		agl-monitor.nixosModules.agl-monitor
-			# 	];
-			# };
-
-			agl-gpu-client-01 = nixpkgs.lib.nixosSystem {
-				specialArgs = {
-					hostname = "agl-gpu-client-01";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-				
-				modules = [
-					./profiles/main.nix
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default
-					({ config, pkgs, ... }: {
-						  services.vscode-server.enable = true;
-					})
-					agl-monitor.nixosModules.agl-monitor
-				];
-			};
-
-			agl-gpu-client-02 = nixpkgs.lib.nixosSystem {
-				specialArgs = {
-					hostname = "agl-gpu-client-02";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-				
-				modules = [
-					./profiles/main.nix
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default
-					({ config, pkgs, ... }: {
-						  services.vscode-server.enable = true;
-					})
-					
-					endoreg-client-manager.nixosModules.endoreg-client-manager
-					endoreg-client-manager.nixosModules.agl-anonymizer
-					# agl-monitor.nixosModules.agl-monitor
-				];
-			};
-
-			agl-gpu-client-03 = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
-
-				specialArgs = {
-					hostname = "agl-gpu-client-03";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-				
-				modules = [
-					./profiles/main.nix
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default (
-						{ config, pkgs, ... }: {
-							services.vscode-server.enable = true;
-						}
-					)
-
-					endoreg-client-manager.nixosModules.endoreg-client-manager
-					endoreg-client-manager.nixosModules.agl-anonymizer
-					agl-g-play.nixosModules.agl-g-play
-					agl-monitor.nixosModules.agl-monitor
-				];
-			};
-
-			agl-gpu-client-04 = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
-				specialArgs = {
-					hostname = "agl-gpu-client-04";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-				
-				modules = [
-					./profiles/main.nix
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default (
-						{ config, pkgs, ... }: {
-							services.vscode-server.enable = true;
-						}
-					)
-					
-					endoreg-client-manager.nixosModules.endoreg-client-manager
-					endoreg-client-manager.nixosModules.agl-anonymizer
-					agl-monitor.nixosModules.agl-monitor
-				];
-			};
-
-			agl-gpu-client-05 = nixpkgs.lib.nixosSystem {
-				system = "x86_64-linux";
-				specialArgs = {
-					hostname = "agl-gpu-client-05";
-					inherit inputs system; 
-					inherit agl-network-config;
-				};
-				
-				modules = [
-					./profiles/main.nix
-
-					sops-nix.nixosModules.sops
-					vscode-server.nixosModules.default (
-						{ config, pkgs, ... }: {
-							services.vscode-server.enable = true;
-						}
-					)
-					
-					endoreg-client-manager.nixosModules.endoreg-client-manager
-					endoreg-client-manager.nixosModules.agl-anonymizer
-					agl-monitor.nixosModules.agl-monitor
-				];
-			};
-		};
+		nixosConfigurations = os-configurations;
 	
 	};
 }

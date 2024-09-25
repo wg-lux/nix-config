@@ -27,13 +27,23 @@ in
     
     imports = [  
 
+
+        # Monitoring
+        (import ../services/agl-monitor.nix {
+            inherit config pkgs lib;
+            inherit agl-network-config;
+          })
+
+
         (import ../services/ssh.nix {
             inherit config pkgs agl-network-config;
         }) 
+
         (import ../services/age.nix {
             inherit config pkgs agl-network-config;
         })
         (import ./shared/python/main.nix { inherit pkgs; })
+        
         (import ./shared/wireless-config.nix { inherit pkgs ; })
 
         custom-hardware-path

@@ -59,7 +59,7 @@ let
 				custom-services = custom-services;
 			}
 		);
-		"${hostnames.gpu-client-03}" = import ./endoreg-gpu-client.nix (
+		"${hostnames.gpu-client-03}" = import ./gpu-client-dev.nix (
 			os-base-args // {
 				hostname = hostnames.gpu-client-03;
 				extra-modules = extra-modules;

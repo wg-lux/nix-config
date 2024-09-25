@@ -10,11 +10,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-oi+uSN9Yj129hHYOXXGmTA2xscIHKwEfT7p68DmTBSQ=",
-        "path": "/nix/store/mg3hw0sdg6j2gsblnwj5kj1fcajrzlsk-source/services/agl-g-play",
+        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-g-play",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/mg3hw0sdg6j2gsblnwj5kj1fcajrzlsk-source/services/agl-g-play",
+        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-g-play",
         "type": "path"
       }
     },
@@ -27,11 +27,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-CON2BBTDdl9dJQOZtRKuLsmDzykqVNzlu764huddGNM=",
-        "path": "/nix/store/mg3hw0sdg6j2gsblnwj5kj1fcajrzlsk-source/services/agl-home-django",
+        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-home-django",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/mg3hw0sdg6j2gsblnwj5kj1fcajrzlsk-source/services/agl-home-django",
+        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-home-django",
         "type": "path"
       }
     },
@@ -43,12 +43,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-EfO6OzIsMt8/QqdUsQ1B4VCBnyjJ01GRWJkJX+sR/5I=",
-        "path": "/nix/store/mg3hw0sdg6j2gsblnwj5kj1fcajrzlsk-source/services/agl-monitor",
+        "narHash": "sha256-F3h6mSdr063fwRpFoW+TQf0A4mvKx/BOorENhkFqYU8=",
+        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-monitor",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/mg3hw0sdg6j2gsblnwj5kj1fcajrzlsk-source/services/agl-monitor",
+        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-monitor",
         "type": "path"
       }
     },
@@ -61,11 +61,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8Fh5nlH2VCaV367ZStgbwgPtE89uQ6Ii+Jdj3WkgWoY=",
-        "path": "/nix/store/mg3hw0sdg6j2gsblnwj5kj1fcajrzlsk-source/services/endoreg-client",
+        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/endoreg-client",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/mg3hw0sdg6j2gsblnwj5kj1fcajrzlsk-source/services/endoreg-client",
+        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/endoreg-client",
         "type": "path"
       }
     },

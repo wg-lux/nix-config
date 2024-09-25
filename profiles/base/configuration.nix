@@ -35,12 +35,6 @@ in
     ../../services/ssh.nix
     ./direnv.nix
 
-    # Monitoring
-    # (import ../../services/agl-monitor/main.nix {
-    #     inherit config pkgs lib;
-    #     inherit agl-network-config;
-    #   })
-
     # Custom Loggers
     ( import ./custom-logs.nix {
       inherit config pkgs lib agl-network-config;

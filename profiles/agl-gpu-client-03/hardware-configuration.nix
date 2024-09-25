@@ -19,10 +19,10 @@
   boot.extraModprobeConfig = ''
   '';
 
-    fileSystems."/" =
-    { device = "/dev/disk/by-uuid/eb8c2a80-3615-492e-9426-5a0867d1719b";
-      fsType = "ext4";
-    };
+  fileSystems."/" =
+  { device = "/dev/disk/by-uuid/eb8c2a80-3615-492e-9426-5a0867d1719b";
+    fsType = "ext4";
+  };
 
   boot.initrd.luks.devices."luks-4052a436-8b52-4969-adc0-f0e985fe6b6d".device = "/dev/disk/by-uuid/4052a436-8b52-4969-adc0-f0e985fe6b6d";
 

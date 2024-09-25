@@ -59,14 +59,15 @@ inputs = {
 	# agl-monitor.url = "github:wg-lux/agl-monitor";
 	agl-monitor.url = "./services/agl-monitor";
 	agl-monitor.inputs.nixpkgs.follows = "nixpkgs";
+	
+	monitor-flake.url = "github:wg-lux/agl-monitor-flake";
+	monitor-flake.inputs.nixpkgs.follows = "nixpkgs";
 
 	## AGL G-Play Validator
 	# agl-g-play-validator.url = "github:wg-lux/agl-g-play-validator";
 	agl-g-play.url = "./services/agl-g-play";
 	agl-g-play.inputs.nixpkgs.follows = "nixpkgs";
 
-	monitor-flake.url = "github:wg-lux/agl-monitor-flake";
-	monitor-flake.inputs.nixpkgs.follows = "nixpkgs";
 
 	# agl-anonymizer.url = "./services/agl-anonymizer";
 	# agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";

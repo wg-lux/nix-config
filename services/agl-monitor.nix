@@ -6,9 +6,9 @@
 
 let
     hostname = config.networking.hostName;
-    custom-config-path = ../../config + ("/${config.networking.hostName}");
+    custom-config-path = ../config + ("/${config.networking.hostName}");
     custom-client-manager-config-path = custom-config-path + ("/agl-monitor.json");
-    agl-monitor-secret-path = ../../secrets + ("/" +"${hostname}" + "/services/agl-monitor.yaml");
+    agl-monitor-secret-path = ../secrets + ("/" +"${hostname}" + "/services/agl-monitor.yaml");
     agl-monitor-config = agl-network-config.services.agl-monitor;
 
 in

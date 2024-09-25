@@ -10,8 +10,8 @@
     on-the-go.configuration = {
       system.nixos.tags = [ "on-the-go" ];
       hardware.nvidia = {
-        prime.offload.enable = pkgs.lib.mkForce true;
-        prime.offload.enableOffloadCmd = pkgs.lib.mkForce true;
+        prime.offload.enable = pkgs.lib.mkForce false;
+        prime.offload.enableOffloadCmd = pkgs.lib.mkForce false;
         prime.sync.enable = pkgs.lib.mkForce false;
       };
     };

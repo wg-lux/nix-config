@@ -83,7 +83,7 @@ in
     agl-home-django-django-debug = false;
 
 
-    agl-home-django-django-settings-module = "endoreg_home.settings_prod";
+    agl-home-django-settings-module = "endoreg_home.settings_prod";
     agl-monitor-django-settings-module = "agl_monitor.settings";
     agl-anonymizer-django-settings-module = "agl_anonymizer.settings";
     endoreg-client-manager-django-settings-module = "endoreg_client_manager.settings";

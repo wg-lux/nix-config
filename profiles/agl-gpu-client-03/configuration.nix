@@ -10,19 +10,24 @@
   endoreg-client-manager-config,
   agl-nas-02-ip, nfs-share-all-local-path, nfs-share-all-mount-path,
   agl-network-config,
-
-  ... 
-}:
-
+  
+  ... }:
 let
   endoreg-client-manager-path = endoreg-client-manager-config.path;
 in  
-{ #
+{
   imports =
-    [ # Hardware
+    [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./hardware-acceleration.nix
       ../shared/touchpad.nix
+
+      ( 
+        import ./local-monitoring/local-monitoring.nix {
+          inherit pkgs config ip;
+          inherit agl-network-config;
+        } 
+      )
 
       ( import ./packages.nix {
          inherit config pkgs lib ; 
@@ -44,12 +49,6 @@ in
         users-mutable = true;
         })
       (import ../shared/python/main.nix { inherit pkgs; })
-      (
-        import ../shared/nfs-share.nix {
-          inherit pkgs;
-          inherit agl-network-config;
-        } 
-      )
 
       # Custom Services
       (import ../endoreg-clients/secrets.nix {
@@ -85,12 +84,5 @@ in
   hardware.acpilight.enable = true;
 
   system.stateVersion = "23.11";
-  programs.git = {
-      enable = true; # IF GIT SHOULD BREAK SOME IN THE PUSHES OR NEW BUILDS AFTER 24-01-18 its probably this
-      config = {
-      user.name = "maxhild";
-      user.email = "Maxhild10@gmail.com";
-    };
-  };
 
 }

@@ -123,10 +123,11 @@ let
 		base-config = base-config;
 		inputs = inputs;
 		agl-network-config = agl-network-config;
+		extra-modules = extra-modules;
+		custom-services = custom-services;
 		hostnames = hostnames;
 	};
 
-	# import os configurations
 	_os-configurations = import ./os-configs/main.nix (
 		{
 			os-base-args = os-base-args;
@@ -136,10 +137,8 @@ let
 		}
 	);
 	os-configurations = _os-configurations.os-configs;
-
-  in
-	{
+  
+in {
 		nixosConfigurations = os-configurations;
-	
 	};
 }

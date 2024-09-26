@@ -1,6 +1,5 @@
 { config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    autoAddDriverRunpath
     vim
     wget
     pciutils

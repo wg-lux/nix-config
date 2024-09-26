@@ -44,14 +44,14 @@ in
             # agl-anonymizer-django-settings-module = agl-anonymizer-django-settings-module;
         };
 
-        services.agl-anonymizer = {
-            enable = true;
-            user = "agl-admin"; # should be "service-user" but then we lose access to the directory which is owned by agl-admin
-            group = "endoreg-service"; # is default
-            django-port = agl-anonymizer-port;
-            working-directory = agl-anonymizer-dir;
-            django-settings-module = agl-anonymizer-django-settings-module;
-        };
+        # services.agl-anonymizer = {
+        #     enable = true;
+        #     user = "agl-admin"; # should be "service-user" but then we lose access to the directory which is owned by agl-admin
+        #     group = "endoreg-service"; # is default
+        #     django-port = agl-anonymizer-port;
+        #     working-directory = agl-anonymizer-dir;
+        #     django-settings-module = agl-anonymizer-django-settings-module;
+        # };
 
         environment.etc."endoreg-client-config/hdd.json".source = ../../config/hdd.json;
         environment.etc."endoreg-client-config/multilabel-ai-config.json".source = ../../config/multilabel-ai-config.json;

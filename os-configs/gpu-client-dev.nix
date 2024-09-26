@@ -15,6 +15,7 @@ let
 
     agl-monitor = custom-services.monitor;
     endoreg-client-manager = custom-services.client-manager;
+    agl-anonymizer = custom-services.agl-anonymizer;
 
     
 in
@@ -32,9 +33,9 @@ nixpkgs.lib.nixosSystem {
         ../profiles/main.nix
         
         endoreg-client-manager.nixosModules.endoreg-client-manager
-        endoreg-client-manager.nixosModules.agl-anonymizer
+        # endoreg-client-manager.nixosModules.agl-anonymizer
         agl-monitor.nixosModules.agl-monitor
-
+        agl-anonymizer.nixosModules.agl-anonymizer
 
         # Custom vscode override
         sops-nix.nixosModules.sops

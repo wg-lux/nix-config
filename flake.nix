@@ -72,8 +72,8 @@ inputs = {
 	agl-g-play.inputs.nixpkgs.follows = "nixpkgs";
 
 
-	# agl-anonymizer.url = "./services/agl-anonymizer";
-	# agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
+	agl-anonymizer.url = "github:wg-lux/agl-anonymizer-flake";
+	agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
   };
 
 
@@ -113,6 +113,7 @@ let
 		client-manager = endoreg-client-manager;
 		home-django = agl-home-django;
 		g-play = agl-g-play;
+		agl-anonymizer = inputs.agl-anonymizer;
 	};
 
 	extra-modules = {

@@ -165,79 +165,79 @@
         };
       };
 
-      agl-anonymizer = { config, pkgs, lib, ... }: {
-        options.services.agl-anonymizer = {
-          enable = lib.mkEnableOption "Enable AGL Anonymizer service";
-          user = lib.mkOption {
-            type = lib.types.str;
-            default = "service-user";
-            description = "The user under which the AGL Anonymizer service will run";
-          };
+      # agl-anonymizer = { config, pkgs, lib, ... }: {
+      #   options.services.agl-anonymizer = {
+      #     enable = lib.mkEnableOption "Enable AGL Anonymizer service";
+      #     user = lib.mkOption {
+      #       type = lib.types.str;
+      #       default = "service-user";
+      #       description = "The user under which the AGL Anonymizer service will run";
+      #     };
 
-          group = lib.mkOption {
-            type = lib.types.str;
-            default = "endoreg-service";
-            description = "The group under which the AGL Anonymizer service will run";
-          };
+      #     group = lib.mkOption {
+      #       type = lib.types.str;
+      #       default = "endoreg-service";
+      #       description = "The group under which the AGL Anonymizer service will run";
+      #     };
 
-          django-settings-module = lib.mkOption {
-            type = lib.types.str;
-            default = "agl_anonymizer.settings";
-            description = "The Django settings module for the AGL Anonymizer";
-          };
+      #     django-settings-module = lib.mkOption {
+      #       type = lib.types.str;
+      #       default = "agl_anonymizer.settings";
+      #       description = "The Django settings module for the AGL Anonymizer";
+      #     };
 
-          django-port = lib.mkOption {
-            type = lib.types.int;
-            default = 9123;
-            description = "The port on which the Django server will listen";
-          };
+      #     django-port = lib.mkOption {
+      #       type = lib.types.int;
+      #       default = 9123;
+      #       description = "The port on which the Django server will listen";
+      #     };
 
-          working-directory = lib.mkOption {
-            type = lib.types.str;
-            default = "/home/agl-admin/agl_anonymizer/agl_anonymizer";
-            description = "The working directory for the AGL Anonymizer module";
-          };
-        };
+      #     working-directory = lib.mkOption {
+      #       type = lib.types.str;
+      #       default = "/home/agl-admin/agl_anonymizer/agl_anonymizer";
+      #       description = "The working directory for the AGL Anonymizer module";
+      #     };
+      #   };
 
-        config = lib.mkIf config.services.agl-anonymizer.enable {
-          environment.systemPackages = with pkgs; [
-            libGLU libGL
-            glibc
-            xorg.libXi xorg.libXmu freeglut
-            xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
-            ncurses5 stdenv.cc binutils
-          ];
+      #   config = lib.mkIf config.services.agl-anonymizer.enable {
+      #     environment.systemPackages = with pkgs; [
+      #       libGLU libGL
+      #       glibc
+      #       xorg.libXi xorg.libXmu freeglut
+      #       xorg.libXext xorg.libX11 xorg.libXv xorg.libXrandr zlib
+      #       ncurses5 stdenv.cc binutils
+      #     ];
 
-          systemd.services.agl-anonymizer = {
-            description = "AGL Anonymizer Service";
-            after = [ "network.target" ];
-            wantedBy = [ "multi-user.target" ];
-            serviceConfig = {
-              Restart = "always";
-              User = config.services.agl-anonymizer.user;
-              Group = config.services.agl-anonymizer.group;
-              WorkingDirectory = "${config.services.agl-anonymizer.working-directory}";
-              EnvironmentFile = "${config.services.agl-anonymizer.working-directory}/.env";
-              Environment = [
-                "PATH=${config.services.agl-anonymizer.working-directory}/.venv/bin:/run/current-system/sw/bin"
-                "DJANGO_SETTINGS_MODULE=${config.services.agl-anonymizer.django-settings-module}"
-                "PYTHONPATH=${config.services.agl-anonymizer.working-directory}"
-              ];
-            };
-            script = ''
-              nix develop
-              export CUDA_PATH=${pkgs.cudaPackages.cudatoolkit}
-              export LD_LIBRARY_PATH="${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.zlib}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libGL}/lib:${pkgs.libGLU}/lib:${pkgs.glib}/lib:${pkgs.glibc}/lib:$LD_LIBRARY_PATH"
-              export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
-              export EXTRA_CCFLAGS="-I/usr/include"
-              export CUDA_NVCC_FLAGS="--compiler-bindir=$(which gcc)"
-              source ${config.services.agl-anonymizer.working-directory}/.venv/bin/activate
-              exec gunicorn agl_anonymizer.wsgi:application --bind 0.0.0.0:${toString config.services.agl-anonymizer.django-port}
-            '';
-          };
+      #     systemd.services.agl-anonymizer = {
+      #       description = "AGL Anonymizer Service";
+      #       after = [ "network.target" ];
+      #       wantedBy = [ "multi-user.target" ];
+      #       serviceConfig = {
+      #         Restart = "always";
+      #         User = config.services.agl-anonymizer.user;
+      #         Group = config.services.agl-anonymizer.group;
+      #         WorkingDirectory = "${config.services.agl-anonymizer.working-directory}";
+      #         EnvironmentFile = "${config.services.agl-anonymizer.working-directory}/.env";
+      #         Environment = [
+      #           "PATH=${config.services.agl-anonymizer.working-directory}/.venv/bin:/run/current-system/sw/bin"
+      #           "DJANGO_SETTINGS_MODULE=${config.services.agl-anonymizer.django-settings-module}"
+      #           "PYTHONPATH=${config.services.agl-anonymizer.working-directory}"
+      #         ];
+      #       };
+      #       script = ''
+      #         nix develop
+      #         export CUDA_PATH=${pkgs.cudaPackages.cudatoolkit}
+      #         export LD_LIBRARY_PATH="${pkgs.linuxPackages.nvidia_x11}/lib:${pkgs.zlib}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.libGL}/lib:${pkgs.libGLU}/lib:${pkgs.glib}/lib:${pkgs.glibc}/lib:$LD_LIBRARY_PATH"
+      #         export EXTRA_LDFLAGS="-L/lib -L${pkgs.linuxPackages.nvidia_x11}/lib"
+      #         export EXTRA_CCFLAGS="-I/usr/include"
+      #         export CUDA_NVCC_FLAGS="--compiler-bindir=$(which gcc)"
+      #         source ${config.services.agl-anonymizer.working-directory}/.venv/bin/activate
+      #         exec gunicorn agl_anonymizer.wsgi:application --bind 0.0.0.0:${toString config.services.agl-anonymizer.django-port}
+      #       '';
+      #     };
 
-        };
-      };
+        # };
+      # };
 
     };
 

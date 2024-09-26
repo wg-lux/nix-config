@@ -49,6 +49,24 @@ in
       
     ];
 
+    services.agl-anonymizer = {
+        enable = true;
+        # config = {
+        #     tmp_dir = "${agl-anonymizer.dir}/tmp";
+        #     blurred_dir = "${agl-anonymizer.dir}/blurred";
+        #     csv_dir = "${agl-anonymizer.dir}/csv";
+        #     results_dir = "${agl-anonymizer.dir}/results";
+        #     models_dir = "${agl-anonymizer.dir}/models";
+        # };
+        # user = "anonymizer";
+        # group = "service-user";
+        # django-config = {
+        #     debug = false;
+        #     settings_module = "agl_anonymizer.settings";
+        #     port = 9123;
+        # };
+    };
+
   system.stateVersion = "23.11";
 
 }

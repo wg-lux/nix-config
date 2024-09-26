@@ -46,7 +46,8 @@
     # linuxKernel.packages.linux_6_10.nvidia_x11
     # linuxPackages.nvidia_x11
 
-    autoAddDriverRunpath
+    # cudaPackages.autoAddDriverRunpath
+    pkgs.autoAddDriverRunpath
     
     git gitRepo gnupg autoconf curl
     procps gnumake util-linux m4 gperf unzip

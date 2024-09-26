@@ -5,14 +5,18 @@
     allowUnfreePredicate = (_: true);
   };
 
-  home.packages = [
-    pkgs.openssh
-    pkgs.spotify
-    pkgs.google-chrome
-    # chromium
+  home.packages = with pkgs; [
+    openssh
+    spotify
+    google-chrome
+    pciutils # Device utils
+    usbutils
+    screen # Separate terminal
   ];
 
-  programs.chromium = {
-    enable = true;
-  };
+
+
+  # programs.chromium = {
+  #   enable = true;
+  # };
 }

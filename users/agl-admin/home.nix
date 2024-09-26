@@ -4,6 +4,7 @@
 
   imports = [
     ../shared/xdg.nix
+
     ./git.nix
     ( import ./desktop.nix {
       inherit config pkgs lib;
@@ -12,6 +13,7 @@
     ( import ./activation.nix {inherit lib;})
     ( import ./packages.nix {inherit pkgs;})
     ../shared/autoSuspendAndLogin.nix
+    ../shared/terminal/kitty.nix # Terminal Layout
 
     # Files
     ( import ./files/base.nix { inherit config lib pkgs agl-network-config; })

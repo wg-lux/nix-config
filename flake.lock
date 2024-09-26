@@ -9,12 +9,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-oi+uSN9Yj129hHYOXXGmTA2xscIHKwEfT7p68DmTBSQ=",
-        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-g-play",
+        "narHash": "sha256-HPuVRwv416/lRgpzF5Qr9SHirduxUl+c7MI1Qzsfd9g=",
+        "path": "/nix/store/ysyza0cnnh6a43qcj60b1s9kzsr63v97-source/services/agl-g-play",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-g-play",
+        "path": "/nix/store/ysyza0cnnh6a43qcj60b1s9kzsr63v97-source/services/agl-g-play",
         "type": "path"
       }
     },
@@ -27,11 +27,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-CON2BBTDdl9dJQOZtRKuLsmDzykqVNzlu764huddGNM=",
-        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-home-django",
+        "path": "/nix/store/ysyza0cnnh6a43qcj60b1s9kzsr63v97-source/services/agl-home-django",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-home-django",
+        "path": "/nix/store/ysyza0cnnh6a43qcj60b1s9kzsr63v97-source/services/agl-home-django",
         "type": "path"
       }
     },
@@ -44,11 +44,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-F3h6mSdr063fwRpFoW+TQf0A4mvKx/BOorENhkFqYU8=",
-        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-monitor",
+        "path": "/nix/store/ysyza0cnnh6a43qcj60b1s9kzsr63v97-source/services/agl-monitor",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/agl-monitor",
+        "path": "/nix/store/ysyza0cnnh6a43qcj60b1s9kzsr63v97-source/services/agl-monitor",
         "type": "path"
       }
     },
@@ -61,11 +61,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-8Fh5nlH2VCaV367ZStgbwgPtE89uQ6Ii+Jdj3WkgWoY=",
-        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/endoreg-client",
+        "path": "/nix/store/ysyza0cnnh6a43qcj60b1s9kzsr63v97-source/services/endoreg-client",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/29dqnzvv16pnb66mrc9vqdvga5h7cmx5-source/services/endoreg-client",
+        "path": "/nix/store/ysyza0cnnh6a43qcj60b1s9kzsr63v97-source/services/endoreg-client",
         "type": "path"
       }
     },
@@ -222,6 +222,26 @@
         "type": "github"
       }
     },
+    "nix-ld": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1726227680,
+        "narHash": "sha256-pcqHXle7uHQTUESc40Yu0k05cFMRVpm3D8ZHPH6scOY=",
+        "owner": "Mic92",
+        "repo": "nix-ld",
+        "rev": "5ee22be69d8bd66da100157fab54d8dde37c775b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-ld",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1726320982,
@@ -305,6 +325,7 @@
         "home-manager": "home-manager",
         "monitor-flake": "monitor-flake",
         "nix-index-database": "nix-index-database",
+        "nix-ld": "nix-ld",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix",
         "vscode-server": "vscode-server"

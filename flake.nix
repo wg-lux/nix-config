@@ -37,6 +37,9 @@ inputs = {
 	vscode-server.url = "github:nix-community/nixos-vscode-server";
 	vscode-server.inputs.nixpkgs.follows = "nixpkgs";
 
+	nix-ld.url = "github:Mic92/nix-ld";
+	nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+
 	# add for flake usage with nixos stable
 	flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
 
@@ -115,6 +118,7 @@ let
 	extra-modules = {
 		sops-nix = sops-nix;
 		vsconde-server = vscode-server;
+		nix-ld = inputs.nix-ld;
 	};
 
 	os-base-args = {

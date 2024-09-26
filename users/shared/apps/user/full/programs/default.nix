@@ -1,0 +1,14 @@
+[
+  ./aichat.nix
+  ./firefox.nix
+  ./gpg.nix
+  ./mpv.nix
+  ./nemo.nix
+  ./obs-studio.nix
+  ./programs.nix
+  ./rofi.nix
+  ./spicetify.nix
+  ./vivaldi.nix
+  ./zathura.nix
+  ./zotero.nix
+]

@@ -36,11 +36,14 @@ nixpkgs.lib.nixosSystem {
         agl-monitor.nixosModules.agl-monitor
 
 
-        # Custom vscode override
         sops-nix.nixosModules.sops
-        vscode-server.nixosModules.default 
+        
+        ## The module in this repository defines a new module under (programs.nix-ld.dev) instead of (programs.nix-ld)
+        ## to not collide with the nixpkgs version.
+        # nix-ld.nixosModules.nix-ld
+        # { programs.nix-ld.dev.enable = true; }
 
-        # Set custom nix config settings
+        vscode-server.nixosModules.default 
         ({config, pkgs, ... }: {
             services.vscode-server.enable = true;
         })

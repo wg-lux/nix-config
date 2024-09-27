@@ -50,26 +50,26 @@ inputs = {
 
 	## EndoReg Client Manager
 	# endoreg-client-manager.url = "github:wg-lux/endoreg-client-manager";
-	endoreg-client-manager.url = "./services/endoreg-client";
-	endoreg-client-manager.inputs.nixpkgs.follows = "nixpkgs";
+	# endoreg-client-manager.url = "./services/endoreg-client";
+	# endoreg-client-manager.inputs.nixpkgs.follows = "nixpkgs";
 
 	## AGL Home Django
 	# agl-home-django.url = "github:wg-lux/agl-home-django";
-	agl-home-django.url = "./services/agl-home-django";
-	agl-home-django.inputs.nixpkgs.follows = "nixpkgs";
+	# agl-home-django.url = "./services/agl-home-django";
+	# agl-home-django.inputs.nixpkgs.follows = "nixpkgs";
 
 	## AGL Monitor
 	# agl-monitor.url = "github:wg-lux/agl-monitor";
-	agl-monitor.url = "./services/agl-monitor";
-	agl-monitor.inputs.nixpkgs.follows = "nixpkgs";
+	# agl-monitor.url = "./services/agl-monitor";
+	# agl-monitor.inputs.nixpkgs.follows = "nixpkgs";
 	
 	monitor-flake.url = "github:wg-lux/agl-monitor-flake";
 	monitor-flake.inputs.nixpkgs.follows = "nixpkgs";
 
 	## AGL G-Play Validator
 	# agl-g-play-validator.url = "github:wg-lux/agl-g-play-validator";
-	agl-g-play.url = "./services/agl-g-play";
-	agl-g-play.inputs.nixpkgs.follows = "nixpkgs";
+	# agl-g-play.url = "./services/agl-g-play";
+	# agl-g-play.inputs.nixpkgs.follows = "nixpkgs";
 
 
 	agl-anonymizer.url = "github:wg-lux/agl-anonymizer-flake";
@@ -80,12 +80,6 @@ inputs = {
 outputs = { 
 self, nixpkgs, nix-index-database,
 vscode-server, sops-nix, 
-
-# CUSTOM SERVICES
-agl-monitor,
-endoreg-client-manager,
-agl-home-django,
-agl-g-play,
 ...
 }@inputs: #
 
@@ -109,10 +103,7 @@ let
 	hostnames = agl-network-config.hostnames;
 
 	custom-services = {
-		monitor = agl-monitor;
-		client-manager = endoreg-client-manager;
-		home-django = agl-home-django;
-		g-play = agl-g-play;
+		agl-monitor = inputs.monitor-flake;
 		agl-anonymizer = inputs.agl-anonymizer;
 	};
 

@@ -13,8 +13,6 @@ let
     sops-nix = extra-modules.sops-nix;
     vscode-server = extra-modules.vsconde-server;
 
-    agl-monitor = custom-services.monitor;
-    endoreg-client-manager = custom-services.client-manager;
 
     
 in
@@ -30,10 +28,7 @@ nixpkgs.lib.nixosSystem {
     
     modules = [
         ../profiles/main.nix
-        
-        endoreg-client-manager.nixosModules.endoreg-client-manager
-        endoreg-client-manager.nixosModules.agl-anonymizer
-        agl-monitor.nixosModules.agl-monitor
+        # custom-services.agl-monitor.nixosModules.agl-monitor
 
 
         sops-nix.nixosModules.sops

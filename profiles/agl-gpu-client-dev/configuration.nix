@@ -49,8 +49,8 @@ in
       
     ];
 
-    services.agl-anonymizer = {
-        enable = true;
+    # services.agl-anonymizer = {
+    #     enable = true;
         # config = {
         #     tmp_dir = "${agl-anonymizer.dir}/tmp";
         #     blurred_dir = "${agl-anonymizer.dir}/blurred";
@@ -65,7 +65,7 @@ in
         #     settings_module = "agl_anonymizer.settings";
         #     port = 9123;
         # };
-    };
+    # };
 
   system.stateVersion = "23.11";
 

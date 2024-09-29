@@ -10,28 +10,28 @@ let
     agl-network-config = os-base-args.agl-network-config;
 
     os-configs = {
-		"${hostnames.server-01}" = import ./agl-server.nix (
+		"${hostnames.server-01}" = import ./base-server.nix (
 			os-base-args // {
 				hostname = hostnames.server-01;
 				extra-modules = extra-modules;
 				custom-services = custom-services;
 			}
 		);
-		"${hostnames.server-02}" = import ./agl-server.nix (
+		"${hostnames.server-02}" = import ./base-server.nix (
 			os-base-args // {
 				hostname = hostnames.server-02;
 				extra-modules = extra-modules;
 				custom-services = custom-services;
 			}
 		);
-		"${hostnames.server-03}" = import ./agl-server.nix (
+		"${hostnames.server-03}" = import ./base-server.nix (
 			os-base-args // {
 				hostname = hostnames.server-03;
 				extra-modules = extra-modules;
 				custom-services = custom-services;
 			}
 		);
-		"${hostnames.server-04}" = import ./agl-server.nix (
+		"${hostnames.server-04}" = import ./base-server.nix (
 			os-base-args // {
 				hostname = hostnames.server-04;
 				extra-modules = extra-modules;

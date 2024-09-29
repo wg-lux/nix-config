@@ -68,7 +68,7 @@ in
 
     # CustomScript Names
 
-    openvpn-custom-log-timer-on-calendar = "*-*-* *:*/15:00"; # Every 15 minutes
+    openvpn-custom-log-timer-on-calendar = "*/15 * * * *"; # Every 15 minutes
     openvpn-custom-log-script-name = "log-openvpn";
     clear-custom-logs-script-name = "clear-custom-logs";
 

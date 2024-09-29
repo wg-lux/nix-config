@@ -18,7 +18,7 @@ let
     admin-user = agl-network-config.users.admin-user;
     center-user = agl-network-config.users.center-user;
 
-    timer-on-calendar = custom-logs-config.openvpn-custom-log-timer-on-calendar;
+    timer-on-calendar = custom-logs-conf.openvpn-custom-log-timer-on-calendar;
 
     scriptPath = pkgs.writeShellScriptBin "${custom-log-script-name}" ''#!/usr/bin/env bash
         # Default path to log file

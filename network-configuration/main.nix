@@ -33,6 +33,7 @@ in
         openvpn-custom-log-script-name = service-configs.openvpn-custom-log-script-name;
         openvpn-log = paths.openvpn-custom-log-path;
         openvpn-error-log = paths.openvpn-custom-error-log-path;
+        openvpn-custom-log-timer-on-calendar = service-configs.openvpn-custom-log-timer-on-calendar;
 
         ping-vpn-ip = ips.openvpn-host-ip;
         ping-www-ip = "8.8.8.8";

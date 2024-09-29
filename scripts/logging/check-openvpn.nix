@@ -18,6 +18,8 @@ let
     admin-user = agl-network-config.users.admin-user;
     center-user = agl-network-config.users.center-user;
 
+    timer-on-calendar = custom-logs-config.openvpn-custom-log-timer-on-calendar;
+
     scriptPath = pkgs.writeShellScriptBin "${custom-log-script-name}" ''#!/usr/bin/env bash
         # Default path to log file
         LOGFILE=${custom-log-path}
@@ -155,7 +157,8 @@ in
         wantedBy = [ "timers.target" ];
         description = "Timer for custom OpenVPN logger service";
         timerConfig = {
-            OnCalendar = "hourly";  # Runs every hour
+            # https://silentlad.com/systemd-timers-oncalendar-(cron)-format-explained
+            OnCalendar = timer-on-calendar;  # Runs every hour 
             Persistent = true; #TODO cahnge to false
         };
         unitConfig = {}; # maybe add some config? Timer is seems to be linked automatically if names match

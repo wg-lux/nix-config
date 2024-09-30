@@ -21,6 +21,7 @@ in
         admin-user = service-configs.agl-admin-user;
         maintenance-user = service-configs.maintenance-user;
         center-user = service-configs.center-user;
+        logging-user = service-configs.logging-user;
     };
 
     custom-logs = {
@@ -153,15 +154,39 @@ in
         };
 
         agl-monitor = {
-            ip = ips.agl-server-04;
+            enable = true;
+            bind = ips.localhost;
             port = ports.agl-monitor-port;
-            path = paths.agl-monitor-path;
+            custom-logs-dir = paths.custom-logs-dir;
+            config-json-file = paths.agl-monitor-config-json-file;
             user = service-configs.agl-monitor-user;
             group = service-configs.agl-monitor-group;
             redis-port = ports.agl-monitor-redis-port;
-            redis-bind = service-configs.agl-monitor-redis-bind;
+            redis-bind = ips.localhost-ip;
             django-debug = service-configs.agl-monitor-django-debug;
             django-settings-module = service-configs.agl-monitor-django-settings-module;			
+            django-secret-key = "change-me"; # TODO
+            conf = {
+                CACHES = {
+                    "default" = {
+                        BACKEND = "django_redis.cache.RedisCache";
+                        LOCATION = "redis://localhost:${ports.agl-monitor-redis-port}/0";
+                        TIMEOUT = 300;
+                        OPTIONS = {
+                            "CLIENT_CLASS" = "django_redis.client.DefaultClient";
+                        };
+                    };
+                };
+                CELERY_BROKER_URL = "redis://localhost:${ports.agl-monitor-redis-port}/0";
+                CELERY_RESULT_BACKEND = "redis://localhost:${ports.agl-monitor-redis-port}/0";
+                CELERY_ACCEPT_CONTENT = "application/json";
+                CELERY_TASK_SERIALIZER = "json";
+                CELERY_RESULT_SERIALIZER = "json";
+                CELERY_TIMEZONE = "UTC";
+                CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler";
+
+                CELERY_SIGNAL_LOGFILE = paths.agl-monitor-celery-signal-logfile;
+            };
         };
 
         # G-Play

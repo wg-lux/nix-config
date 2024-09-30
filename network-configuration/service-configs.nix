@@ -4,6 +4,7 @@ let
     agl-admin-user = "agl-admin";
     maintenance-user = "maintenance-user";
     center-user = "center-user";
+    logging-user = "logging-user";
 
     service-group = "service-user";
 
@@ -16,6 +17,7 @@ in
     admin-user = agl-admin-user;
     maintenance-user = maintenance-user;
     center-user = center-user;
+    logging-user = logging-user;
 
     # Groups
     service-group = service-group;
@@ -48,7 +50,7 @@ in
     ];
 
     # Custom Services
-    agl-monitor-user = base-service-user;
+    agl-monitor-user = logging-user;
 
     # Sops
     sops-default-format = "yaml";
@@ -86,7 +88,8 @@ in
 
 
     agl-home-django-settings-module = "endoreg_home.settings_prod";
-    agl-monitor-django-settings-module = "agl_monitor.settings";
+    agl-monitor-django-settings-module = "agl_monitor.settings_prod";
     agl-anonymizer-django-settings-module = "agl_anonymizer.settings";
     endoreg-client-manager-django-settings-module = "endoreg_client_manager.settings";
+
 }

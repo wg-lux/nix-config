@@ -23,20 +23,9 @@ in
             owner = config.users.users.agl-admin.name;
         };
 
-        networking.firewall.allowedTCPPorts = [ agl-network-config.services.agl-monitor.port ];
+        # networking.firewall.allowedTCPPorts = [ agl-network-config.services.agl-monitor.port ];
 
-        services.agl-monitor = {
-            enable = true;
-            working-directory = agl-monitor-config.path;
-            user = agl-monitor-config.user;
-            bind = agl-monitor-config.ip;
-            django-port = agl-monitor-config.port;
-            group = agl-monitor-config.group;
-            redis-bind = agl-monitor-config.redis-bind;
-            redis-port = agl-monitor-config.redis-port;
-            django-debug = agl-monitor-config.django-debug;
-            django-settings-module = agl-monitor-config.django-settings-module;
-        };
+        services.agl-monitor = agl-monitor-config;
 
-        environment.etc."agl-monitor/config.json".source = custom-client-manager-config-path;
+        # environment.etc."agl-monitor/config.json".source = custom-client-manager-config-path;
     }

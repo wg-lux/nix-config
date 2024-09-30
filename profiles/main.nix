@@ -29,10 +29,10 @@ in
 
 
         # Monitoring
-        # (import ../services/agl-monitor.nix {
-        #     inherit config pkgs lib;
-        #     inherit agl-network-config;
-        #   })
+        (import ../services/agl-monitor.nix {
+            inherit config pkgs lib;
+            inherit agl-network-config;
+          })
 
 
         (import ../services/ssh.nix {

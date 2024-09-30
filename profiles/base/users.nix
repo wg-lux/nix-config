@@ -12,6 +12,7 @@ let
   service-user-name = agl-network-config.service-configs.service-user;
   service-group = agl-network-config.service-configs.service-group;
   openvpn-user-name = openvpn-config.user;
+  logging-user-name = agl-network-config.service-configs.logging-user;
 
   center-user-name = agl-network-config.service-configs.center-user;
 
@@ -66,6 +67,14 @@ in
         extraGroups = service-user-extra-groups;
         group = service-group;
         hashedPasswordFile = config.sops.secrets."user/nix/${service-user-name}/pwd".path;
+      };
+
+      "${logging-user-name}" = {
+        isSystemUser = true;
+        description = "Logging User";
+        extraGroups = service-user-extra-groups;
+        group = service-group;
+        hashedPasswordFile = config.sops.secrets."user/nix/${logging-user-name}/pwd".path;
       };
 
       "${maintenance-user-name}" = {

@@ -5,7 +5,9 @@ in
 {
     # Paths
     agl-home-django-path = "/home/agl-admin/agl-home-django";
-    agl-monitor-path = "/home/agl-admin/agl-monitor";
+    # agl-monitor-path = "/home/agl-admin/agl-monitor";
+    # agl-monitor-config-json-file = "/etc/agl-monitor.json";
+    agl-monitor-celery-signal-logfile = "${custom-logs-dir}/agl-monitor-celery-signal.log";
     nfs-share-all-local-path = "/home/agl-admin/nfs-share";
     nfs-share-all-mount-path = "/volume1/agl-share";
     # openvpnConfigPath = "/home/agl-admin/.openvpn";

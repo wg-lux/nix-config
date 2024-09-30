@@ -27,6 +27,9 @@ let
 
 in
 {
+
+    localhost = "localhost";
+    localhost_ip = "127.0.0.1";
     vpn-ip-prefix = vpn-ip-prefix;
 
     agl-server-01 = agl-server-01;

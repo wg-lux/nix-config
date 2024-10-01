@@ -49,7 +49,8 @@ in
 			};
 
 			
-			"${hostname}-intern.endo-reg.net" = {
+			# "${hostname}-intern.endo-reg.net" = {
+			"localhost" = {
 				# Redirect well known paths to nextcloud
 				"^~ /.well-known" = {
 					priority = 9000;

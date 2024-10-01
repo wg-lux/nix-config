@@ -59,13 +59,17 @@ in
 
 
     # allow firewall
-    networking.firewall.allowedTCPPorts = [
-        local-nginx-port
-    ];
+    # networking.firewall.allowedTCPPorts = [
+    #     local-nginx-port
+    # ];
 
     # # nginx must be up and configured, in most cases "local-nginx.nix" should be imported
     services.nginx.defaultListen = [
+        { addr = ip; port = 80; }
+        { addr = ip; port = 443; }
         { addr = ip; port = local-nginx-port; }
+        { addr = "${config.networking.hostName}-intern.endo-reg.net"; port = local-nginx-port; }
+        { addr = "${config.networking.hostName}.endo-reg.net"; port = local-nginx-port; }
     ];
     services.nginx.virtualHosts = {
 

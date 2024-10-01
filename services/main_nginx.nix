@@ -160,7 +160,7 @@ in
         sslCertificate = sslCertificatePath;
         sslCertificateKey = sslCertificateKeyPath;
         locations."/" = {
-          proxyPass = "http://${agl-network-config.services.agl-monitor.ip}:${toString agl-network-config.services.agl-monitor.port}";
+          proxyPass = "http://${agl-network-config.services.agl-monitor.host-ip}:${toString agl-network-config.services.agl-monitor.host-port}";
           extraConfig = all-extraConfig + intern-endoreg-net-extraConfig;
         };
       };

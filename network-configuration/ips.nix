@@ -55,6 +55,7 @@ in
     openvpn-subnet-suffix = openvpn-subnet-suffix;
 
     ### S02
+    agl-monitor-host = agl-server-02;
 
     ### S03
     main-nginx = main-nginx;

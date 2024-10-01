@@ -154,6 +154,8 @@ in
         };
 
         agl-monitor = {
+            host-ip = ips.agl-monitor-host;
+            host-port = ports.agl-monitor-host-port;
             bind = ips.localhost;
             user-dir = paths.agl-monitor-user-dir;
             monitor-dir = paths.agl-monitor-service-dir;

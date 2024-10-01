@@ -22,6 +22,7 @@
     agl-anonymizer-port = 9123;
     agl-home-django-port = 9129;
     agl-monitor-port = 9243;
+    agl-monitor-host-port = 9243;
     nextcloud-port = 9817;
     synology-video-port = 9946;
     synology-drive-port = 12313;

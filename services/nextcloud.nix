@@ -86,6 +86,17 @@ in
 				# overwritewebroot = dir;
 				# overwrite.cli.url = "${prot}$://{host}/${dir}/";
 				overwrite.cli.url = "${prot}://${host}/";
+
+				trusted_proxies = [
+					proxy-ip
+				];
+
+				trusted_domains = [
+					nextcloud-domain
+				];
+
+                default_phone_region = "DE";
+
 				# htaccess.RewriteBase = dir;
 								# Define other trusted domais apart from hostname here
 				# trusted_domains = [];
@@ -105,22 +116,6 @@ in
             };
 			# home = "/var/lib/nextcloud"; # default TODO: point to mounted folder (check if nfs-share is still working)
 
-			settings = {
-				trusted_proxies = [
-					proxy-ip
-				];
-
-				trusted_domains = [
-					nextcloud-domain
-				];
-
-                overwriteprotocol = "https";
-				"profile.enabled" = true;
-
-                default_phone_region = "DE";
-			
-				# skeletondirectory = ""; The directory where the skeleton files are located. These files will be copied to the data directory of new users. Leave empty to not copy any skeleton files.
-			};
 			
 			# autoUpdateApps.enable = true;
             # autoUpdateApps.startAt = "05:00:00";

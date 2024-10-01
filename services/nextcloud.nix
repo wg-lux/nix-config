@@ -33,8 +33,7 @@ in
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud29;
-            hostName = nextcloud-host-ip;
-            hostName = "nextcloud-intern.endo-reg.net";
+            hostName = nextcloud-domain;
 	
 	
 			extraApssEnable = true;

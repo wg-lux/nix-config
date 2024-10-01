@@ -27,6 +27,10 @@ let
 	prot = "http";
 	host = "127.0.0.1";
 	dir = "nextcloud";
+
+	all-extraConfig = ''
+		proxy_headers_hash_bucket_size 128;
+	'';
 	
 in
 	{
@@ -37,31 +41,42 @@ in
 
 		# REQUIRES LOCAL-NGINX CONFIG TO BE LOADED
 		services.nginx.virtualHosts = {
-
-			# Define internal listen address
-			"${config.services.nextcloud.hostName}" = {
-				listen = [
-					{ 
-						addr = "127.0.0.1"; 
-						port = nextcloud-local-port; 
-					}
-				];
+			"nextcloud.endo-reg.net" = {
 				locations = {
-					"/nextcloud/" = {
-						priority = 9999;
-						extraConfig = ''
-							proxy_set_header X-Real-IP $remote_addr;
-							proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-							proxy_set_header X-NginX-Proxy true;
-							proxy_set_header X-Forwarded-Proto http;
-							proxy_pass http://127.0.0.1:${toString nextcloud-local-port}/; # tailing / is important!
-							proxy_set_header Host $host;
-							proxy_cache_bypass $http_upgrade;
-							proxy_redirect off;
-						'';
+					"/" = {
+						proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
+						proxyWebsockets = true;
+						extraConfig = all-extraConfig;
 					};
 				};
-			};			
+				listen = [
+					{ addr = nextcloud-ip; port = 80; }
+					{ addr = nextcloud-ip; port = 443; }
+					{ addr = "localhost"; port = 80; }
+					{ addr = "localhost"; port = 443; }
+					{ addr = "127.0.0.1"; port = 80; }
+					{ addr = "127.0.0.1"; port = 443; }
+					""
+				];
+			};
+			"${nextcloud-ip}" = {
+				locations = {
+					"/" = {
+						proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
+						proxyWebsockets = true;
+						extraConfig = all-extraConfig;
+					};
+				};
+			};
+			"localhost" = {
+				locations = {
+					"/" = {
+						proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
+						proxyWebsockets = true;
+						extraConfig = all-extraConfig;
+					};
+				};
+			};
 		};
 
 		####

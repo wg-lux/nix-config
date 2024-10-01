@@ -11,6 +11,15 @@
           inherit custom-hardware-config ip hostname agl-network-config;
         }
       )
+      
+      # Nextcloud
+      (
+        import ../../services/nextcloud.nix {
+          inherit config pkgs;
+          inherit agl-network-config;
+        }
+      )
+
     ];
 
   hardware.acpilight.enable = true;

@@ -25,7 +25,7 @@ in
 	    # };
 
         # Configure Firewall
-        networking.firewall.allowedTCPPorts = [ 80 443 ];
+        networking.firewall.allowedTCPPorts = [ nextcloud-port ];
         environment.etc."nextcloud-admin-pass".text = "PWD";
 
 		services.nextcloud = {

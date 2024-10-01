@@ -36,6 +36,7 @@ in
 			enable = true;
 			package = pkgs.nextcloud29;
             # hostName = nextcloud-domain;
+			hostName = nexcloud-hostname;
 
 			https = true;
 	

@@ -40,7 +40,10 @@ in
 			# Define internal listen address
 			"${config.services.nextcloud.hostName}" = {
 				listen = [
-					{ addr = "127.0.0.1"; port = config.services.nextcloud.local-port; };
+					{ 
+						addr = "127.0.0.1"; 
+						port = config.services.nextcloud.local-port; 
+					}
 				];
 			};
 

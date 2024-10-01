@@ -58,24 +58,24 @@ in
 					{ addr = "127.0.0.1"; port = 443; }
 				];
 			};
-			"${nextcloud-host-ip}" = {
-				locations = {
-					"/" = {
-						proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
-						proxyWebsockets = true;
-						extraConfig = all-extraConfig;
-					};
-				};
-			};
-			"localhost" = {
-				locations = {
-					"/" = {
-						proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
-						proxyWebsockets = true;
-						extraConfig = all-extraConfig;
-					};
-				};
-			};
+			# "${nextcloud-host-ip}" = {
+			# 	locations = {
+			# 		"/" = {
+			# 			proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
+			# 			proxyWebsockets = true;
+			# 			extraConfig = all-extraConfig;
+			# 		};
+			# 	};
+			# };
+			# "localhost" = {
+			# 	locations = {
+			# 		"/" = {
+			# 			proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
+			# 			proxyWebsockets = true;
+			# 			extraConfig = all-extraConfig;
+			# 		};
+			# 	};
+			# };
 		};
 
 		####

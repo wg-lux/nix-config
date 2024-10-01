@@ -29,55 +29,55 @@ let
 
 
 in {
-    networking.hosts = {
-        # AGL S01
-        "${s01-ip}" = [
-            client-domains."${s01}"
-        ];
+    # networking.hosts = {
+    #     # AGL S01
+    #     "${s01-ip}" = [
+    #         client-domains."${s01}"
+    #     ];
 
-        # AGL S02
-        "${s02-ip}" = [
-            client-domains."${s02}"
-        ];
+    #     # AGL S02
+    #     "${s02-ip}" = [
+    #         client-domains."${s02}"
+    #     ];
 
-        # AGL S03
-        "${s03-ip}" = [
-            client-domains."${s03}"
-        ];
+    #     # AGL S03
+    #     "${s03-ip}" = [
+    #         client-domains."${s03}"
+    #     ];
 
-        # AGL S04
-        "${s04-ip}" = [
-            client-domains."${s04}"
-        ];
+    #     # AGL S04
+    #     "${s04-ip}" = [
+    #         client-domains."${s04}"
+    #     ];
 
-        # AGL GC DEV
-        "${gc-dev-ip}" = [
-            client-domains."${gc-dev}"
-        ];
+    #     # AGL GC DEV
+    #     "${gc-dev-ip}" = [
+    #         client-domains."${gc-dev}"
+    #     ];
 
-        # AGL GC 01
-        "${gc01-ip}" = [
-            client-domains."${gc01}"
-        ];
+    #     # AGL GC 01
+    #     "${gc01-ip}" = [
+    #         client-domains."${gc01}"
+    #     ];
 
-        # AGL GC 02
-        "${gc02-ip}"= [
-            client-domains."${gc02}"
-        ];
+    #     # AGL GC 02
+    #     "${gc02-ip}"= [
+    #         client-domains."${gc02}"
+    #     ];
 
-        # AGL GC 03
-        "${gc03-ip}" = [
-            client-domains."${gc03}"
-        ];
+    #     # AGL GC 03
+    #     "${gc03-ip}" = [
+    #         client-domains."${gc03}"
+    #     ];
 
-        # AGL GC 04
-        "${gc04-ip}" = [
-            client-domains."${gc04}"
-        ];
+    #     # AGL GC 04
+    #     "${gc04-ip}" = [
+    #         client-domains."${gc04}"
+    #     ];
 
-        # AGL GC 05
-        "${gc05-ip}" = [
-            client-domains."${gc05}"
-        ];
-    };
+    #     # AGL GC 05
+    #     "${gc05-ip}" = [
+    #         client-domains."${gc05}"
+    #     ];
+    # };
 }

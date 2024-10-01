@@ -24,9 +24,6 @@ let
         deny all;
     '';
 
-	prot = "http";
-	host = "127.0.0.1";
-	dir = "nextcloud";
 
 	all-extraConfig = ''
 		proxy_set_header Host $host;
@@ -83,8 +80,6 @@ in
 			settings = {
 				overwriteprotocol = "https";
 				overwritehost = "nextcloud-intern.endo-reg.net";
-				# overwritewebroot = dir;
-				# overwrite.cli.url = "${prot}$://{host}/${dir}/";
 				overwrite.cli.url = "${prot}://${host}/";
 
 				trusted_proxies = [

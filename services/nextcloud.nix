@@ -52,17 +52,22 @@ in
 
 			settings = {
 				overwriteprotocol = "https";
-				overwritehost = nextcloud-domain;
-				overwrite.cli.url = nextcloud-public-url;
+				overwritehost = "nextcloud-intern.endo-reg.net";
+				overwrite.cli.url = "https://nextcloud-intern.endo-reg.net";
 
 				# Define other trusted domais apart from hostname here
 				trusted_domains = [
-					proxy-ip
-					nextcloud-domain
-					nextcloud-public-url
-					"https://${nextcloud-host-ip}:${ toString nextcloud-port}/"
+					"endo-reg.net"
+					"nextcloud-intern.endo-reg.net"
+					"192.16.255.2"
+					"172.16.255.2"
 					"localhost"
 					"127.0.0.1"
+				];
+
+				trusted_proxies = [
+					proxy-ip
+
 				];
 			};
 

@@ -67,13 +67,35 @@ in
       };
 
       # Nextcloud
-      "${nextcloud-domain}" = {
+      # "${nextcloud-domain}" = {
+        "nextcloud-intern.endo-reg.net" = {
         forceSSL = true;
         sslCertificate = sslCertificatePath;
         sslCertificateKey = sslCertificateKeyPath;
         locations."/" = {
           proxyPass = "https://${agl-network-config.services.nextcloud.ip}:${nextcloud-port}";
-          extraConfig = all-extraConfig + intern-endoreg-net-extraConfig;
+          extraConfig = all-extraConfig + intern-endoreg-net-extraConfig + ''
+            # proxy_set_header Upgrade $http_upgrade;
+            # proxy_set_header Connection "upgrade";
+
+            # Enable CORS for Nextcloud
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE';
+            add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization, X-Requested-With, X-CSRF-Token, X-Auth-Token, X-Frame-Options, X-Real-IP, X-Forwarded-For, X-Forwarded-Host, X-Forwarded-Proto';
+            add_header 'Access-Control-Expose-Headers' 'Content-Security-Policy, Location';
+            add_header 'Access-Control-Allow-Credentials' 'true';
+
+            # Handle preflight requests
+            if ($request_method = 'OPTIONS') {
+              add_header 'Access-Control-Allow-Origin' '*';
+              add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE';
+              add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization, X-Requested-With, X-CSRF-Token, X-Auth-Token, X-Frame-Options, X-Real-IP, X-Forwarded-For, X-Forwarded-Host, X-Forwarded-Proto';
+              add_header 'Access-Control-Max-Age' 1728000;
+              add_header 'Content-Length' 0;
+              add_header 'Content-Type' 'text/plain charset=UTF-8';
+              return 204;
+            }
+          '';
         };
       };
 

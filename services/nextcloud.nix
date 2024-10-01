@@ -35,7 +35,7 @@ in
 			package = pkgs.nextcloud29;
             hostName = nextcloud-domain;
 	
-			extraApssEnable = true;
+			extraAppsEnable = true;
 			
 			home = "/var/lib/nextcloud"; # is default
 

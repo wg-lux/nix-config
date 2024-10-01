@@ -75,7 +75,7 @@ in
         locations."/" = {
           proxyPass = "http://${agl-network-config.services.nextcloud.ip}:80";
           # proxyPass = "http://agl-server-02-intern.endo-reg.net/nextcloud";
-          extraConfig = all-extraConfig; #+ ''
+          extraConfig = all-extraConfig + intern-endoreg-net-extraConfig; #+ ''
           #   # proxy_set_header Upgrade $http_upgrade;
           #   # proxy_set_header Connection "upgrade";
 

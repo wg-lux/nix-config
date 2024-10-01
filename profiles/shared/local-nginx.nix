@@ -1,5 +1,5 @@
 {   
-    agl-network-config,
+    config, agl-network-config,
     ...
 }:
 let 

@@ -37,7 +37,7 @@ in
       # )
       
       ( import ../shared/local-nginx.nix { 
-        inherit agl-network-config;
+        inherit agl-network-config config;
       })
 
       (

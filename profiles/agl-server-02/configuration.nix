@@ -9,6 +9,10 @@
         inherit config pkgs;
         inherit agl-network-config;
       })
+
+      ( import ../shared/local-nginx.nix { 
+        inherit agl-network-config config;
+      })
       
       ../../services/utils/scheduled-reboot-nightly.nix
     ];

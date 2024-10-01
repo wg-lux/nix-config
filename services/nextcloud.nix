@@ -34,11 +34,17 @@ in
 			enable = true;
 			package = pkgs.nextcloud29;
             hostName = nextcloud-domain;
+			https = true;
 	
 			extraAppsEnable = true;
 			
 			home = "/var/lib/nextcloud"; # is default
 
+			database = {
+				createLocally = true;
+			};
+
+			notify_push.bendDomainToLocalhost = true;
 
 			settings = {
 				overwriteprotocol = "https";

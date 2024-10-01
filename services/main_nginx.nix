@@ -68,7 +68,7 @@ in
 
       # Nextcloud
       # "${nextcloud-domain}" = {
-        "nextcloud.endo-reg.net" = {
+        "nextcloud-intern.endo-reg.net" = {
         forceSSL = true;
         sslCertificate = sslCertificatePath;
         sslCertificateKey = sslCertificateKeyPath;

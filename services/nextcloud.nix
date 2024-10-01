@@ -41,7 +41,7 @@ in
 
 		# REQUIRES LOCAL-NGINX CONFIG TO BE LOADED
 		services.nginx.virtualHosts = {
-			"nextcloud.endo-reg.net" = {
+			"nextcloud-intern.endo-reg.net" = {
 				locations = {
 					"/" = {
 						proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";

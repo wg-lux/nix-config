@@ -29,6 +29,13 @@ let
 	dir = "nextcloud";
 
 	all-extraConfig = ''
+		proxy_set_header Host $host;
+		proxy_set_header X-Forwarded-Host $host;
+		proxy_set_header X-Forwarded-Proto $scheme;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_ssl_server_name on;
+		proxy_pass_header Authorization;
 		proxy_headers_hash_bucket_size 128;
 	'';
 	
@@ -40,44 +47,29 @@ in
 		networking.firewall.allowedTCPPorts = [ 80 443 ];
 
 		# REQUIRES LOCAL-NGINX CONFIG TO BE LOADED
-		services.nginx.virtualHosts = {
-			"nextcloud-intern.endo-reg.net" = {
-				locations = {
-					"/" = {
-						proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
-						proxyWebsockets = true;
-						extraConfig = all-extraConfig;
+		services.nginx = {
+
+			recommendedGzipSettings = true;
+			recommendedOptimisation = true;
+			recommendedProxySettings = true;
+			recommendedTlsSettings = true; # Enhanced TLS settings for security
+			# Global proxy settings
+		
+			virtualHosts = {
+				"nextcloud-intern.endo-reg.net" = {
+					locations = {
+						"/" = {
+							proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
+							proxyWebsockets = true;
+							extraConfig = all-extraConfig;
+						};
 					};
+					listen = [
+						{ addr = "localhost"; port = 80; }
+						{ addr = "localhost"; port = 443; }
+					];
 				};
-				listen = [
-					# { addr = nextcloud-host-ip; port = 80; }
-					# { addr = nextcloud-host-ip; port = 443; }
-					{ addr = "localhost"; port = 80; }
-					{ addr = "localhost"; port = 443; }
-					# { addr = "nextcloud.endo-reg.net"; port = 80; }
-					# { addr = "nextcloud.endo-reg.net"; port = 443; }
-					# { addr = "127.0.0.1"; port = 80; }
-					# { addr = "127.0.0.1"; port = 443; }
-				];
 			};
-			# "${nextcloud-host-ip}" = {
-			# 	locations = {
-			# 		"/" = {
-			# 			proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
-			# 			proxyWebsockets = true;
-			# 			extraConfig = all-extraConfig;
-			# 		};
-			# 	};
-			# };
-			# "localhost" = {
-			# 	locations = {
-			# 		"/" = {
-			# 			proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
-			# 			proxyWebsockets = true;
-			# 			extraConfig = all-extraConfig;
-			# 		};
-			# 	};
-			# };
 		};
 
 		####

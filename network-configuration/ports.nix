@@ -1,6 +1,6 @@
 let
 
-    local-nginx-port = 6644;
+    local-nginx-port = 443;
 
 in {
     ssh-port = 22;

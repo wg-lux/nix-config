@@ -66,7 +66,7 @@ in
 
     # # nginx must be up and configured, in most cases "local-nginx.nix" should be imported
     services.nginx.defaultListen = [
-        { addr = ip; port = local-nginx-port; }
+        { addr = "${config.networking.hostName }-intern.endo-reg.net"; port = local-nginx-port; }
     ];
     services.nginx.virtualHosts = {
 

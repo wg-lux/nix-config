@@ -15,6 +15,8 @@ let
 
 	proxy-ip = agl-network-config.services.nextcloud.proxy-ip;
 
+	prot = "https";
+
 	nexcloud-hostname = "https://${nextcloud-host-ip}:${toString nextcloud-port}";
 
 	restrict-access-extraConfig = ''
@@ -56,7 +58,7 @@ in
 				"nextcloud-intern.endo-reg.net" = {
 					locations = {
 						"/" = {
-							proxyPass = "http://127.0.0.1:${toString nextcloud-local-port}/";
+							proxyPass = "${prot}://127.0.0.1:${toString nextcloud-local-port}/";
 							proxyWebsockets = true;
 							extraConfig = all-extraConfig;
 						};
@@ -78,7 +80,7 @@ in
 	
 
 			settings = {
-				overwriteprotocol = "https";
+				overwriteprotocol = "${prot}";
 				overwritehost = "nextcloud-intern.endo-reg.net";
 				overwrite.cli.url = "${prot}://${host}/";
 

@@ -14,7 +14,7 @@ let
 
 	proxy-ip = agl-network-config.services.nextcloud.proxy-ip;
 
-	nexcloud-hostname = "https://${nextcloud-host-ip}:${nextcloud-port}";
+	nexcloud-hostname = "https://${nextcloud-host-ip}:${toString nextcloud-port}";
 	
 in
 	{

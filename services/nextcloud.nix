@@ -12,7 +12,7 @@ let
 	nextcloud-host-ip = agl-network-config.services.nextcloud.ip;
 	nextcloud-public-url = agl-network-config.services.nextcloud.public-url;
 
-	main-nginx-ip = agl-network-config.services.nextcloud.proxy-ip;
+	proxy-ip = agl-network-config.services.nextcloud.proxy-ip;
 	
 in
 	{
@@ -39,9 +39,6 @@ in
 			
 			home = "/var/lib/nextcloud"; # is default
 
-			trusted_proxies = [
-				main-nginx-ip
-			];
 
 			settings = {
 				overwriteprotocol = "https";
@@ -50,6 +47,7 @@ in
 
 				# Define other trusted domais apart from hostname here
 				trusted_domains = [
+					proxy-ip
 					nextcloud-domain
 					nextcloud-public-url
 					"https://${nextcloud-host-ip}/"
@@ -73,7 +71,7 @@ in
 
 			# settings = {
 			# 	trusted_proxies = [
-			# 		main-nginx-ip
+			# 		proxy-ip
 			# 	];
 
 			# 	trusted_domains = [

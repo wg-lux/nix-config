@@ -1,4 +1,8 @@
-{
+let
+
+    local-nginx-port = 6644;
+
+in {
     ssh-port = 22;
     agl-public-nas-port = 443;
     ldap-port = 389;
@@ -15,15 +19,16 @@
     endoreg-client-manager-redis-port = 6379;
     agl-monitor-redis-port = 6382;
     agl-home-django-redis-port = 6379;
-    local-nginx-port = 6644;
+    local-nginx-port = local-nginx-port;
+    nextcloud-port = local-nginx-port;
     keycloak-port = 8080;
 
     endoreg-client-manager-port = 9100;
     agl-anonymizer-port = 9123;
+    nextcloud-local-port = 9128;
     agl-home-django-port = 9129;
     agl-monitor-port = 9243;
     agl-monitor-host-port = 9243;
-    nextcloud-port = 9817;
     synology-video-port = 9946;
     synology-drive-port = 12313;
     synology-chat-port = 22323;

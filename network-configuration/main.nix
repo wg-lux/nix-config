@@ -124,6 +124,7 @@ in
             user = service-configs.nextcloud-user;
             group = service-configs.nextcloud-group;
             domain = domains.nextcloud-public-domain;
+            local-port = ports.nextcloud-local-port;
             port = ports.nextcloud-port;
             public-url = domains.nextcloud-public-url;
             proxy-ip = ips.main-nginx;

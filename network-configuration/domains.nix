@@ -5,7 +5,7 @@ let
     main-domain = "endoreg.net";
     intern-subdomain-suffix = "intern"; # i.e., all domains like *intern.endo-reg.net
 
-    nextcloud-domain-prefix = "nextcloud-${intern-subdomain-suffix}";
+    nextcloud-domain-prefix = "nextcloud";
     nextcloud-public-domain = "${nextcloud-domain-prefix}.${main-domain}";
     ldap-domain = "ldap.${main-domain}";
     grafana-domain = "grafana.${main-domain}";
@@ -29,16 +29,16 @@ in
     intern-subdomain-suffix = intern-subdomain-suffix;
     
     clients = {
-        "${s01}"= "${s01}.${main-domain}";
-        "${s02}"= "${s02}.${main-domain}";
-        "${s03}"= "${s03}.${main-domain}";
-        "${s04}"= "${s04}.${main-domain}";
-        "${gc-dev}" = "${gc-dev}.${main-domain}";
-        "${gc01}"= "${gc01}.${main-domain}";
-        "${gc02}"= "${gc02}.${main-domain}";
-        "${gc03}"= "${gc03}.${main-domain}";
-        "${gc04}"= "${gc04}.${main-domain}";
-        "${gc05}"= "${gc05}.${main-domain}";
+        "${s01}"= "${s01}-intern.${main-domain}";
+        "${s02}"= "${s02}-intern.${main-domain}";
+        "${s03}"= "${s03}-intern.${main-domain}";
+        "${s04}"= "${s04}-intern.${main-domain}";
+        "${gc-dev}" = "${gc-dev}-intern.${main-domain}";
+        "${gc01}"= "${gc01}-intern.${main-domain}";
+        "${gc02}"= "${gc02}-intern.${main-domain}";
+        "${gc03}"= "${gc03}-intern.${main-domain}";
+        "${gc04}"= "${gc04}-intern.${main-domain}";
+        "${gc05}"= "${gc05}-intern.${main-domain}";
     };
     
     nextcloud-public-domain = nextcloud-public-domain;

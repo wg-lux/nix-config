@@ -33,36 +33,35 @@ in
 {
 
     imports = [
-        ( import ./grafana.nix {
-            inherit config ip;
-            port = lm-grafana-port;
-            }
-        )
-        ( import ./promtail.nix {
-            inherit config;
-            port = lm-promtail-port;
-            }
-        )
-        ( import ./prometheus.nix {
-            inherit config;
-            port = lm-prometheus-port;
-            node-exporter-port = lm-prometheus-node-exporter-port;
-            }
-        )
-        ( import ./loki.nix {
-            inherit config;
-            port = lm-loki-port;
-            }
-        )
-        # (
-        #   import ./telegraf.nix {
-        #     inherit config pkgs hostname;
-        #   }
+        # ( import ./grafana.nix {
+        #     inherit config ip;
+        #     port = lm-grafana-port;
+        #     }
         # )
+        # ( import ./promtail.nix {
+        #     inherit config;
+        #     port = lm-promtail-port;
+        #     }
+        # )
+        # ( import ./prometheus.nix {
+        #     inherit config;
+        #     port = lm-prometheus-port;
+        #     node-exporter-port = lm-prometheus-node-exporter-port;
+        #     }
+        # )
+        # ( import ./loki.nix {
+        #     inherit config;
+        #     port = lm-loki-port;
+        #     }
+        # )
+
     ];
 
-    # Enable Telegraf
-    # services.telegraf.enable = true;
+
+    # allow firewall
+    networking.firewall.allowedTCPPorts = [
+        local-nginx-port
+    ];
 
     # # nginx must be up and configured, in most cases "local-nginx.nix" should be imported
     services.nginx.defaultListen = [

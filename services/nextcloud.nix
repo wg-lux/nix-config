@@ -15,60 +15,86 @@ let
 	proxy-ip = agl-network-config.services.nextcloud.proxy-ip;
 
 	nexcloud-hostname = "https://${nextcloud-host-ip}:${toString nextcloud-port}";
+
+	restrict-access-extraConfig = ''
+        allow 127.0.0.1;
+        allow ${agl-network-config.services.main_nginx.ip};
+        allow ${ip};
+        deny all;
+    '';
+
+	prot = "http";
+	host = "127.0.0.1";
+	dir = "nextcloud";
 	
 in
 	{
-        # Nextcloud secret
-		# sops.secrets."services/nextcloud/admin-pass" = {
-		# 	sopsFile = nextcloud-secret-path;
-		# 	path = "/etc/nextcloud-admin-pass";
-        #     # key = "services/nextcloud/admin-pass"; # by default same as sops.secrets."X", but can be changed
-        #     ## especially useful if you want to use the same secret in multiple places / with multiple users
-		# 	# owner = config.systemd.services.nextcloud.serviceConfig.User;
-        #     owner = nextcloud-system-user;
-	    # };
 
-        # Configure Firewall
-        networking.firewall.allowedTCPPorts = [ nextcloud-port ];
         environment.etc."nextcloud-admin-pass".text = "init-admin-pass";
+		# allow port 80 / 443
+		networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+		# REQUIRES LOCAL-NGINX CONFIG TO BE LOADED
+		services.nginx.virtualHosts = {
+
+			# Define internal listen address
+			"${config.services.nextcloud.hostName}" = {
+				listen = [
+					{ addr = "127.0.0.1"; port = config.services.nextcloud.local-port; };
+				];
+			};
+
+			
+			"${hostname}-intern.endo-reg.net" = {
+				# Redirect well known paths to nextcloud
+				"^~ /.well-known" = {
+					priority = 9000;
+					extraConfig = ''
+						absolute_redirect off;
+						location ~ ^/\\.well-known/(?:carddav|caldav)$ {
+							return 301 /nextcloud/remote.php/dav;
+						}
+						location ~ ^/\\.well-known/host-meta(?:\\.json)?$ {
+							return 301 /nextcloud/public.php?service=host-meta-json;
+						}
+						location ~ ^/\\.well-known/(?!acme-challenge|pki-validation) {
+							return 301 /nextcloud/index.php$request_uri;
+						}
+						try_files $uri $uri/ =404;
+					'';
+				};
+				"/nextcloud/" = {
+					priority = 9999;
+					extraConfig = ''
+					proxy_set_header X-Real-IP $remote_addr;
+					proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+					proxy_set_header X-NginX-Proxy true;
+					proxy_set_header X-Forwarded-Proto http;
+					proxy_pass http://127.0.0.1:${nextcloud-local-port}/; # tailing / is important!
+					proxy_set_header Host $host;
+					proxy_cache_bypass $http_upgrade;
+					proxy_redirect off;
+					'';
+				};
+			};
+		};
+		####
 
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud29;
-            # hostName = nextcloud-domain;
 			hostName = nexcloud-hostname;
-
-			https = true;
 	
-			extraAppsEnable = true;
-			
-			home = "/var/lib/nextcloud"; # is default
-
-			database = {
-				createLocally = true;
-			};
-
-			notify_push.bendDomainToLocalhost = true;
 
 			settings = {
-				overwriteprotocol = "https";
-				overwritehost = "nextcloud-intern.endo-reg.net";
-				overwrite.cli.url = "https://nextcloud-intern.endo-reg.net";
-
-				# Define other trusted domais apart from hostname here
-				trusted_domains = [
-					"endo-reg.net"
-					"nextcloud-intern.endo-reg.net"
-					"192.16.255.2"
-					"172.16.255.2"
-					"localhost"
-					"127.0.0.1"
-				];
-
-				trusted_proxies = [
-					proxy-ip
-
-				];
+				overwriteprotocol = prot;
+				overwritehost = host;
+				overwritewebroot = dir;
+				overwrite.cli.url = "${prot}$://{host}/${dir}/";
+				htaccess.RewriteBase = dir;
+								# Define other trusted domais apart from hostname here
+				# trusted_domains = [];
+				# trusted_proxies = [proxy-ip];
 			};
 
             # database.createLocally = true;
@@ -133,3 +159,48 @@ in
 		};
 		
 	}
+
+
+
+
+
+
+	#####
+
+
+	        # Nextcloud secret
+		# sops.secrets."services/nextcloud/admin-pass" = {
+		# 	sopsFile = nextcloud-secret-path;
+		# 	path = "/etc/nextcloud-admin-pass";
+        #     # key = "services/nextcloud/admin-pass"; # by default same as sops.secrets."X", but can be changed
+        #     ## especially useful if you want to use the same secret in multiple places / with multiple users
+		# 	# owner = config.systemd.services.nextcloud.serviceConfig.User;
+        #     owner = nextcloud-system-user;
+	    # };
+
+        # Configure Firewall
+        # networking.firewall.allowedTCPPorts = [ nextcloud-port ];
+
+
+
+					# "nextcloud.endo-reg.net" = {
+			# 	# listen = [
+			# 	#     { addr = ip; port = local-nginx-port; }
+			# 	# ];
+			# 	locations = {
+			# 			"/nextcloud/" = {
+			# 				proxyPass = "http://127.0.0.1:${toString config.services.nextcloud.local-port}/";
+			# 				proxyWebsockets = true;
+			# 				extraConfig = restrict-access-extraConfig + ''
+			# 					proxy_set_header X-Real-IP $remote_addr;
+			# 					proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			# 					proxy_set_header X-NginX-Proxy true;
+			# 					proxy_set_header X-Forwarded-Proto http;
+			# 					proxy_pass http://127.0.0.1:8080/; # tailing / is important!
+			# 					proxy_set_header Host $host;
+			# 					proxy_cache_bypass $http_upgrade;
+			# 					proxy_redirect off;
+			# 				'';
+			# 		};
+			# 	};
+			# };

@@ -116,6 +116,7 @@ in
             group = service-configs.nextcloud-group;
             domain = domains.nextcloud-public-domain;
             port = ports.nextcloud-port;
+            public-url = domains.nextcloud-public-url;
         };
 
         agl-public-nas = {

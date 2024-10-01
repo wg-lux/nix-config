@@ -16,6 +16,7 @@ let
   '';
 
   nextcloud-domain = agl-network-config.services.nextcloud.domain;
+  nextcloud-public-url = agl-network-config.services.nextcloud.public-url;
   nextcloud-port = toString agl-network-config.services.nextcloud.port;
     
 
@@ -66,8 +67,7 @@ in
       };
 
       # Nextcloud
-      # "${nextcloud-domain}"
-      "nextcloud-intern.endo-reg.net" = {
+      "${nextcloud-domain}" = {
         forceSSL = true;
         sslCertificate = sslCertificatePath;
         sslCertificateKey = sslCertificateKeyPath;

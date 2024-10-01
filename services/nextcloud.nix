@@ -10,6 +10,7 @@ let
     nextcloud-db-name = agl-network-config.services.nextcloud.db-name;
 	nextcloud-db-type = agl-network-config.services.nextcloud.db-type;
 	nextcloud-host-ip = agl-network-config.services.nextcloud.ip;
+	nextcloud-public-url = agl-network-config.services.nextcloud.public-url;
 
 	main-nginx-ip = agl-network-config.services.nextcloud.proxy-ip;
 	
@@ -46,10 +47,14 @@ in
 
 			settings = {
 				overwriteprotocol = "https";
+				overwritehost = nextcloud-domain;
+				overwrite.cli.url = nextcloud-public-url;
 
 				# Define other trusted domais apart from hostname here
 				trusted_domains = [
 					nextcloud-domain
+					nextcloud-public-url
+					"https://${nextcloud-host-ip}/"
 					"localhost"
 					"127.0.0.1"
 				];

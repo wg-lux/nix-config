@@ -21,6 +21,8 @@ in
       inherit config;
     })
     
+    (import ./hosts.nix { inherit agl-network-config;})
+
     # Console Environment
     ./zsh.nix
 

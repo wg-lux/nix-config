@@ -85,7 +85,7 @@ in
 				# overwritehost = "127.0.0.1";
 				overwritehost = "nextcloud-intern.endo-reg.net/";
 				overwrite.cli.url = "${prot}://nextcloud-intern.endo-reg.net/";
-				overwrite.cli.url = "${prot}://127.0.0.1/";
+				# overwrite.cli.url = "${prot}://127.0.0.1/";
 
 				trusted_proxies = [
 					proxy-ip

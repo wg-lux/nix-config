@@ -81,7 +81,7 @@ in
 
 			settings = {
 				overwriteprotocol = "${prot}";
-				overwritehost = "nextcloud-intern.endo-reg.net";
+				overwritehost = "127.0.0.1";
 				overwrite.cli.url = "${prot}://nextcloud-intern.endo-reg.net/";
 
 				trusted_proxies = [

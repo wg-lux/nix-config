@@ -50,7 +50,7 @@ in
 					proxy-ip
 					nextcloud-domain
 					nextcloud-public-url
-					"https://${nextcloud-host-ip}:${nextcloud-port}/"
+					"https://${nextcloud-host-ip}:${ toString nextcloud-port}/"
 					"localhost"
 					"127.0.0.1"
 				];

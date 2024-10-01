@@ -28,7 +28,7 @@ nixpkgs.lib.nixosSystem {
     
     modules = [
         ../profiles/main.nix
-        # custom-services.monitor.nixosModules.agl-monitor
+        custom-services.agl-monitor.nixosModules.agl-monitor
 
         # Custom vscode override
         sops-nix.nixosModules.sops

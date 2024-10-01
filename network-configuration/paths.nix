@@ -1,13 +1,23 @@
 let
     custom-logs-dir = "/etc/custom-logs"; # Relative to /etc
+    logging-user-dir = "etc/logging-user";
 
 in
 {
     # Paths
+
+    # Users
+    logging-user-dir = logging-user-dir;
+
     agl-home-django-path = "/home/agl-admin/agl-home-django";
     # agl-monitor-path = "/home/agl-admin/agl-monitor";
     # agl-monitor-config-json-file = "/etc/agl-monitor.json";
+    
+    
     agl-monitor-celery-signal-logfile = "${custom-logs-dir}/agl-monitor-celery-signal.log";
+    agl-monitor-service-dir = "${logging-user-dir}/agl-monitor";
+    # agl-monitor-django-secret-file = "/etc/agl-monitor-secret";
+
     nfs-share-all-local-path = "/home/agl-admin/nfs-share";
     nfs-share-all-mount-path = "/volume1/agl-share";
     # openvpnConfigPath = "/home/agl-admin/.openvpn";

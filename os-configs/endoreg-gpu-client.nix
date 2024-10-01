@@ -28,7 +28,7 @@ nixpkgs.lib.nixosSystem {
     
     modules = [
         ../profiles/main.nix
-        # custom-services.agl-monitor.nixosModules.agl-monitor
+        custom-services.agl-monitor.nixosModules.agl-monitor
 
 
         sops-nix.nixosModules.sops

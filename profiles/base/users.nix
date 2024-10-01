@@ -74,7 +74,7 @@ in
         description = "Logging User";
         extraGroups = service-user-extra-groups;
         group = service-group;
-        hashedPasswordFile = config.sops.secrets."user/nix/${logging-user-name}/pwd".path;
+        # hashedPasswordFile = config.sops.secrets."user/nix/${logging-user-name}/pwd".path;
       };
 
       "${maintenance-user-name}" = {

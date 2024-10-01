@@ -5,6 +5,7 @@
         "agl-admin"
         "maintenance-user"
         "service-user"
+        "logging-user"
       ];
     };
 

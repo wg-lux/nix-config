@@ -64,6 +64,7 @@ inputs = {
 	# agl-monitor.inputs.nixpkgs.follows = "nixpkgs";
 	
 	monitor-flake.url = "github:wg-lux/agl-monitor-flake";
+	# monitor-flake.url = "/home/agl-admin/dev/agl-monitor-flake";
 	monitor-flake.inputs.nixpkgs.follows = "nixpkgs";
 
 	## AGL G-Play Validator

@@ -154,24 +154,26 @@ in
         };
 
         agl-monitor = {
-            enable = true;
             bind = ips.localhost;
-            port = ports.agl-monitor-port;
-            custom-logs-dir = paths.custom-logs-dir;
+            user-dir = paths.agl-monitor-user-dir;
+            monitor-dir = paths.agl-monitor-service-dir;
             config-json-file = paths.agl-monitor-config-json-file;
-            user = service-configs.agl-monitor-user;
-            group = service-configs.agl-monitor-group;
-            redis-port = ports.agl-monitor-redis-port;
-            redis-bind = ips.localhost-ip;
+            custom-logs-dir = paths.custom-logs-dir;
             django-debug = service-configs.agl-monitor-django-debug;
-            django-settings-module = service-configs.agl-monitor-django-settings-module;			
             django-secret-key = "change-me"; # TODO
+            django-settings-module = service-configs.agl-monitor-django-settings-module;
+            enable = true;
+            group = service-configs.agl-monitor-group;
+            port = ports.agl-monitor-port;
+            redis-bind = ips.localhost_ip;
+            redis-port = ports.agl-monitor-redis-port;
+            user = service-configs.agl-monitor-user;
             conf = {
                 CACHES = {
                     "default" = {
                         BACKEND = "django_redis.cache.RedisCache";
                         LOCATION = "redis://localhost:${ports.agl-monitor-redis-port}/0";
-                        TIMEOUT = 300;
+                        TIMEOUT = "300";
                         OPTIONS = {
                             "CLIENT_CLASS" = "django_redis.client.DefaultClient";
                         };

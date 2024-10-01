@@ -8,7 +8,9 @@ let
 
     service-group = "service-user";
 
-    endoreg-client-pseudo-access-group = "pseudo-access";
+    endoreg-client-pseudo-access-group = "pseudo-access"; #
+
+    agl-monitor-settings-mode = "prod"; # one of "dev" or "prod"
 in
 {
     # Users
@@ -24,7 +26,7 @@ in
     agl-admin-user = agl-admin-user;
     endoreg-client-pseudo-access-group = endoreg-client-pseudo-access-group;
 
-    agl-monitor-group = "agl-monitor";
+    agl-monitor-group = service-group;
     nextcloud-group = "aglnet-public-service";
     openvpn-cert-group = "openvpn";
 
@@ -82,13 +84,13 @@ in
     agl-monitor-redis-bind = "127.0.0.1";
 
     # Misc
-    agl-monitor-django-debug = false;
+    agl-monitor-django-debug = false; # breaks if true?!  https://discourse.nixos.org/t/packaged-python-application-cannot-be-executed/42656
     endoreg-client-manager-django-debug = true;
     agl-home-django-django-debug = false;
 
 
     agl-home-django-settings-module = "endoreg_home.settings_prod";
-    agl-monitor-django-settings-module = "agl_monitor.settings_prod";
+    agl-monitor-django-settings-module = "agl_monitor.settings_${agl-monitor-settings-mode}";
     agl-anonymizer-django-settings-module = "agl_anonymizer.settings";
     endoreg-client-manager-django-settings-module = "endoreg_client_manager.settings";
 

@@ -13,6 +13,8 @@ let
 	nextcloud-public-url = agl-network-config.services.nextcloud.public-url;
 
 	proxy-ip = agl-network-config.services.nextcloud.proxy-ip;
+
+	nexcloud-hostname = "https://${nextcloud-host-ip}:${nextcloud-port}";
 	
 in
 	{
@@ -33,7 +35,8 @@ in
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud29;
-            hostName = nextcloud-domain;
+            # hostName = nextcloud-domain;
+
 			https = true;
 	
 			extraAppsEnable = true;

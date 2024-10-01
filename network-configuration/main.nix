@@ -53,10 +53,19 @@ in
     };
 
     services = {
+        
+
+        #12 Depreceate names with underscore
         main_nginx = {
             ip = ips.main-nginx;
             # port = ports.local-nginx-port; # Default ports
         };
+
+        main-nginx = {
+            ip = ips.main-nginx;
+            # port = ports.local-nginx-port; # Default ports
+        };
+
         local_nginx = {
             port = ports.local-nginx-port;
         };
@@ -117,6 +126,7 @@ in
             domain = domains.nextcloud-public-domain;
             port = ports.nextcloud-port;
             public-url = domains.nextcloud-public-url;
+            proxy-ip = ips.main-nginx;
         };
 
         agl-public-nas = {

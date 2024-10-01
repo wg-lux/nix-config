@@ -26,6 +26,8 @@ let
     openvpn-subnet = "${vpn-ip-prefix}.0";
     openvpn-subnet-suffix = "32";
 
+    nextcloud-host-ip = agl-server-02;
+
 in
 {
 
@@ -76,7 +78,7 @@ in
     main-nginx = main-nginx;
 
     ### S04
-    nextcloud = agl-server-04;
+    nextcloud = nextcloud-host-ip;
     nextcloud-proxy = main-nginx;
     agl-home-django = agl-server-04;
 

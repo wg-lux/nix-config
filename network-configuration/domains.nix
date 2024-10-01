@@ -29,16 +29,16 @@ in
     intern-subdomain-suffix = intern-subdomain-suffix;
     
     clients = {
-        "${s01} = "${s01}.${main-domain}";
-        "${s02} = "${s02}.${main-domain}";
-        "${s03} = "${s03}.${main-domain}";
-        "${s04} = "${s04}.${main-domain}";
-        "${gc-dev} = "${gc-dev}.${main-domain}";
-        "${gc01} = "${gc01}.${main-domain}";
-        "${gc02} = "${gc02}.${main-domain}";
-        "${gc03} = "${gc03}.${main-domain}";
-        "${gc04} = "${gc04}.${main-domain}";
-        "${gc05} = "${gc05}.${main-domain}";
+        "${s01}"= "${s01}.${main-domain}";
+        "${s02}"= "${s02}.${main-domain}";
+        "${s03}"= "${s03}.${main-domain}";
+        "${s04}"= "${s04}.${main-domain}";
+        "${gc-dev}" = "${gc-dev}.${main-domain}";
+        "${gc01}"= "${gc01}.${main-domain}";
+        "${gc02}"= "${gc02}.${main-domain}";
+        "${gc03}"= "${gc03}.${main-domain}";
+        "${gc04}"= "${gc04}.${main-domain}";
+        "${gc05}"= "${gc05}.${main-domain}";
     };
     
     nextcloud-public-domain = nextcloud-public-domain;

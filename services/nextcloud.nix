@@ -6,6 +6,7 @@ let
 	nextcloud-system-user = agl-network-config.services.nextcloud.user;
 	nextcloud-system-group = agl-network-config.services.nextcloud.group;
 	nextcloud-port = agl-network-config.services.nextcloud.port;
+	nextcloud-local-port = agl-network-config.services.nextcloud.local-port;
 	nextcloud-domain = agl-network-config.services.nextcloud.domain;
     nextcloud-db-name = agl-network-config.services.nextcloud.db-name;
 	nextcloud-db-type = agl-network-config.services.nextcloud.db-type;

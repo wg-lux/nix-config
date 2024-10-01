@@ -11,6 +11,10 @@ in
     networking.firewall.allowedTCPPorts = [ port ];
 
     services.nginx = {
+        defaultListen = [
+            { addr = "${config.networking.hostName }-intern.endo-reg.net"; port = port; }
+        ];
+
         enable = true;
         recommendedProxySettings = true;
         recommendedOptimisation = true;

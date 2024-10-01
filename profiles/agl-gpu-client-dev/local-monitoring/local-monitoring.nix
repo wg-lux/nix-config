@@ -64,38 +64,34 @@ in
     # Enable Telegraf
     # services.telegraf.enable = true;
 
-    # # nginx must be up and configured, in most cases "local-nginx.nix" should be imported
-    services.nginx.defaultListen = [
-        { addr = "${config.networking.hostName }-intern.endo-reg.net"; port = local-nginx-port; }
-    ];
     services.nginx.virtualHosts = {
 
         ### internal usage
-        "${hostname}-intern.endo-reg.net" = {
-            # listen = [
-            #     { addr = ip; port = local-nginx-port; }
-            # ];
-            locations = {
-                "/grafana/" = {
-                    proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
-                    proxyWebsockets = true;
-                    extraConfig = restrict-access-extraConfig;
-                };
-                "/prometheus/" = {
-                    proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
-                    extraConfig = restrict-access-extraConfig;
-                };
-                "/loki/" = {
-                    proxyPass = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
-                    extraConfig = restrict-access-extraConfig;
-                };
-                "/promtail/" = {
-                    proxyPass = "http://127.0.0.1:${toString config.services.promtail.configuration.server.http_listen_port}";
-                    extraConfig = restrict-access-extraConfig;
-                };
-            };
-            # listen = [{}]; default definition in "local-nginx.nix" ${ip}:{local-nginx-port};
-        };
+        # "${hostname}-intern.endo-reg.net" = {
+        #     # listen = [
+        #     #     { addr = ip; port = local-nginx-port; }
+        #     # ];
+        #     locations = {
+        #         "/grafana/" = {
+        #             proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
+        #             proxyWebsockets = true;
+        #             extraConfig = restrict-access-extraConfig;
+        #         };
+        #         "/prometheus/" = {
+        #             proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
+        #             extraConfig = restrict-access-extraConfig;
+        #         };
+        #         "/loki/" = {
+        #             proxyPass = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
+        #             extraConfig = restrict-access-extraConfig;
+        #         };
+        #         "/promtail/" = {
+        #             proxyPass = "http://127.0.0.1:${toString config.services.promtail.configuration.server.http_listen_port}";
+        #             extraConfig = restrict-access-extraConfig;
+        #         };
+        #     };
+           # # listen = [{}]; default definition in "local-nginx.nix" ${ip}:{local-nginx-port};
+        # };
     };
 
 }

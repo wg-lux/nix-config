@@ -54,6 +54,8 @@ in
 					# { addr = nextcloud-host-ip; port = 443; }
 					{ addr = "localhost"; port = 80; }
 					{ addr = "localhost"; port = 443; }
+					{ addr = "nextcloud.endo-reg.net"; port = 80; }
+					{ addr = "nextcloud.endo-reg.net"; port = 443; }
 					# { addr = "127.0.0.1"; port = 80; }
 					# { addr = "127.0.0.1"; port = 443; }
 				];

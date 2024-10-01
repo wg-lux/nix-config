@@ -2,7 +2,8 @@ let
     main-domain = "endoreg.net";
     intern-subdomain-suffix = "intern"; # i.e., all domains like *intern.endo-reg.net
 
-    nextcloud-public-domain = "nextcloud.${main-domain}";
+    nextcloud-domain-prefix = "nextcloud";
+    nextcloud-public-domain = "${nextcloud-domain-prefix}.${main-domain}";
     ldap-domain = "ldap.${main-domain}";
     grafana-domain = "grafana.${main-domain}";
 in
@@ -10,6 +11,7 @@ in
     # Domains
     main-domain = main-domain;
     intern-subdomain-suffix = intern-subdomain-suffix;
+    
     
     nextcloud-public-domain = nextcloud-public-domain;
     ldap-domain = ldap-domain;

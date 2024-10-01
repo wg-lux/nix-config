@@ -19,7 +19,7 @@ let
 	restrict-access-extraConfig = ''
         allow 127.0.0.1;
         allow ${agl-network-config.services.main_nginx.ip};
-        allow ${ip};
+        allow ${nextcloud-host-ip};
         deny all;
     '';
 

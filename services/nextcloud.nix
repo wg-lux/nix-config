@@ -9,6 +9,7 @@ let
 	nextcloud-domain = agl-network-config.services.nextcloud.domain;
     nextcloud-db-name = agl-network-config.services.nextcloud.db-name;
 	nextcloud-db-type = agl-network-config.services.nextcloud.db-type;
+	nextcloud-host-ip = agl-network-config.services.nextcloud.ip;
 
 	main-nginx-ip = agl-network-config.services.nextcloud.proxy-ip;
 	
@@ -26,15 +27,33 @@ in
 
         # Configure Firewall
         networking.firewall.allowedTCPPorts = [ nextcloud-port ];
-        environment.etc."nextcloud-admin-pass".text = "PWD";
+        environment.etc."nextcloud-admin-pass".text = "init-admin-pass";
 
 		services.nextcloud = {
 			enable = true;
 			package = pkgs.nextcloud29;
-			# hostName = hostname;
-            hostName = "localhost";
-			# https = true;
-            # nginx.recommendedHttpHeaders = true;
+            hostName = nextcloud-host-ip;
+            hostName = "nextcloud-intern.endo-reg.net";
+	
+	
+			extraApssEnable = true;
+			
+			home = "/var/lib/nextcloud"; # is default
+
+			trusted_proxies = [
+				main-nginx-ip
+			];
+
+			settings = {
+				overwriteprotocol = "https";
+
+				# Define other trusted domais apart from hostname here
+				trusted_domains = [
+					nextcloud-domain
+					"localhost"
+					"127.0.0.1"
+				];
+			};
 
             # database.createLocally = true;
 			config = {

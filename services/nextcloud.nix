@@ -82,7 +82,7 @@ in
 			settings = {
 				overwriteprotocol = "${prot}";
 				overwritehost = "nextcloud-intern.endo-reg.net";
-				overwrite.cli.url = "${prot}://${host}/";
+				overwrite.cli.url = "${prot}://nextcloud-intern.endo-reg.net/";
 
 				trusted_proxies = [
 					proxy-ip

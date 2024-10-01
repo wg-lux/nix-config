@@ -66,13 +66,14 @@ in
       };
 
       # Nextcloud
-      "${nextcloud-domain}" = {
+      # "${nextcloud-domain}"
+      "nextcloud-intern.endo-reg.net" = {
         forceSSL = true;
         sslCertificate = sslCertificatePath;
         sslCertificateKey = sslCertificateKeyPath;
         locations."/" = {
-          proxyPass = "http://${agl-network-config.services.nextcloud.ip}:${nextcloud-port}";
-          extraConfig = all-extraConfig;
+          proxyPass = "https://${agl-network-config.services.nextcloud.ip}:${nextcloud-port}";
+          extraConfig = all-extraConfig + intern-endoreg-net-extraConfig;
         };
       };
 

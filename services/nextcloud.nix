@@ -50,7 +50,7 @@ in
 
 			
 			# "${hostname}-intern.endo-reg.net" = {
-			"localhost" = {
+			# "localhost" = {
 				# Redirect well known paths to nextcloud
 				"^~ /.well-known" = {
 					priority = 9000;
@@ -68,18 +68,20 @@ in
 						try_files $uri $uri/ =404;
 					'';
 				};
-				"/nextcloud/" = {
-					priority = 9999;
-					extraConfig = ''
-					proxy_set_header X-Real-IP $remote_addr;
-					proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-					proxy_set_header X-NginX-Proxy true;
-					proxy_set_header X-Forwarded-Proto http;
-					proxy_pass http://127.0.0.1:${toString nextcloud-local-port}/; # tailing / is important!
-					proxy_set_header Host $host;
-					proxy_cache_bypass $http_upgrade;
-					proxy_redirect off;
-					'';
+				locations = {
+					"/nextcloud/" = {
+						priority = 9999;
+						extraConfig = ''
+						proxy_set_header X-Real-IP $remote_addr;
+						proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+						proxy_set_header X-NginX-Proxy true;
+						proxy_set_header X-Forwarded-Proto http;
+						proxy_pass http://127.0.0.1:${toString nextcloud-local-port}/; # tailing / is important!
+						proxy_set_header Host $host;
+						proxy_cache_bypass $http_upgrade;
+						proxy_redirect off;
+						'';
+					};
 				};
 			};
 		};

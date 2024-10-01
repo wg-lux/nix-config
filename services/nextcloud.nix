@@ -43,7 +43,7 @@ in
 				listen = [
 					{ 
 						addr = "127.0.0.1"; 
-						port = config.services.nextcloud.local-port; 
+						port = nextcloud-local-port; 
 					}
 				];
 				locations = {

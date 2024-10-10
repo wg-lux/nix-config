@@ -95,41 +95,15 @@
   in {
     nixosConfigurations = os-configurations;
 
-    nixosConfigurations."your-system" = nixpkgs.lib.nixosSystem {
-      system = base-config.system;
       
       modules = [
         # Enable Docker service
-        { config, pkgs, ... }: {
+        {
           virtualisation.docker.enable = true;
-
-          # Add your user to the docker group for access
-          users.users.agl-admin.extraGroups = [ "docker" ];
-
-          # Optionally enable Docker rootless mode
-          # virtualisation.docker.rootless.enable = true;
-
-          # Optionally configure Docker daemon settings
-          # virtualisation.docker.daemon.settings = {
-          #   data-root = "/var/lib/docker";
-          #   userland-proxy = false;
-          #   experimental = true;
-          #   metrics-addr = "0.0.0.0:9323";
-          #   ipv6 = true;
-          #   fixed-cidr-v6 = "fd00::/80";
-          # };
         }
-
-        # Import custom services and modules
-        ./services/docker.nix
-        ./profiles/main.nix
-        custom-services.agl-monitor.nixosModules.agl-monitor
-        sops-nix.nixosModules.sops
-        vscode-server.nixosModules.default
-        ({ config, pkgs, ... }: {
-          services.vscode-server.enable = true;
-        })
       ];
+
     };
-  };
 }
+
+

@@ -34,6 +34,7 @@ nixpkgs.lib.nixosSystem {
         sops-nix.nixosModules.sops
         vscode-server.nixosModules.default 
 
+
         # Set custom nix config settings
         ({config, pkgs, ... }: {
             services.vscode-server.enable = true;

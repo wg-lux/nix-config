@@ -25,6 +25,7 @@ nixpkgs.lib.nixosSystem {
         inherit agl-network-config;
         
     };
+
     
     modules = [
         ../profiles/main.nix

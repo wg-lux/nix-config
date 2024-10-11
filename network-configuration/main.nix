@@ -173,6 +173,7 @@ in
             anonymizer-root = paths.anonymizer-root;
             anonymizer-temp-root = paths.anonymizer-temp-root;
 
+            anonymizer-temp_dir = paths.anonymizer-temp_dir;
             anonymizer-blurred_dir = paths.anonymizer-blurred_dir;
             anonymizer-csv_dir = paths.anonymizer-csv_dir;
             anonymizer-results_dir = paths.anonymizer-results_dir;

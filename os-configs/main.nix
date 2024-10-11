@@ -8,6 +8,7 @@ let
 
     hostnames = os-base-args.hostnames;
     agl-network-config = os-base-args.agl-network-config;
+	custom-packages = args.custom-packages;
 
     os-configs = {
 		"${hostnames.server-01}" = import ./base-server.nix (
@@ -43,6 +44,7 @@ let
 				hostname = hostnames.gpu-client-dev;
 				extra-modules = extra-modules;
 				custom-services = custom-services;
+				custom-packages = custom-packages;
 			}
 		);
 		"${hostnames.gpu-client-01}" = import ./endoreg-gpu-client.nix (

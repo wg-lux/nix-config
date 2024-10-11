@@ -54,6 +54,10 @@ in
     # Custom Services
     agl-monitor-user = logging-user;
 
+    # Anonymizer
+
+    agl-anonymizer-settings-module = "agl_anonymizer.settings";
+
     # Sops
     sops-default-format = "yaml";
     sops-user = agl-admin-user;

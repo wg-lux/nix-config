@@ -165,6 +165,28 @@ in
 	
         };
 
+        ##### Anonymizer
+        agl-anonymizer = {
+            # ip = ips.agl-anonymizer;
+            enable = true;
+            port = ports.agl-anonymizer-port;
+            anonymizer-root = paths.anonymizer-root;
+            anonymizer-temp-root = paths.anonymizer-temp-root;
+
+            anonymizer-blurred_dir = paths.anonymizer-blurred_dir;
+            anonymizer-csv_dir = paths.anonymizer-csv_dir;
+            anonymizer-results_dir = paths.anonymizer-results_dir;
+            anonymizer-models_dir = paths.anonymizer-models_dir;
+            anonymizer-input_dir = paths.anonymizer-input_dir;
+
+            
+            user = service-configs.base-service-user;
+            group = service-configs.endoreg-client-pseudo-access-group;
+            django-settings-module = service-configs.agl-anonymizer-django-settings-module;
+
+        };
+
+        ##### Monitor
         agl-monitor = {
             host-ip = ips.agl-monitor-host;
             host-port = ports.agl-monitor-host-port;

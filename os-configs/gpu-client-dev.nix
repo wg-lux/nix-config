@@ -12,8 +12,11 @@ let
 
     sops-nix = extra-modules.sops-nix;
     vscode-server = extra-modules.vsconde-server;
+    custom-packages = args.custom-packages;
 
+    ##### MIGRATE AFTER TESTING
 
+    #####
     
 in
 nixpkgs.lib.nixosSystem {
@@ -25,11 +28,18 @@ nixpkgs.lib.nixosSystem {
         inherit agl-network-config;
         
     };
+
+    ###### MIGRATE AFTER TESTING
+
+    services.agl-anonymizer = agl-network-config.services.agl-anonymizer;
+
+    ############################
     
     modules = [
         ../profiles/main.nix
         custom-services.agl-monitor.nixosModules.agl-monitor
-
+        custom-packages.endoreg-usb-encrypter.nixosModules.encrypter
+        custom-services.agl-anonymizer.nixosModules.agl-anonymizer
         # Custom vscode override
         sops-nix.nixosModules.sops
         vscode-server.nixosModules.default 

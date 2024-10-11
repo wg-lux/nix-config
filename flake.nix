@@ -67,6 +67,11 @@ inputs = {
 	# monitor-flake.url = "/home/agl-admin/dev/agl-monitor-flake";
 	monitor-flake.inputs.nixpkgs.follows = "nixpkgs";
 
+	endoreg-usb-encrypter = {
+		url = "github:wg-lux/endoreg-usb-encrypter";
+		inputs.nixpkgs.follows = "nixpkgs";
+	};
+
 	## AGL G-Play Validator
 	# agl-g-play-validator.url = "github:wg-lux/agl-g-play-validator";
 	# agl-g-play.url = "./services/agl-g-play";
@@ -103,6 +108,10 @@ let
 	agl-network-config = import ./network-configuration/main.nix;
 	hostnames = agl-network-config.hostnames;
 
+	custom-packages = {
+		endoreg-usb-encrypter = inputs.endoreg-usb-encrypter;
+	};
+
 	custom-services = {
 		agl-monitor = inputs.monitor-flake;
 		agl-anonymizer = inputs.agl-anonymizer;
@@ -131,6 +140,7 @@ let
 			agl-network-config = agl-network-config;
 			extra-modules = extra-modules;
 			custom-services = custom-services;
+			custom-packages = custom-packages;
 		}
 	);
 	os-configurations = _os-configurations.os-configs;

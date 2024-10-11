@@ -2,9 +2,23 @@ let
     custom-logs-dir = "/etc/custom-logs"; # Relative to /etc
     logging-user-dir = "etc/logging-user";
 
+
+    anonymizer-root = "/etc/agl-anonymizer";
+    anonymizer-temp-root = "/etc/agl-anonymizer-temp";
+
 in
 {
     # Paths
+    anonymizer-root = anonymizer-root;
+    anonymizer-temp-root = anonymizer-temp-root;
+
+    anonymizer-temp-dir = "${anonymizer-temp-root}/temp";
+    anonymizer-blurred_dir = "${anonymizer-root}/blurred_results";
+    anonymizer-csv_dir = "${anonymizer-root}/csv_training_data";
+    anonymizer-results_dir = "${anonymizer-root}/results";
+    anonymizer-models_dir = "${anonymizer-root}/models";
+    # needs to be implemented
+    anonymizer-input_dir = "${anonymizer-root}/input";
 
     # Users
     logging-user-dir = logging-user-dir;

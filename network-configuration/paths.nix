@@ -26,7 +26,8 @@ in
     agl-home-django-path = "/home/agl-admin/agl-home-django";
     # agl-monitor-path = "/home/agl-admin/agl-monitor";
     # agl-monitor-config-json-file = "/etc/agl-monitor.json";
-    
+
+    agl-anonymizer-working-dir = "/etc/agl-anonymizer";
     
     agl-monitor-celery-signal-logfile = "${custom-logs-dir}/agl-monitor-celery-signal.log";
     agl-monitor-service-dir = "${logging-user-dir}/agl-monitor";

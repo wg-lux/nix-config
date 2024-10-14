@@ -18,6 +18,9 @@ let
     admin-user = agl-network-config.users.admin-user;
     center-user = agl-network-config.users.center-user;
 
+    hostname = config.networking.hostName;
+    aglnet-ip = agl-network-config.ips."${hostname}";
+
     timer-on-calendar = custom-logs-conf.openvpn-custom-log-timer-on-calendar;
 
     scriptPath = pkgs.writeShellScriptBin "${custom-log-script-name}" ''#!/usr/bin/env bash
@@ -32,7 +35,7 @@ let
 
         # Create log file if it doesn't exist and add a header if empty
         if [ ! -f "$LOGFILE" ]; then
-            echo "Date,Service_Status,Ping_VPN,Ping_WWW,triggeredVpnRestart,vpnRestartSuccess" > "$LOGFILE"
+            echo "datetime,device,aglnet_ip,vpn_service_status,vpn_service_restart_attempt,vpn_service_restart_success,ping_vpn,ping_www" > "$LOGFILE"
 
             # Ensure the correct owner, group, and permissions
             chown ${service-user}:${service-group} "$LOGFILE"
@@ -88,12 +91,12 @@ let
         PING_WWW=$(check_ping ${www-ip})
 
         # Initialize variables for VPN restart
-        TRIGGERED_VPN_RESTART="no"
+        TRIGGERED_VPN_RESTART="False"
         VPN_RESTART_SUCCESS="n/a"
 
         # Check if ping to VPN failed and attempt to restart if needed
         if [ "$PING_VPN" = "failure" ]; then
-            TRIGGERED_VPN_RESTART="yes"
+            TRIGGERED_VPN_RESTART="True"
             VPN_RESTART_SUCCESS=$(restart_vpn_service)
             
             if [ "$VPN_RESTART_SUCCESS" = "failure" ]; then
@@ -105,7 +108,7 @@ let
         fi
 
         # Append results to the log file
-        echo "$TIMESTAMP,$SERVICE_STATUS,$PING_VPN,$PING_WWW,$TRIGGERED_VPN_RESTART,$VPN_RESTART_SUCCESS" >> "$LOGFILE"
+        echo "$TIMESTAMP,${hostname},${aglnet-ip},$SERVICE_STATUS,$TRIGGERED_VPN_RESTART,$VPN_RESTART_SUCCESS,$PING_VPN,$PING_WWW" >> "$LOGFILE"
 
         # Log completion or errors to systemd journal
         if [ "$SERVICE_STATUS" = "inactive" ]; then
@@ -115,7 +118,6 @@ let
         if [ "$PING_VPN" = "failure" ] || [ "$PING_WWW" = "failure" ]; then
             echo "Ping failed to either ${vpn-host-ip} or ${www-ip}." | systemd-cat -t openvpn-aglNet-custom-logger
         fi
-
   '';
 
 in

@@ -1,6 +1,6 @@
 let
     custom-logs-dir = "/etc/custom-logs"; # Relative to /etc
-    logging-user-dir = "etc/logging-user";
+    logging-user-dir = "/etc/logging-user";
 
 
     anonymizer-root = "/etc/agl-anonymizer";

@@ -31,7 +31,10 @@ nixpkgs.lib.nixosSystem {
 
     ###### MIGRATE AFTER TESTING
 
-    services.agl-anonymizer = agl-network-config.services.agl-anonymizer;
+    # services.agl-anonymizer = agl-network-config.services.agl-anonymizer;
+    # services.agl-anonymizer = {
+    #     enable = true;
+    # };
 
     ############################
     

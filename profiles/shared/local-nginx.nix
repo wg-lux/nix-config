@@ -16,39 +16,18 @@ in
         # ];
 
         enable = true;
-        # recommendedProxySettings = true;
-        # recommendedOptimisation = true;
-        # recommendedGzipSettings = true;
-        # recommendedTlsSettings = true;
-        # appendHttpConfig = ''
-        #     proxy_set_header Host $host;
-        #     proxy_set_header X-Forwarded-Host $host;
-        #     proxy_set_header X-Forwarded-Proto $scheme;
-        #     proxy_set_header X-Real-IP $remote_addr;
-        #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        #     proxy_ssl_server_name on;
-        #     proxy_pass_header Authorization;
-        # '';
+        recommendedProxySettings = true;
+        recommendedOptimisation = true;
+        recommendedGzipSettings = true;
+        # recommendedTlsSettings = true;    
 
-        
-
-        # Doesnt seem to work? #FIXME
-        # defaultListen = [
-        #     {
-        #         addr = ip;
-        #         port = port;
-        #     }
-        # ];
-
-        # appendHttpConfig = ''
-        #     proxy_set_header Host $host;
-        #     proxy_set_header X-Forwarded-Host $host;
-        #     proxy_set_header X-Forwarded-Proto $scheme;
-        #     proxy_set_header X-Real-IP $remote_addr;
-        #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        #     proxy_ssl_server_name on;
-        #     proxy_pass_header Authorization;
-        # '';
+        virtualHosts = {
+            "monitor.local" = {
+                locations."/" = {
+                proxyPass = "http://127.0.0.1:9999";
+                };
+            };
+        };
     };
 
 }

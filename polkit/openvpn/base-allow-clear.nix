@@ -1,12 +1,13 @@
 {
-    agl-network-config, 
+    agl-network-config,
     script-path,
     ...
-}:
+}@inputs:
 let
-    logging-conf = agl-network-config.custom-logs;
+    openvpn-config = agl-network-config.services.openvpn;
     admin-user = agl-network-config.users.admin-user;
-    script-name = logging-conf.openvpn-custom-log-script-name;
+    logger-user = openvpn-config.logger-config.user;
+    script-name = openvpn-config.logger-config.clear-log-script-name;
 
 in
 {
@@ -14,8 +15,17 @@ in
         polkit.addRule(function(action, subject) {
             if (
                 action.id == "org.freedesktop.policykit.exec" &&
-                action.lookup("program") == "${script-path}/bin/${script-name}" &&
+                action.lookup("program") == "${script-path}/bin/${clear-log-script-name}" &&
                 subject.name == "${admin-user}"
+            ) {
+                return polkit.Result.YES;
+            }
+        });
+        polkit.addRule(function(action, subject) {
+            if (
+                action.id == "org.freedesktop.policykit.exec" &&
+                action.lookup("program") == "${script-path}/bin/${script-name}" &&
+                subject.name == "${logger-user}"
             ) {
                 return polkit.Result.YES;
             }

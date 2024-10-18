@@ -63,14 +63,14 @@ inputs = {
 	# agl-monitor.url = "./services/agl-monitor";
 	# agl-monitor.inputs.nixpkgs.follows = "nixpkgs";
 	
-	monitor-flake.url = "github:wg-lux/agl-monitor-flake";
+	# monitor-flake.url = "github:wg-lux/agl-monitor-flake";
 	# monitor-flake.url = "/home/agl-admin/dev/agl-monitor-flake";
-	monitor-flake.inputs.nixpkgs.follows = "nixpkgs";
+	# monitor-flake.inputs.nixpkgs.follows = "nixpkgs";
 
-	endoreg-usb-encrypter = {
-		url = "github:wg-lux/endoreg-usb-encrypter";
-		inputs.nixpkgs.follows = "nixpkgs";
-	};
+	# endoreg-usb-encrypter = {
+		# url = "github:wg-lux/endoreg-usb-encrypter";
+		# inputs.nixpkgs.follows = "nixpkgs";
+	# };
 
 	## AGL G-Play Validator
 	# agl-g-play-validator.url = "github:wg-lux/agl-g-play-validator";
@@ -78,15 +78,15 @@ inputs = {
 	# agl-g-play.inputs.nixpkgs.follows = "nixpkgs";
 
 
-	agl-anonymizer.url = "github:wg-lux/agl-anonymizer-flake";
-	agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
+	# agl-anonymizer.url = "github:wg-lux/agl-anonymizer-flake";
+	# agl-anonymizer.inputs.nixpkgs.follows = "nixpkgs";
   };
 
 
 outputs = { 
-self, nixpkgs, nix-index-database,
-vscode-server, sops-nix, 
-...
+	self, nixpkgs, nix-index-database,
+	vscode-server, sops-nix, 
+	...
 }@inputs: #
 
 let
@@ -106,15 +106,14 @@ let
 	};
 
 	agl-network-config = import ./network-configuration/main.nix;
-	hostnames = agl-network-config.hostnames;
 
 	custom-packages = {
-		endoreg-usb-encrypter = inputs.endoreg-usb-encrypter;
+		# endoreg-usb-encrypter = inputs.endoreg-usb-encrypter;
 	};
 
 	custom-services = {
-		agl-monitor = inputs.monitor-flake;
-		agl-anonymizer = inputs.agl-anonymizer;
+		# agl-monitor = inputs.monitor-flake;
+		# agl-anonymizer = inputs.agl-anonymizer;
 	};
 
 	extra-modules = {

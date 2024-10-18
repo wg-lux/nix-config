@@ -1,91 +1,86 @@
 let
     vpn-ip-prefix = "172.16.255";
+    vpn-subnet = "${vpn-ip-prefix}.0/24";
+    localhost = "localhost";
+    localhost-ip = "127.0.0.1";
 
-    ## Servers
-    agl-server-01 = "${vpn-ip-prefix}.1";
-    agl-server-01-local = "192.168.179.18";
-    agl-server-02 = "${vpn-ip-prefix}.2";
-    agl-server-03 = "${vpn-ip-prefix}.3";
-    agl-server-04 = "${vpn-ip-prefix}.4";
-
-    agl-nas-01 = "${vpn-ip-prefix}.120";
-    agl-nas-02 = "${vpn-ip-prefix}.121";
+    hostnames = import ./hostnames.nix;
 
     ## Clients
-    agl-gpu-client-dev = "${vpn-ip-prefix}.140";
-    agl-gpu-client-01 = "${vpn-ip-prefix}.141";
-    agl-gpu-client-02 = "${vpn-ip-prefix}.142";
-    agl-gpu-client-03 = "${vpn-ip-prefix}.143";
-    agl-gpu-client-04 = "${vpn-ip-prefix}.144";
-    agl-gpu-client-05 = "${vpn-ip-prefix}.145";
+    clients = {
+        server-01 = "${vpn-ip-prefix}.1";
+        server-02 = "${vpn-ip-prefix}.2";
+        server-03 = "${vpn-ip-prefix}.3";
+        server-04 = "${vpn-ip-prefix}.4";
+        gpu-client-dev = "${vpn-ip-prefix}.140";
+        gpu-client-01 = "${vpn-ip-prefix}.141";
+        gpu-client-02 = "${vpn-ip-prefix}.142";
+        gpu-client-03 = "${vpn-ip-prefix}.143";
+        gpu-client-04 = "${vpn-ip-prefix}.144";
+        gpu-client-05 = "${vpn-ip-prefix}.145";
+    };
 
-    main-nginx = agl-server-03;
+    by-hostname = {
+        "${hostnames.server-01} = "${vpn-ip-prefix}.1";
+        "${hostnames.server-02} = "${vpn-ip-prefix}.2";
+        "${hostnames.server-03} = "${vpn-ip-prefix}.3";
+        "${hostnames.server-04} = "${vpn-ip-prefix}.4";
+        "${hostnames.gpu-client-dev} = "${vpn-ip-prefix}.140";
+        "${hostnames.gpu-client-01} = "${vpn-ip-prefix}.141";
+        "${hostnames.gpu-client-02} = "${vpn-ip-prefix}.142";
+        "${hostnames.gpu-client-03} = "${vpn-ip-prefix}.143";
+        "${hostnames.gpu-client-04} = "${vpn-ip-prefix}.144";
+        "${hostnames.gpu-client-05} = "${vpn-ip-prefix}.145";
+    };
 
-    openvpn-host-ip = agl-server-01;
-    openvpn-host-local-ip = agl-server-01-local;
-    openvpn-subnet = "${vpn-ip-prefix}.0";
-    openvpn-subnet-suffix = "32";
 
-    nextcloud-host-ip = agl-server-02;
+
+    # services
+
+    ## S01
+    openvpn = {
+        host = openvpn-host-ip;
+        # host-local = openvpn-host-local-ip;
+        subnet = "${vpn-ip-prefix}.0";
+        subnet-suffix = "32";
+    };
+
+    ## S02
+    monitor = {
+        host = clients.server-02;
+    };
+
+    nextcloud = {
+        host = clients.server-02;
+    };
+    
+    ## S03
+    main-nginx = {
+        host = clients.server-03;
+    };
+
+
+    nextcloud-host-ip = server-02;
 
 in
 {
-
-    localhost = "localhost";
-    localhost_ip = "127.0.0.1";
+    localhost = localhost;
+    localhost-ip = localhost-ip;
     vpn-ip-prefix = vpn-ip-prefix;
+    vpn-subnet = vpn-subnet;
 
-    ######12 ALSO REFACTOR "agl"
-    agl-server-01 = agl-server-01;
-    agl-server-02 = agl-server-02;
-    agl-server-03 = agl-server-03;
-    agl-server-04 = agl-server-04;
+    clients = clients;
+    by-hostnames = by-hostname;
 
-    agl-nas-01 = agl-nas-01;
-    agl-nas-02 = agl-nas-02;
+    # S01
+    openvpn = openvpn;
 
-    agl-gpu-client-dev = agl-gpu-client-dev;
-    agl-gpu-client-02 = agl-gpu-client-02;
-    agl-gpu-client-03 = agl-gpu-client-03;
-    agl-gpu-client-04 = agl-gpu-client-04;
-    agl-gpu-client-05 = agl-gpu-client-05;
-    ########
-
-    server-01 = agl-server-01;
-    server-02 = agl-server-02;
-    server-03 = agl-server-03;
-    server-04 = agl-server-04;
-    gpu-client-dev = agl-gpu-client-dev;
-    gpu-client-01 = agl-gpu-client-01;
-    gpu-client-02 = agl-gpu-client-02;
-    gpu-client-03 = agl-gpu-client-03;
-    gpu-client-04 = agl-gpu-client-04;
-    gpu-client-05 = agl-gpu-client-05;
-
-
-
-    ## Services
-    ### S01
-    openvpn-host-ip = openvpn-host-ip;
-    openvpn-host-local-ip = openvpn-host-local-ip;
-    openvpn-subnet = openvpn-subnet;
-    openvpn-subnet-suffix = openvpn-subnet-suffix;
-
-    ### S02
-    agl-monitor-host = agl-server-02;
+    # S02
+    monitor = monitor;
+    nextcloud = nextcloud;
 
     ### S03
     main-nginx = main-nginx;
 
-    ### S04
-    nextcloud = nextcloud-host-ip;
-    nextcloud-proxy = main-nginx;
-    agl-home-django = agl-server-04;
-
-    ### NAS02
-    synology-service = agl-nas-02;
-    synology-drive = agl-nas-02;
-    synology-chat = agl-nas-02;
-    synology-video = agl-nas-02;
 
 }

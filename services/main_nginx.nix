@@ -4,14 +4,14 @@
     ... 
 }:
 let
-  sslCertificatePath = "/etc/endoreg-cert/__endo-reg_net_chain.pem";
-  sslCertificateKeyPath = "/etc/endoreg-cert/endo-reg-net-lower-decrypted.key";
+  # sslCertificatePath = "/etc/endoreg-cert/__endo-reg_net_chain.pem";
+  # sslCertificateKeyPath = "/etc/endoreg-cert/endo-reg-net-lower-decrypted.key";
 
   all-extraConfig = ''
     proxy_headers_hash_bucket_size 128;
   '';
   intern-endoreg-net-extraConfig = ''
-    allow 172.16.255.0/24; 
+    allow 172.16.255.0/24; # Refactor
     deny all;
   '';
 

@@ -5,11 +5,6 @@ let
     main-domain = "endoreg.net";
     intern-subdomain-suffix = "intern"; # i.e., all domains like *intern.endo-reg.net
 
-    nextcloud-domain-prefix = "nextcloud";
-    nextcloud-public-domain = "${nextcloud-domain-prefix}-intern.${main-domain}";
-    ldap-domain = "ldap.${main-domain}";
-    grafana-domain = "grafana.${main-domain}";
-
     s01 = hostnames.server-01;
     s02 = hostnames.server-02;
     s03 = hostnames.server-03;
@@ -22,11 +17,26 @@ let
     gc05 = hostnames.gpu-client-05;
 
 
+    # Keycloak
+    keycloak.domain = "keycloak.${main-domain}";
+    keycloak.url = "https://${keycloak.domain}/";
+
+
+    # Endoreg Home
+    endoreg-home.domain = "home.${main-domain}";
+    endoreg-home.url = "https://${endoreg-home.domain}/";
+
+    # Local Monitor
+    monitor-local.domain = "monitor-local.${main-domain}";
+
 in
 {
     # Domains
     main-domain = main-domain;
     intern-subdomain-suffix = intern-subdomain-suffix;
+    
+    keycloak = keycloak;
+    endoreg-home = endoreg-home;
     
     clients = {
         "${s01}"= "${s01}-intern.${main-domain}";
@@ -40,15 +50,5 @@ in
         "${gc04}"= "${gc04}-intern.${main-domain}";
         "${gc05}"= "${gc05}-intern.${main-domain}";
     };
-    
-    nextcloud-public-domain = nextcloud-public-domain;
-    ldap-domain = ldap-domain;
-    grafana-domain = grafana-domain;
-
-    # URLS
-    nextcloud-public-url = "https://${nextcloud-public-domain}/";
-    ldap-url = "https://${ldap-domain}";
-    grafana-url = "https://${grafana-domain}/";
-
     
 }

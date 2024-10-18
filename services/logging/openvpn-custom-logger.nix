@@ -1,29 +1,34 @@
-{ config, lib, pkgs, agl-network-config, ... }:
+{ config, lib, pkgs, agl-network-config, ... }@inputs:
 
 let
-    openvpn-conf = agl-network-config.services.openvpn;
-    custom-logs-conf = agl-network-config.custom-logs;
+    hostname = config.networking.hostName;
 
-    service-user = custom-logs-conf.owner;
-    service-group = custom-logs-conf.group;
+    openvpn-config = agl-network-config.services.openvpn;
+    paths = openvpn-config.paths;
 
-    custom-log-script-name = custom-logs-conf.openvpn-custom-log-script-name;
-    custom-log-path = custom-logs-conf.openvpn-log;
-    error-log-path = custom-logs-conf.openvpn-error-log;
+    logger-config = openvpn-config.logger-config;
+    service-user = logger-config.user;
+    service-group = logger-config.group;
+    log-script-name = logger-config.log-script-name;
+    clear-log-script-name = logger-config.clear-log-script-name;
+    timer-on-calendar = logger-config.timer;
 
-    vpn-host-ip = custom-logs-conf.ping-vpn-ip;
-    www-ip = custom-logs-conf.ping-www-ip;
-    openvpn-service-name = openvpn-conf.service-name;
+    ips = agl-network-config.ips;
+    aglnet-ip = inputs.ips.by-hostname."${hostname}";
+
+    custom-log-path = paths.log-filepath;
+    error-log-path = paths.errorlog-filepath;
+
+    vpn-host-ip = logger-config.ping-vpn;
+    www-ip = logger-config.ping-www;
+
+    openvpn-service-name = openvpn-config.service-name;
 
     admin-user = agl-network-config.users.admin-user;
     center-user = agl-network-config.users.center-user;
 
-    hostname = config.networking.hostName;
-    aglnet-ip = agl-network-config.ips."${hostname}";
 
-    timer-on-calendar = custom-logs-conf.openvpn-custom-log-timer-on-calendar;
-
-    scriptPath = pkgs.writeShellScriptBin "${custom-log-script-name}" ''#!/usr/bin/env bash
+    scriptPath = pkgs.writeShellScriptBin "${log-script-name}" ''#!/usr/bin/env bash
         # Default path to log file
         LOGFILE=${custom-log-path}
 
@@ -120,8 +125,7 @@ let
         fi
   '';
 
-in
-{
+in {
     # Import Polkit Rules
     imports = [
         ( import ../../polkit/openvpn/base-allow-restart.nix {
@@ -139,7 +143,7 @@ in
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
-            ExecStart = "${scriptPath}/bin/${custom-log-script-name}";
+            ExecStart = "${scriptPath}/bin/${log-script-name}";
             User = service-user;
             Group = service-group;
             AmbientCapabilities = "CAP_NET_RAW"; # Allow to use ping
@@ -165,42 +169,9 @@ in
         };
         unitConfig = {}; # maybe add some config? Timer is seems to be linked automatically if names match
     };
-    
+
     # Ensure the script is available in system packages
     environment.systemPackages = with pkgs; [
         scriptPath
     ];
-
-    # Add polkit rule to allow the service to restart the VPN service
-    # security.polkit.extraConfig = ''
-    #     polkit.addRule(function(action, subject) {
-    #         if (
-    #             action.id == "org.freedesktop.systemd1.manage-units" &&
-    #             action.lookup("unit") == "${openvpn-service-name}.service" &&
-    #             (
-    #                 subject.isInGroup("${service-group}" ||
-    #                 subject.isInGroup("wheel") ||
-    #                 subject.name == "${admin-user}") ||
-    #                 subject.name == "${center-user}"
-    #             ) &&
-    #             (
-    #                 action.lookup("verb") == "start" || 
-    #                 action.lookup("verb") == "stop") ||
-    #                 action.lookup("verb") == "restart"
-    #             ) {
-    #                 return polkit.Result.YES;
-    #             }
-    #     });
-        
-    #     // Allow the admin user to run the log-openvpn script without authentication
-    #     polkit.addRule(function(action, subject) {
-    #         if (
-    #             action.id == "org.freedesktop.policykit.exec" &&
-    #             action.lookup("program") == "${scriptPath}/bin/${custom-log-script-name}" &&
-    #             subject.name == "${admin-user}"
-    #         ) {
-    #             return polkit.Result.YES;
-    #         }
-    #     });
-    # '';
 }

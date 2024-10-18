@@ -16,17 +16,17 @@ in
         # ];
 
         enable = true;
-        recommendedProxySettings = true;
-        recommendedOptimisation = true;
-        recommendedGzipSettings = true;
+        # recommendedProxySettings = true;
+        # recommendedOptimisation = true;
+        # recommendedGzipSettings = true;
         # recommendedTlsSettings = true;    
 
         virtualHosts = {
-            "monitor.local" = {
-                locations."/" = {
-                proxyPass = "http://127.0.0.1:9999";
-                };
-            };
+            # "monitor.local" = {
+            #     locations."/" = {
+            #     proxyPass = "http://127.0.0.1:9999";
+            #     };
+            # };
         };
     };
 

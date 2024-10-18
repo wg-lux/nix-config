@@ -2,6 +2,7 @@
 
 let 
     hostname = config.networking.hostName;
+    hostname-path = agl-network-config.paths.etc.hostname;
 
     openvpn-config = agl-network-config.services.openvpn;
     service-user = agl-network-config.service-configs.service-user;
@@ -11,14 +12,11 @@ let
 
 in
     {
-        environment.etc."endoreg-client-config/hostname" = {
+        environment.etc."${hostname-path}" = {
             text = hostname;
         };
 
         imports = [
-            (import ./openvpn.nix {
-                inherit openvpn-config;
-            })
         ];
 
     }

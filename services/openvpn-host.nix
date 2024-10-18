@@ -4,6 +4,8 @@
   ...
 }: 
 let
+  sopsfiles = import ../../sopsfiles.nix {inherit config;};
+  openvpn-sopsfile = sopsfiles.openvpn-host; # TODO NOT USED?
   hostname = config.networking.hostName;
   
   openvpn-user = openvpn-config.user;
@@ -20,7 +22,6 @@ let
   openvpn-host-tcp = openvpn-config.host-tcp-ports;
 
   secret-path-openvpn-shared = ../secrets/shared/openvpn.yaml;
-  secret-path-openvpn = ../secrets + ("/" + "${hostname}/services/openvpn-aglNet.yaml");
 
 in
 lib.mkIf (config.networking.hostName == openvpn-host-hostname) {
@@ -39,30 +40,6 @@ lib.mkIf (config.networking.hostName == openvpn-host-hostname) {
       autoStart = true;
       updateResolvConf = true;
     };
-  };
-
-  sops.secrets."services/openvpn-aglNet/dh-pem" = {
-    sopsFile = secret-path-openvpn;
-    path = "${openvpn-cert-path}/dh.pem";
-    format = "yaml";
-    mode = openvpn-file-mode;
-    owner = openvpn-user;
-  };
-
-  sops.secrets."services/openvpn-aglNet/server-cert" = {
-    sopsFile = secret-path-openvpn;
-    path = "${openvpn-cert-path}/server.crt";
-    format = "yaml";
-    mode = openvpn-file-mode;
-    owner = openvpn-user;
-  };
-
-  sops.secrets."services/openvpn-aglNet/server-key" = {
-    sopsFile = secret-path-openvpn;
-    path = "${openvpn-cert-path}/server.key";
-    format = "yaml";
-    mode = openvpn-file-mode;
-    owner = openvpn-user;
   };
 
   sops.secrets."shared/openvpn-aglNet/server-ta-key" = {
